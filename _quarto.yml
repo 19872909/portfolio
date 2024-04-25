@@ -52,7 +52,7 @@ format:
       - custom.scss
     css: styles.css
     toc: true
-    echo: false
+    echo: true
 
 
 

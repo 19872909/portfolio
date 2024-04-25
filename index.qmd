@@ -16,6 +16,9 @@ I am currently studying Behavioral Data Science at the Universitat de Barcelona,
 - Specialization in Data Science (Big Data Processing and Analytics) - Mackenzie, SP - 2021
 - Master Behavioral Data Science - Barcelona University - 2024
 
+![](./cv/cv1.png){fig-align="center"}
+![](./cv/cv2.png){fig-align="center"}
+
 ## Tools
 <div style="background-color: #E5E7E9">
 

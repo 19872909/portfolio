@@ -24,7 +24,7 @@ title: "Project: PIMA Indians Diabetes"
 
 #Exploratory Analysis
 ```{python}
-#| echo: false
+#| echo: true
 #| output: false
 #| warning: false
 
