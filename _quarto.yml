@@ -39,6 +39,7 @@ website:
     contents:
       - projects.qmd
       - project1.qmd
+      - project2.qmd
 
   - title: "Reference teste"
     contents:

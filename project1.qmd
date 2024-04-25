@@ -1,578 +1,450 @@
+
 ---
-title: "Project: PIMA Indians Diabetes"
+title: "1. Classification Dimensions Analysis"
+format: html
 ---
 
-# Dataset
-<p>This dataset is originally from the National Institute of Diabetes and Digestive and Kidney Diseases.</p>
+## Introduction
 
-# Objective
-<p>The objective is to predict based on diagnostic measurements whether a patient has diabetes.</p>
+This report presents a classification of students based on the dimensions of self-compassion, burnout, and perceived social support.
 
-# Constraints
-<p>Several constraints were placed on the selection of these instances from a larger database. In particular, all patients here are females at least 21 years old of Pima Indian heritage.</p>
-
-# Features
-<li>Pregnancies: Number of times pregnant</li>
-<li>Glucose: Plasma glucose concentration a 2 hours in an oral glucose tolerance test</li>
-<li>BloodPressure: Diastolic blood pressure (mm Hg)</li>
-<li>SkinThickness: Triceps skin fold thickness (mm)</li>
-<li>Insulin: 2-Hour serum insulin (mu U/ml)</li>
-<li>BMI: Body mass index (weight in kg/(height in m)^2)</li>
-<li>DiabetesPedigreeFunction: Diabetes pedigree function</li>
-<li>Age: Age (years)</li>
-<li>Outcome: Class variable (0 or 1) 1: Diabetic, 0: Healty</li>
-
-#Exploratory Analysis
 ```{python}
-#| echo: true
-#| output: false
-#| warning: false
-
-#%% Setup
-#Libraries import
+import openpyxl
 import pandas as pd
-import matplotlib.pyplot as plt
-%matplotlib inline
 import seaborn as sns
-from numpy import sqrt
-from numpy import argmax
-from numpy import mean
-from numpy import std
-from sklearn import metrics
-from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay, accuracy_score, classification_report, mean_squared_error, roc_curve, RocCurveDisplay, recall_score
-from sklearn import preprocessing
-from sklearn.preprocessing import StandardScaler
-from sklearn.model_selection import train_test_split, cross_val_score, KFold
-from sklearn.linear_model import LogisticRegression
-
-#Dataset read
-pima = pd.read_csv('./source/diabetes.csv')
-
-#The dataset has 768 rows and 9 columns
-pima.shape
-
-pima.head()
-
-#This output shows that all dataset features are numeric.
-pima.info()
-
-#This function show the main statistics for the features. 
-pima.describe().T
-
-#This function shows that any of the features has null values
-pima.isna().sum()
-```
-
-## Correlations
-<p>
-Each square shows the correlation between the variables on each axis. Correlation ranges from -1 to +1.
-
-- Values closer to 0: There is no linear trend between the two variables.
-- Values closer to 1: The correlation is positive; that is as one increases so does the other and the closer to 1 the stronger this relationship is.
-- Values closer to -1: One variable will decrease as the other increases
-
-The diagonals are all 1/dark because those squares are correlating each variable to itself (so it's a perfect correlation). For the rest the larger the number and darker the color the higher the correlation between the two variables.
-</p>
-<hr>
-
-```{python}
-#| echo: false
-#| output: false
-
-# Generate a custom diverging colormap
-cmap = sns.diverging_palette(230, 20, as_cmap=True)
-
-correlation = pima.corr()
-plt.figure(figsize = (8,7))
-sns.heatmap(correlation, cmap = cmap, annot = True)
-```
-
-### Correlation matrix:
-
-There is a strong positve correlation between Pregnancies and Age, Glucose and Outcome.
-There is a strong negative correlation between Skinthickness and Age, Pregnancies and SkinThickness, Pregnance and Insulin
-
-```{python}
-#| fig-align: center
-
-#Correlation of features with the Outcome
-corr_report = pima.corr()['Outcome']
-corr_report.sort_values(ascending=False)
+import matplotlib.pyplot as plt
+from scipy.stats import chi2_contingency
+import numpy as np
+import seaborn as sns
+import matplotlib.pyplot as plt
+from statsmodels.graphics.mosaicplot import mosaic
 ```
 
 ```{python}
-#| fig-align: center
-
-outliers = pima[pima['Glucose'] > 150]
-outliers
-```
-```{python}
-outliers['Outcome'].value_counts()
+df = pd.read_excel('./source/DATA_Coaches.xlsx',engine='openpyxl')
 ```
 
 ```{python}
-# Histogram to analyze the distribution of data
-fig, ax = plt.subplots(ncols=3, nrows=3, figsize=(15,12))
-index = 0
-ax = ax.flatten()
+df.describe()
+```
 
-for col, value in pima.items():
-    col_dist = sns.histplot(value, ax=ax[index], kde=True, stat="density", linewidth=0)
-    col_dist.set_xlabel(col,fontsize=10)
-    col_dist.set_ylabel('density',fontsize=10)
-    index += 1
-plt.tight_layout(pad=0.8, w_pad=0.5, h_pad=5.0)
+## Preparación de datos:
+Aplicación de un filtro de exclusión para descartar registros que tengan valores fuera del rango de 1 a 5
+
+```{python}
+# Definir rango válido de 1 a 5
+valid_range = set(range(1, 6))
+# Función para filtrar filas según el rango válido
+def is_valid(row):
+    return all(value in valid_range for value in row)
+# Aplicar la función de filtro a cada fila.
+df_cleaned = df[df.apply(is_valid, axis=1)]
+df_cleaned.describe()
+```
+
+## Función para invertir la puntuación
+Función para invertir la puntuación de los ítems de las escalas incorporadas en la base de datos “DATA_coaches”. A pesar que en esta base de datos todas las escalas tienen el mismo rango en la escala ordinal (de 1 a 5 puntos) haced que la función permita trabajar con cualquier escala ordinal a la que se le quiera invertir la puntuación.
+
+```{python}
+def invert_values(df, value_max, value_min, columns_to_invert):
+    df_inverted = df.copy()
+    df_inverted[columns_to_invert] = value_max + value_min - df[columns_to_invert]
+    return df_inverted
+```
+
+Utilizad la función anterior para invertir los ítems descritos en la Tabla 1 cuya codificación reza como inversa. Hecho esto, guardad estas nuevas variables sobre las originales.
+
+```{python}
+value_max = df_cleaned.max().max()
+value_min = df_cleaned.min().min()
+
+# Columns to apply the function on
+columns_to_invert = [
+'t1scs1', 't1scs4', 't1scs8', 't1scs9', 't1scs11', 't1scs12', 
+'t2scs1', 't2scs4', 't2scs8', 't2scs9', 't2scs11', 't2scs12', 
+'t3scs1', 't3scs4', 't3scs8', 't3scs9', 't3scs11', 't3scs12', 
+'t1cbq1', 't1cbq14',
+'t2cbq1', 't2cbq14', 
+'t3cbq1', 't3cbq14']
+
+# Invert values for specified columns using the function
+df_inverted = invert_values(df_cleaned, value_max, value_min, columns_to_invert)
+
+df_inverted.describe()
+```
+
+Los valores máximo y mínimo se mantuvieron iguales y se cambió la media.
+Prueba para comparar las escalas en la primera línea del df
+
+```{python}
+df_cleaned.loc[:0]
 ```
 
 ```{python}
-# Boxplot to analyze the distribution of data
-fig, ax = plt.subplots(ncols=3, nrows=3, figsize=(15,12))
-index = 0
-ax = ax.flatten()
-
-for col, value in pima.items():
-    col_dist = sns.boxplot(value, ax=ax[index])
-    col_dist.set_xlabel(col,fontsize=10)
-    col_dist.set_ylabel('density',fontsize=10)
-    index += 1
-plt.tight_layout(pad=0.5, w_pad=0.7, h_pad=5.0)
+df_inverted.loc[:0]
 ```
 
-<hr>
+Se observa que para las variables seleccionadas, los valores se invirtieron:
+- Valor 1 cambió al valor 5
+- Valor 2 cambió al valor 4
+- Valor 3 sigue siendo el mismo
+- Valor 4 cambió al valor 2
+- Valor 5 cambió al valor 1
 
-### Outliers
-There are some outliers analyzed through the distribution of data in the histograms and boxplots.
-
-They following code has removed the outliers before to proceed with the ML model.
-
-#### IQR - Interquartile Range
-The lower quartile corresponds with the 25th percentile and the upper quartile corresponds with the 75th percentile, so IQR = Q3 − Q1.
-
-The IQR is an example of a trimmed estimator, defined as the 25% trimmed range, which enhances the accuracy of dataset statistics by dropping lower contribution, outlying points.
+Reemplezando los valores en el df orginal
 
 ```{python}
-#| fig-align: center
-
-Q1 = pima.quantile(0.25)
-Q3 = pima.quantile(0.75)
+df = df_inverted
 ```
 
-```{python}
-#| fig-align: center
-
-IQR = Q3 - Q1
-IQR
-```
-
-```{python}
-pima.shape
-```
-<p>
-The interquartile range is often used to find outliers in data. Outliers here are defined as observations that fall below Q1 − 1.5 IQR or above Q3 + 1.5 IQR. In a boxplot, the highest and lowest occurring value within this limit are indicated by whiskers of the box (frequently with an additional bar at the end of the whisker) and any outliers as individual points.
-</p>
-
-```{python}
-#| fig-align: center
-
-# Outlier removal
-pima = pima[~((pima < (Q1 - 1.5 * IQR)) | (pima > (Q3 + 1.5 * IQR))).any(axis = 1)]
-pima.shape
-```
-
-```{python}
-#| fig-align: center
-count = pima["Outcome"].value_counts()
-count
-```
-
-```{python}
-# Data distribution
-fig, ax = plt.subplots(ncols=3, nrows=3, figsize=(15,12))
-index = 0
-ax = ax.flatten()
-
-for col, value in pima.items():
-    col_dist = sns.boxplot(value, ax=ax[index])
-    col_dist.set_xlabel(col,fontsize=10)
-    col_dist.set_ylabel('density',fontsize=10)
-    index += 1
-plt.tight_layout(pad=0.5, w_pad=0.7, h_pad=5.0)
-```
-
-```{python}
-# Histogram to analyze the distribution of data
-fig, ax = plt.subplots(ncols=3, nrows=3, figsize=(15,12))
-index = 0
-ax = ax.flatten()
-
-for col, value in pima.items():
-    col_dist = sns.histplot(value, ax=ax[index], kde=True, stat="density", linewidth=0)
-    col_dist.set_xlabel(col,fontsize=10)
-    col_dist.set_ylabel('density',fontsize=10)
-    index += 1
-plt.tight_layout(pad=0.8, w_pad=0.5, h_pad=5.0)
-```
-
-### Logistic Regression ML Model
-```{python}
-#| fig-align: center
-
-# Define x and y
-feature_cols =['Pregnancies', 'Glucose', 'BloodPressure', 'SkinThickness', 'Insulin', 'BMI', 'DiabetesPedigreeFunction', 'Age']
-x=pima[feature_cols]
-y=pima.Outcome
-```
-
-```{python}
-#| fig-align: center
-#split x and y into training (70%) and testing (30%) sets
-x_train, x_test, y_train, y_test = train_test_split(x, y, test_size = 0.3, random_state=0)
-```
-
-<hr>
-
-### Standardize features
-Standardize features by removing the mean and scaling to unit variance.
-
-The standard score of a sample x is calculated as: z = (x - u) / s, where u is the mean of the training samples or zero if with_mean=False, and s is the standard deviation of the training samples or one if with_std=False.
-
-```{python}
-#| fig-align: center
-
-scale = StandardScaler()
-x_train = scale.fit_transform(x_train)
-x_test = scale.fit_transform(x_test)
-```
-
-```{python}
-#| fig-align: center
-
-#Logistic regression model fit on the training set
-logreg = LogisticRegression(solver='lbfgs', max_iter=3000)
-logreg.fit(x_train, y_train)
-```
-
-```{python}
-#| fig-align: center
-
-#Using the trained model to predict the outcome for samples in x_test.
-y_pred = logreg.predict(x_test)
-```
-
-```{python}
-#| fig-align: center
-
-#Return the probability estimates.
-y_score = logreg.predict_proba(x_test)[:, 1]
-```
-
-<hr>
-
-### ML Model Assessment
-- Precision: Percentage of correct positive predictions relative to total positive predictions.
-- Recall: Percentage of correct positive predictions relative to total actual positives.
-- F1 Score: A weighted harmonic mean of precision and recall. The closer to 1, the better the model. F1 Score: 2 * (Precision * Recall) / (Precision + Recall)
-
-```{python}
-#| fig-align: center
-#Comparing actual result and predicted result
-print(classification_report(y_test, y_pred))
-```
-
-- Precision: Out of all the patients that the model predicted would get diabetes, 78% actually did.
-- Recall: Out of all the patients that actually did get diabetes, the model predicted this outcome correctly for 48% of those patients.
-- F1 Score: 0.59 - Since this value is close to 1, it tells us that the model does a good job of predicting whether or not patients will get diabetes. 2 * (Precision * Recall) / (Precision + Recall) ***** 2 * (.78 * .48) / (.78 + .48)
-- Support: These values is regarding how many patients belonged to each class in the test dataset. Among the patientis in the test dataset, 127 did not get diabetes and 65 did get diabetes.
-
-```{python}
-#| fig-align: center
-#The lower the RMS value, the better. O means the model is perfect.
-rms = mean_squared_error(y_test, y_pred, squared=False)
-rms
-```
-
-<hr>
-
-### ROC Curve
-The ROC curve shows the trade-off between sensitivity (or True Positve Rate) and specificity (1 – False Positive Rate).
-
-Classifiers that give curves closer to the top-left corner indicate a better performance
-
-ROC/AUC does not require to set a classification threshold and it's still useful when there is high class imbalance
-
-- ROC curve can help you to choose a threshold that balances sensitivity and specificity in a way that makes sense for your particular context
-
-- You can't actually see the thresholds used to generate the curve on the ROC curve itself  
+Calculad las puntuaciones totales de las escalas (autocompasión, burnout y apoyo social percibido). Guardad estas nuevas variables en la base de datos.
 
 
 ```{python}
-#| fig-align: center
-fpr, tpr, thresh = roc_curve(y_test, y_score, pos_label=logreg.classes_[1])
-```
-```{python}
-#| fig-align: center
-#AUC is the percentage of the ROC plot that is underneath the curve:
-# IMPORTANT: first argument is true values, second argument is predicted probabilities
-print(metrics.roc_auc_score(y_test, y_pred))
+autocompasion1 = df.filter(regex='^t1scs')
+autocompasion2 = df.filter(regex='^t2scs')
+autocompasion3 = df.filter(regex='^t3scs')
+burnout1 = df.filter(regex='^t1cbq')
+burnout2 = df.filter(regex='^t2cbq')
+burnout3 = df.filter(regex='^t3cbq')
+apoyo_social1 = df.filter(regex='^t1ssq')
+apoyo_social2 = df.filter(regex='^t2ssq')
+apoyo_social3 = df.filter(regex='^t3ssq')
 ```
 
 ```{python}
-#| fig-align: center
-plt.figure(figsize=(6,4))
-plt.plot(fpr, tpr, linewidth=1, marker='.', label='Logistic')
-plt.plot([0,1], [0,1], linestyle='--', label='No Skill')
-plt.rcParams['font.size'] = 8
-plt.title('ROC curve')
-plt.xlabel('Specificity (FPR)')
-plt.ylabel('Sensitivity (TPR)')
+df['autocompasion1'] = autocompasion1.sum(axis=1)
+df['autocompasion2'] = autocompasion2.sum(axis=1)
+df['autocompasion3'] = autocompasion3.sum(axis=1)
+df['burnout1'] = burnout1.sum(axis=1)
+df['burnout2'] = burnout2.sum(axis=1)
+df['burnout3'] = burnout3.sum(axis=1)
+df['apoyo_social1'] = apoyo_social1.sum(axis=1)
+df['apoyo_social2'] = apoyo_social2.sum(axis=1)
+df['apoyo_social3'] = apoyo_social3.sum(axis=1)
+df.head()
+```
+Con las nuevas variables calculadas en el apartado anterior, haced una descripción estadística de las mismas en los tres momentos de estudio. Una posibilidad de tabla resumen sería la plantilla mostrada en la Tabla 2.
+```{python}
+df_new = df[['autocompasion1', 'burnout1', 'apoyo_social1',
+             'autocompasion2', 'burnout2', 'apoyo_social2',
+             'autocompasion3', 'burnout3', 'apoyo_social3']]
+```
+
+```{python}
+stat = df_new.describe()
+stat
+```
+## Evolución a lo largo del tiempo
+Complementad el análisis anterior con gráficos adecuados que permitan evaluar la evolución de las 3 dimensiones a lo largo del tiempo. 
+
+```{python}
+mean_values_autocomp1 = stat.loc['mean', 'autocompasion1']
+mean_values_burnout1 = stat.loc['mean', 'burnout1']
+mean_values_apoyo1 = stat.loc['mean', 'apoyo_social1']
+mean_values_autocomp2 = stat.loc['mean', 'autocompasion2']
+mean_values_burnout2 = stat.loc['mean', 'burnout2']
+mean_values_apoyo2 = stat.loc['mean', 'apoyo_social2']
+mean_values_autocomp3 = stat.loc['mean', 'autocompasion3']
+mean_values_burnout3 = stat.loc['mean', 'burnout3']
+mean_values_apoyo3 = stat.loc['mean', 'apoyo_social3']
+```
+
+```{python}
+# Create a new DataFrame with the mean values
+mean_df = pd.DataFrame({
+    'autocompasion': [mean_values_autocomp1, mean_values_autocomp2, mean_values_autocomp3],
+    'burnout': [mean_values_burnout1, mean_values_burnout2, mean_values_burnout3],
+    'apoyo_social': [mean_values_apoyo1, mean_values_apoyo2, mean_values_apoyo3]
+}, index=['Línea Base', '3 Meses', '6 Meses'])
+mean_df
+```
+
+```{python}
+# Plotting with seaborn
+plt.figure(figsize=(8, 6))
+for column in mean_df.columns:
+    sns.lineplot(x=mean_df.index, y=mean_df[column], marker='o',label=column)
+    for i, value in enumerate(mean_df[column]):
+        plt.annotate(f'{value:.2f}', (mean_df.index[i], value), textcoords="offset points", xytext=(0,5), ha='center', fontsize=8)
+
+
+plt.title('Media de las dimensiones a lo largo del tiempo')
+plt.ylabel('Media')
 plt.legend()
 plt.show()
 ```
-### Accuracy
-Percentage of correct predictions
+
+Autocompasión e Burnout: Con relación a la línea base, se observa que el promedio aumenta en 3 meses y luego disminuye en 6 meses.
+
+Apoyo Social: Con relación a la línea base, se observa que el promedio disminuye en 3 meses y luego aumenta en 6 meses.
+
+Incluso con la dimensión de apoyo social reduciendo el promedio en 3 meses, ambas dimensiones terminaron en 6 meses con un promedio superior al de referencia.
+
+## Boxplots for Each Dimension Over Time
 
 ```{python}
-#| fig-align: center
-print('Accuracy of Logistic regression model is {}'.format(accuracy_score(y_test,y_pred)))
-```
-### Null accuracy
-Null accuracy refers to the accuracy that could be achieved by always predicting the most frequent class in the dataset.
+# Create separate boxplots for each dimension
+fig, axes = plt.subplots(ncols=3, figsize=(18, 6))
 
-In the test set, 66% (127) of patients did not have diabetes, while 34% did. In this case, the null accuracy would be 66%, because if we always predicted "not diabetes," we would be correct 66% of the time.
+dimensions = ['autocompasion', 'burnout', 'apoyo_social']
 
-```{python}
-#| fig-align: center
-y_test.value_counts().head(1) / len(y_test)
-```
-As the null accuracy is less than model accuracy, it indicates a good result.
+for i, dim in enumerate(dimensions):
+    cols = [col for col in df_new.columns if dim in col]
+    df_dim = df_new[cols]
+    
+    # Melt the DataFrame for boxplot
+    df_dim_melted = pd.melt(df_dim, var_name='Time', value_name='Value')
 
-#### Comparing the true and predicted response values
+    # Create a boxplot for the current dimension
+    ax = sns.boxplot(x='Time', y='Value', data=df_dim_melted, ax=axes[i])
+    ax.set_title(f'Boxplot for {dim.capitalize()} Over Time')
+    ax.set_xlabel('Time')
+    ax.set_ylabel(f'{dim} Value')
 
-```{python}
-#| fig-align: center
-#print the 25 first true and predict responses
-print ('True:'), y_test.values[0:25]
-```
-
-```{python}
-print ('Pred:'), y_pred[0:25]
-```
-
-### Confusion Matrix
-Confusion matrix allows to calculate a variety of metrics. It's a useful for multi-class problems (more than two response classes)
-
-- Every observation in the testing set is represented in exactly one box
-- It's 2x2 matrix because there are 2 responses classes
-- The format shown here is not universal
-
-Basic Terminology
-
-- TP: correctly predict that they have diabetes
-- TN: correctly predict that they do not have diabetes
-- FP: incorrectly predict that they do have diabetes
-- FN: incorrectly predict that they do not have diabetes
-
-```{python}
-#IMPORTANT: First argument is true values, second argument is predict values
-metrics.confusion_matrix(y_test, y_pred)
-```
-
-```{python}
-#Graphic visualization
-cm = confusion_matrix(y_test, y_pred, labels=logreg.classes_)
-disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=logreg.classes_)
-disp.plot()
+plt.tight_layout()
 plt.show()
 ```
 
-- TN: 118 patients without diabetes were correctly predicted as no diabetics
-- FP: 9 patients without diabetes were incorrectly predicted as diabetics
-- FN: 34 patients with diabetes were incorrectly predicted as no diabetics
-- TP: 31 patients with diabetes were correctly predicted as diabetics
+Los diagramas de caja anteriores muestran que los datos mantuvieron el mismo patrón a lo largo del tiempo. Lo que llama la atención en este análisis son los valores atípicos.
+
+#### Autocompassion:
+- Los valores atípicos aumentaron con el tiempo, tanto para valores altos como bajos. Esto muestra que para algunas personas hubo un gran cambio en la autocompasión a lo largo del tiempo.
+
+#### Burnout:
+- Los valores atípicos aumentaron con el tiempo hasta alcanzar valores de aproximadamente 70. Esto muestra que para algunas personas hubo un aumento en el agotamiento con el tiempo.
+
+#### Apoyo Social:
+- Los valores atípicos disminuyeron, pero los valores atípicos que aparecieron tuvieron valores más bajos con el tiempo. Esto muestra que para unas pocas personas hubo una gran disminución en el apoyo social con el tiempo.
+
+## Correlation Matrix
+Estudiad todas las posibles correlaciones entre las dimensiones obtenidas en los apartados anteriores con indicadores adecuados y de forma separada para cada momento. Complementad estos análisis sobre correlaciones con gráficos adecuados.
 
 ```{python}
-#save confusion matrix and slice into four pieces
-confusion = metrics.confusion_matrix(y_test, y_pred)
-TN = confusion[0,0]
-FP = confusion[0,1]
-FN = confusion[1,0]
-TP = confusion[1,1]
-confusion
-```
-
-#### Metrics computed from a confusion matrix
-
-```{python}
-#How often the classifier is correct?
-print('Accuracy: {}'.format((TP + TN) / (TP + TN + FP + FN)))
-#print('Accuracy: {}'.format(metrics.accuracy_score(y_test, y_pred_class)))
-```
-
-#### k-Fold Cross-Validation
-The k-fold cross-validation procedure divides a limited dataset into k non-overlapping folds. Each of the k folds is given an opportunity to be used as a held back test set, whilst all other folds collectively are used as a training dataset. A total of k models are fit and evaluated on the k hold-out test sets and the mean performance is reported.
-
-```{python}
-#This will give the overall accuracy of your model .
-kf = KFold(n_splits=10, random_state=1, shuffle=True)
-cv_result = cross_val_score(logreg, x, y, cv=kf, scoring='accuracy', n_jobs=-1)
-print('Accuracy: %.3f (%.3f)' % (mean(cv_result), std(cv_result)))
+correlation_matrix = df_new.corr()
+correlation_matrix
 ```
 
 ```{python}
-#How often the classifier is incorrect?
-print('Error: {}'.format((FP + FN)/(TP + TN + FP + FN)))
-#print('Error: {}'.format(1-metrics.accuracy_score(y_test, y_pred_class)))
+# Plot a heatmap for better visualization of correlations
+plt.figure(figsize=(8, 6))
+sns.heatmap(correlation_matrix, annot=True, cmap="coolwarm", fmt=".2f", linewidths=.5)
+plt.title('Correlation Matrix')
+plt.show()
+```
+La correlación negativa más fuerte (-0,35) se observó entre "apoyo_social1" y "burnout2". La segunda correlación negativa más grande (-0,33) se produce entre "apoyo_social1" y "burnout1", seguida de la tercera correlación negativa más grande (-0,32) entre "apoyo_social2" y "burnout2".
+
+La correlación positiva más significativa (0,80) se encontró entre "apoyo_social1" y "apoyo_social3". La segunda correlación positiva más alta (0,78) se observa entre "burnout2" y "burnout3", y la tercera correlación positiva más alta (0,77) es entre "apoyo_social1" y "apoyo_social2".
+
+En cuanto a las tendencias, cuando disminuye la percepción de apoyo social, hay una tendencia asociada a que el nivel de burnout disminuya, tanto en el mismo momento como en los tres meses siguientes. Por el contrario, cuando aumenta el apoyo social percibido, a esta tendencia le sigue un aumento continuo en los meses siguientes. De manera similar, un aumento en el nivel de burnout tiende a ir seguido de un aumento durante los próximos tres meses.
+
+Estos patrones sugieren una fuerte asociación entre la percepción de apoyo social y el nivel de agotamiento. Cuando no hay signos de agotamiento, la necesidad de apoyo social puede no ser tan apremiante. Sin embargo, el aumento en la percepción de apoyo social puede indicar un posible aumento simultáneo en el nivel de burnout.
+
+```{python}
+# Plot all three heatmaps in a single row
+fig, axes = plt.subplots(1, 3, figsize=(18, 6))
+
+for i, (time_df, time_label) in enumerate(zip([df[['autocompasion1', 'burnout1', 'apoyo_social1']],
+                                               df[['autocompasion2', 'burnout2', 'apoyo_social2']],
+                                               df[['autocompasion3', 'burnout3', 'apoyo_social3']]], 
+                                              ['Línea Base', '3 meses', '6 meses']), 1):
+    correlation_matrix = time_df.corr()
+    
+    # Plot a heatmap on each subplot
+    sns.heatmap(correlation_matrix, annot=True, cmap="coolwarm", fmt=".2f", linewidths=.5, ax=axes[i-1])
+    axes[i-1].set_title(f'{time_label}')
+
+# Adjust layout
+plt.tight_layout()
+plt.show()
+```
+Autocompasion
+- Tiene una correlación positiva con el burnout. Cuando aumenta la autocompasión, el agotamiento también tiende a aumentar
+- Tiene una correlación negativa con el apoyo social. Cuando la autocompasión aumenta, el apoyo social tiende a disminuir.
+
+Burnout
+- Tiene una correlación positiva con la automapasión. Cuando aumenta el agotamiento, la autocompasión también tiende a aumentar
+- Tiene una correlación negativa con el apoyo social. Cuando aumenta el burnout, el apoyo social tiende a disminuir
+
+Apoyo Social:
+- Tiene una correlación negativa con la automapasión. Cuando el apoyo social disminuye, la autocompasión también tiende a disminuir
+- Tiene una correlación negativa con el apoyo social. Cuando el apoyo social disminuye, el agotamiento tiende a disminuir
+
+
+Cread una función que clasifique cada individuo de la muestra de acuerdo al siguiente criterio:
+
+Si t3=t1:estable
+Si t3<t1:inestable positivo (SCS y CBQ) o negativo (BPSSQ)
+Si t3>t1:inestable negativo (SCS y CBQ) o positivo (BPSSQ)
+Utilizad la nueva función para clasificar a los participantes en el estudio por separado por cada dimensión de interés (autocompasión, burnout y apoyo social percibido). Guardad estas clasificaciones como nuevas variables de la base de datos.
+
+```{python}
+# Función para clasificar a cada individuo
+def clasificar_compasion(row):
+    if row['autocompasion3'] == row['autocompasion1']:
+        return 'estable'
+    elif row['autocompasion3'] < row['autocompasion1']:
+        return 'inestable positivo'
+    else:
+        return 'inestable negativo'
+
+# Aplicar la función a la dimensión de autocompasión y crear nueva variable
+df_new['clasificacion_autocompasion'] = df_new.apply(clasificar_compasion, axis=1)
 ```
 
 ```{python}
-#When the actual value is positive, how often is the prediction correct?
-print('Sensitivity (TPR): {}'.format(TP / (TP + FN)))
-#metrics.recall_score(y_test, y_pred_class)
+# Repetir el proceso para las otras dimensiones (burnout y apoyo social)
+# Función para clasificar burnout
+def clasificar_burnout(row):
+    if row['burnout3'] == row['burnout1']:
+        return 'estable'
+    elif row['burnout3'] < row['burnout1']:
+        return 'inestable positivo'
+    else:
+        return 'inestable negativo'
+
+# Aplicar la función a la dimensión de burnout y crear nueva variable
+df_new['clasificacion_burnout'] = df_new.apply(clasificar_burnout, axis=1)
 ```
-
-```{python}
-#When the actual value is negative, how often is the prediction correct?
-print('Specificity (FPR): {}'.format(TN / (TN + FP))) 
-#recall_score(y_test, y_pred_class, pos_label=0)
-```
-
-```{python}
-#When a positive value is predicted, how often is the prediction correct?
-print('Precision: {}'.format(TP / (TP + FP))) 
-#metrics.precision_score(y_test, y_pred_class)
-```
-
-### Result
-The choice of metrics depends on the business objective.
-
-For this project, sensibility (False Negative) is the metric most important, since predicting diabetics as no diabetics is the worst expected error. This may imply no further investigations and consequently no treatment of the disease.
-
-So the better result is to have a Sensitivity (The correct prediction for positive values) result higher than a Specificity (The correct prediction for negative values) result.
-
-The error in predicting a healthy patient as a diabetic patient is more acceptable than the opposite.
-
-### Adjusting the classification threshold
-
-```{python}
-#print the first 10 predicted responses
-logreg.predict(x_test)[0:10]
-```
-
-```{python}
-#print the first 10 predicted probabilities of class membership
-logreg.predict_proba(x_test)[0:10, :]
-```
-
-```{python}
-#print the first 10 predicted probabilities for class 1
-logreg.predict_proba(x_test)[0:10, 1]
-```
-
-```{python}
-fig = sns.histplot(data=y_score, bins=8)
-plt.xlabel("Predicted probability of diabetes")
-plt.ylabel("Frequency")
-plt.title("Histogram of predicted probabilities") 
-plt.xlim(0,1)
-plt.rcParams['font.size']=10
-plt.show(fig)
-```
-
-#### Finding the best threshold for predicting diabetes and to increase the sensitivity of the classifier
-Threshold of 0.5 is used by default (for binary problems) to convert predicted possibilities into class predictions
-Threshold can be adjusted to increase sensitivity or specificity
-Sensitivity and specificity have an inverse relationship
 
 
 ```{python}
-# calculate roc curves
-fpr, tpr, thresholds = roc_curve(y_test, y_score)
+# Función para clasificar apoyo social
+def clasificar_apoyo_social(row):
+    if row['apoyo_social3'] == row['apoyo_social1']:
+        return 'estable'
+    elif row['apoyo_social3'] < row['apoyo_social1']:
+        return 'inestable negativo'
+    else:
+        return 'inestable positivo'
+
+# Aplicar la función a la dimensión de apoyo social y crear nueva variable
+df_new['clasificacion_apoyo_social'] = df_new.apply(clasificar_apoyo_social, axis=1)
+df_new.head()
+```
+
+¿Existe relación entre las variables categóricas creadas en el apartado anterior? Realizad todos los análisis bivariantes posibles (escogiendo 2 variables cada vez)
+
+```{python}
+df_cat = df_new[['clasificacion_autocompasion', 'clasificacion_burnout', 'clasificacion_apoyo_social']]
 ```
 
 ```{python}
-# calculate the g-mean for each threshold
-gmeans = sqrt(tpr * (1-fpr))
-# locate the index of the largest g-mean
-ix = argmax(gmeans)
-print('Best Threshold=%f, G-Mean=%.3f' % (thresholds[ix], gmeans[ix]))
+# tabla de contingencia
+cont_tbl_auto_burn = pd.crosstab(df_cat['clasificacion_autocompasion'], df_cat['clasificacion_burnout'])
+cont_tbl_auto_apoy = pd.crosstab(df_cat['clasificacion_autocompasion'], df_cat['clasificacion_apoyo_social'])
+cont_tbl_burn_apoy = pd.crosstab(df_cat['clasificacion_burnout'], df_cat['clasificacion_apoyo_social'])
+```
+
+
+```{python}
+# chi-square y p-value
+chi2, p, _, _ = chi2_contingency(cont_tbl_auto_burn)
+# cramer's v
+V_cramer = np.sqrt(chi2 / (cont_tbl_auto_burn.sum().sum() * (np.min(cont_tbl_auto_burn.shape) - 1)))
+
+# resultados
+print("Autocompasion y Burnout")
+print(" ")
+print(cont_tbl_auto_burn)
+print(" ")
+print('Chi-Square = {:.2f}'.format(chi2))
+print('P-Value = {:.4f}'.format(p))      
+print('Cramer\'s V = {:.2f}'.format(V_cramer))
+
+# interpretación
+if p < 0.05:
+    print("\nLas variables son dependientes.")
+else:
+    print("\nLas variables son independientes. No hay evidencia suficiente para rechazar la independencia entre las variables.")
 ```
 
 ```{python}
-# get the best threshold
-J = tpr - fpr
-ix = argmax(J)
-best_thresh = thresholds[ix]
-print('Best Threshold=%f' % (best_thresh))
+# chi-square y p-value
+chi2, p, _, _ = chi2_contingency(cont_tbl_auto_apoy)
+# cramer's v
+V_cramer = np.sqrt(chi2 / (cont_tbl_auto_apoy.sum().sum() * (np.min(cont_tbl_auto_apoy.shape) - 1)))
+
+
+# resultados
+print("Autocompasion y Apoyo Social")
+print(" ")
+print(cont_tbl_auto_apoy)
+print(" ")
+print('Chi-Square = {:.2f}'.format(chi2))
+print('P-Value = {:.4f}'.format(p))      
+print('Cramer\'s V = {:.2f}'.format(V_cramer))
+
+# interpretación
+if p < 0.05:
+    print("\nLas variables son dependientes.")
+else:
+    print("\nLas variables son independientes. No hay evidencia suficiente para rechazar la independencia entre las variables.")
 ```
 
 ```{python}
-# define a function that accepts a threshold and prints sensitivity and specificity
-def evaluate_threshold(threshold):
-    print('Sensitivity:', tpr[thresholds > threshold][-1])
-    print('Specificity:', 1 - fpr[thresholds > threshold][-1])
+# chi-square y p-value
+chi2, p, _, _ = chi2_contingency(cont_tbl_burn_apoy)
+# cramer's v
+V_cramer = np.sqrt(chi2 / (cont_tbl_burn_apoy.sum().sum() * (np.min(cont_tbl_burn_apoy.shape) - 1)))
+
+# resultados
+print("\nBurnout y Apoyo Social")
+print(" ")
+print(cont_tbl_burn_apoy)
+print(" ")
+print('Chi-Square = {:.2f}'.format(chi2))
+print('P-Value = {:.4f}'.format(p))      
+print('Cramer\'s V = {:.2f}'.format(V_cramer))
+
+# interpretación
+if p < 0.05:
+    print("\nLas variables son dependientes.")
+else:
+    print("\nLas variables son independientes. No hay evidencia suficiente para rechazar la independencia entre las variables.")
+```
+
+Como todos os P-values são > 0.05, indica que as variáveis são independentes.
+
+Complementad los análisis bivariantes anteriores con gráficos adecuados para favorecer la inspección visual de las distribuciones conjuntas.
+
+```{python}
+# Melt the DataFrame to have a single column for variable names and values
+df_melted = pd.melt(df_cat[['clasificacion_autocompasion', 'clasificacion_burnout', 'clasificacion_apoyo_social']], var_name='Variable', value_name='Category')
+```
+
+
+```{python}
+# Get unique combinations of Variable and Category
+combinations = df_melted.groupby(['Variable', 'Category']).size().reset_index(name='Count')
 ```
 
 ```{python}
-evaluate_threshold(0.5)
+# Create a mosaic chart
+mosaic_data = pd.crosstab(df_melted['Variable'], df_melted['Category'])
+mosaic_data
 ```
+
 
 ```{python}
-evaluate_threshold(0.3)
+palette_dimensions = 'Set2'
+palette_status = 'Set3'
+
+# Create subplots
+fig, axes = plt.subplots(1, 2, figsize=(15, 6))
+
+# Plot the first chart on the left subplot with the specified color palette
+sns.countplot(x='Variable', hue='Category', data=df_melted, ax=axes[0], palette=palette_dimensions)
+axes[0].set_title('Dimensions by Status')
+
+# Plot the second chart on the right subplot with a different color palette
+sns.barplot(x='Category', y='Count', hue='Variable', data=combinations, 
+            order=combinations['Category'].unique(), ax=axes[1], palette=palette_status)
+axes[1].set_title('Status by Dimensions')
+
+# Adjust layout to prevent clipping of titles and labels
+plt.tight_layout()
+
+# Show the plots
+plt.show()
 ```
-
-```{python}
-evaluate_threshold(0.242365)
-```
-
-```{python}
-#predict diabetes if the predicted probabilities is greater than 0.242365
-y_pred_2 = preprocessing.binarize([y_score], threshold=0.242365)[0]
-```
-
-```{python}
-#print the first 10 predicted probabilites
-y_pred[0:10]
-```
-
-```{python}
-#print the first 10 predicted classes with the lower threshold
-y_pred_2[0:10]
-```
-
-```{python}
-#previous confusion matrix (default threshold of 0.5)
-confusion
-```
-
-```{python}
-#now confusion matrix (threshold of 0.3)
-confusion_2 = metrics.confusion_matrix(y_test, y_pred_2)
-TN = confusion_2[0,0]
-FP = confusion_2[0,1]
-FN = confusion_2[1,0]
-TP = confusion_2[1,1]
-```
-
-```{python}
-confusion_2
-```
-
-```{python}
-#sensitivity has increased (used to be 0.7384615384615385)
-print('Sensitivity (TPR): {}'.format(TP / (TP + FN)))
-```
-
-```{python}
-#sensitivity has increased (used to be 0.7795275590551181)
-print('Specificity (FPR): {}'.format(TN / (TN + FP))) 
-```
-
-```{python}
-#AUC is the percentage of the ROC plot that is underneath the curve:
-print(metrics.roc_auc_score(y_test, y_pred_2))
-```
-
-### Conclusion
-With a threshold of 0.242365, the sensitivity has increased from 0.48 to 0.85, and the specificity has decreased from 0.93 to 0.75. Despite the decrease in specificity, for this project, the most important metric is sensitivity, once we want to correctly predict the patients with diabetes, the correct prediction for positive values.
-
-The AUC has also increased after threshold adjustment, from 0.70 to 0.79.

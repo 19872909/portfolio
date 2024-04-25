@@ -1,0 +1,584 @@
+---
+title: "2. Prediction of Diabetes"
+---
+
+# Dataset
+
+<p> PIMA Indian Diabetes dataset is originally from the National Institute of Diabetes and Digestive and Kidney Diseases.</p>
+
+## Objective
+<p>The objective is to predict based on diagnostic measurements whether a patient has diabetes.</p>
+
+## Constraints
+<p>Several constraints were placed on the selection of these instances from a larger database. In particular, all patients here are females at least 21 years old of Pima Indian heritage.</p>
+
+## Features
+<li>Pregnancies: Number of times pregnant</li>
+<li>Glucose: Plasma glucose concentration a 2 hours in an oral glucose tolerance test</li>
+<li>BloodPressure: Diastolic blood pressure (mm Hg)</li>
+<li>SkinThickness: Triceps skin fold thickness (mm)</li>
+<li>Insulin: 2-Hour serum insulin (mu U/ml)</li>
+<li>BMI: Body mass index (weight in kg/(height in m)^2)</li>
+<li>DiabetesPedigreeFunction: Diabetes pedigree function</li>
+<li>Age: Age (years)</li>
+<li>Outcome: Class variable (0 or 1) 1: Diabetic, 0: Healty</li>
+
+## Exploratory Analysis
+```{python}
+#| echo: true
+#| output: false
+#| warning: false
+
+#%% Setup
+#Libraries import
+import pandas as pd
+import matplotlib.pyplot as plt
+%matplotlib inline
+import seaborn as sns
+from numpy import sqrt
+from numpy import argmax
+from numpy import mean
+from numpy import std
+from sklearn import metrics
+from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay, accuracy_score, classification_report, mean_squared_error, roc_curve, RocCurveDisplay, recall_score
+from sklearn import preprocessing
+from sklearn.preprocessing import StandardScaler
+from sklearn.model_selection import train_test_split, cross_val_score, KFold
+from sklearn.linear_model import LogisticRegression
+
+#Dataset read
+pima = pd.read_csv('./source/diabetes.csv')
+
+#The dataset has 768 rows and 9 columns
+pima.shape
+pima.head()
+```
+
+```{python}
+#This output shows that all dataset features are numeric.
+pima.info()
+```
+
+```{python}
+#This function show the main statistics for the features. 
+pima.describe().T
+```
+
+```{python}
+#This function shows that any of the features has null values
+pima.isna().sum()
+```
+
+## Correlations
+<p>
+Each square shows the correlation between the variables on each axis. Correlation ranges from -1 to +1.
+
+- Values closer to 0: There is no linear trend between the two variables.
+- Values closer to 1: The correlation is positive; that is as one increases so does the other and the closer to 1 the stronger this relationship is.
+- Values closer to -1: One variable will decrease as the other increases
+
+The diagonals are all 1/dark because those squares are correlating each variable to itself (so it's a perfect correlation). For the rest the larger the number and darker the color the higher the correlation between the two variables.
+</p>
+<hr>
+
+```{python}
+#| echo: false
+#| output: false
+
+# Generate a custom diverging colormap
+cmap = sns.diverging_palette(230, 20, as_cmap=True)
+
+correlation = pima.corr()
+plt.figure(figsize = (8,7))
+sns.heatmap(correlation, cmap = cmap, annot = True)
+```
+
+### Correlation matrix:
+
+There is a strong positve correlation between Pregnancies and Age, Glucose and Outcome.
+There is a strong negative correlation between Skinthickness and Age, Pregnancies and SkinThickness, Pregnance and Insulin
+
+```{python}
+#| fig-align: center
+
+#Correlation of features with the Outcome
+corr_report = pima.corr()['Outcome']
+corr_report.sort_values(ascending=False)
+```
+
+```{python}
+#| fig-align: center
+
+outliers = pima[pima['Glucose'] > 150]
+outliers
+```
+```{python}
+outliers['Outcome'].value_counts()
+```
+
+```{python}
+# Histogram to analyze the distribution of data
+fig, ax = plt.subplots(ncols=3, nrows=3, figsize=(15,12))
+index = 0
+ax = ax.flatten()
+
+for col, value in pima.items():
+    col_dist = sns.histplot(value, ax=ax[index], kde=True, stat="density", linewidth=0)
+    col_dist.set_xlabel(col,fontsize=10)
+    col_dist.set_ylabel('density',fontsize=10)
+    index += 1
+plt.tight_layout(pad=0.8, w_pad=0.5, h_pad=5.0)
+```
+
+```{python}
+# Boxplot to analyze the distribution of data
+fig, ax = plt.subplots(ncols=3, nrows=3, figsize=(15,12))
+index = 0
+ax = ax.flatten()
+
+for col, value in pima.items():
+    col_dist = sns.boxplot(value, ax=ax[index])
+    col_dist.set_xlabel(col,fontsize=10)
+    col_dist.set_ylabel('density',fontsize=10)
+    index += 1
+plt.tight_layout(pad=0.5, w_pad=0.7, h_pad=5.0)
+```
+
+<hr>
+
+### Outliers
+There are some outliers analyzed through the distribution of data in the histograms and boxplots.
+
+They following code has removed the outliers before to proceed with the ML model.
+
+#### IQR - Interquartile Range
+The lower quartile corresponds with the 25th percentile and the upper quartile corresponds with the 75th percentile, so IQR = Q3 − Q1.
+
+The IQR is an example of a trimmed estimator, defined as the 25% trimmed range, which enhances the accuracy of dataset statistics by dropping lower contribution, outlying points.
+
+```{python}
+#| fig-align: center
+
+Q1 = pima.quantile(0.25)
+Q3 = pima.quantile(0.75)
+```
+
+```{python}
+#| fig-align: center
+
+IQR = Q3 - Q1
+IQR
+```
+
+```{python}
+pima.shape
+```
+<p>
+The interquartile range is often used to find outliers in data. Outliers here are defined as observations that fall below Q1 − 1.5 IQR or above Q3 + 1.5 IQR. In a boxplot, the highest and lowest occurring value within this limit are indicated by whiskers of the box (frequently with an additional bar at the end of the whisker) and any outliers as individual points.
+</p>
+
+```{python}
+#| fig-align: center
+
+# Outlier removal
+pima = pima[~((pima < (Q1 - 1.5 * IQR)) | (pima > (Q3 + 1.5 * IQR))).any(axis = 1)]
+pima.shape
+```
+
+```{python}
+#| fig-align: center
+count = pima["Outcome"].value_counts()
+count
+```
+
+```{python}
+# Data distribution
+fig, ax = plt.subplots(ncols=3, nrows=3, figsize=(15,12))
+index = 0
+ax = ax.flatten()
+
+for col, value in pima.items():
+    col_dist = sns.boxplot(value, ax=ax[index])
+    col_dist.set_xlabel(col,fontsize=10)
+    col_dist.set_ylabel('density',fontsize=10)
+    index += 1
+plt.tight_layout(pad=0.5, w_pad=0.7, h_pad=5.0)
+```
+
+```{python}
+# Histogram to analyze the distribution of data
+fig, ax = plt.subplots(ncols=3, nrows=3, figsize=(15,12))
+index = 0
+ax = ax.flatten()
+
+for col, value in pima.items():
+    col_dist = sns.histplot(value, ax=ax[index], kde=True, stat="density", linewidth=0)
+    col_dist.set_xlabel(col,fontsize=10)
+    col_dist.set_ylabel('density',fontsize=10)
+    index += 1
+plt.tight_layout(pad=0.8, w_pad=0.5, h_pad=5.0)
+```
+
+### Logistic Regression ML Model
+```{python}
+#| fig-align: center
+
+# Define x and y
+feature_cols =['Pregnancies', 'Glucose', 'BloodPressure', 'SkinThickness', 'Insulin', 'BMI', 'DiabetesPedigreeFunction', 'Age']
+x=pima[feature_cols]
+y=pima.Outcome
+```
+
+```{python}
+#| fig-align: center
+#split x and y into training (70%) and testing (30%) sets
+x_train, x_test, y_train, y_test = train_test_split(x, y, test_size = 0.3, random_state=0)
+```
+
+<hr>
+
+### Standardize features
+Standardize features by removing the mean and scaling to unit variance.
+
+The standard score of a sample x is calculated as: z = (x - u) / s, where u is the mean of the training samples or zero if with_mean=False, and s is the standard deviation of the training samples or one if with_std=False.
+
+```{python}
+#| fig-align: center
+
+scale = StandardScaler()
+x_train = scale.fit_transform(x_train)
+x_test = scale.fit_transform(x_test)
+```
+
+```{python}
+#| fig-align: center
+
+#Logistic regression model fit on the training set
+logreg = LogisticRegression(solver='lbfgs', max_iter=3000)
+logreg.fit(x_train, y_train)
+```
+
+```{python}
+#| fig-align: center
+
+#Using the trained model to predict the outcome for samples in x_test.
+y_pred = logreg.predict(x_test)
+```
+
+```{python}
+#| fig-align: center
+
+#Return the probability estimates.
+y_score = logreg.predict_proba(x_test)[:, 1]
+```
+
+<hr>
+
+### ML Model Assessment
+- Precision: Percentage of correct positive predictions relative to total positive predictions.
+- Recall: Percentage of correct positive predictions relative to total actual positives.
+- F1 Score: A weighted harmonic mean of precision and recall. The closer to 1, the better the model. F1 Score: 2 * (Precision * Recall) / (Precision + Recall)
+
+```{python}
+#| fig-align: center
+#Comparing actual result and predicted result
+print(classification_report(y_test, y_pred))
+```
+
+- Precision: Out of all the patients that the model predicted would get diabetes, 78% actually did.
+- Recall: Out of all the patients that actually did get diabetes, the model predicted this outcome correctly for 48% of those patients.
+- F1 Score: 0.59 - Since this value is close to 1, it tells us that the model does a good job of predicting whether or not patients will get diabetes. 2 * (Precision * Recall) / (Precision + Recall) ***** 2 * (.78 * .48) / (.78 + .48)
+- Support: These values is regarding how many patients belonged to each class in the test dataset. Among the patientis in the test dataset, 127 did not get diabetes and 65 did get diabetes.
+
+```{python}
+#| fig-align: center
+#The lower the RMS value, the better. O means the model is perfect.
+rms = mean_squared_error(y_test, y_pred, squared=False)
+rms
+```
+
+<hr>
+
+### ROC Curve
+The ROC curve shows the trade-off between sensitivity (or True Positve Rate) and specificity (1 – False Positive Rate).
+
+Classifiers that give curves closer to the top-left corner indicate a better performance
+
+ROC/AUC does not require to set a classification threshold and it's still useful when there is high class imbalance
+
+- ROC curve can help you to choose a threshold that balances sensitivity and specificity in a way that makes sense for your particular context
+
+- You can't actually see the thresholds used to generate the curve on the ROC curve itself  
+
+
+```{python}
+#| fig-align: center
+fpr, tpr, thresh = roc_curve(y_test, y_score, pos_label=logreg.classes_[1])
+```
+```{python}
+#| fig-align: center
+#AUC is the percentage of the ROC plot that is underneath the curve:
+# IMPORTANT: first argument is true values, second argument is predicted probabilities
+print(metrics.roc_auc_score(y_test, y_pred))
+```
+
+```{python}
+#| fig-align: center
+plt.figure(figsize=(6,4))
+plt.plot(fpr, tpr, linewidth=1, marker='.', label='Logistic')
+plt.plot([0,1], [0,1], linestyle='--', label='No Skill')
+plt.rcParams['font.size'] = 8
+plt.title('ROC curve')
+plt.xlabel('Specificity (FPR)')
+plt.ylabel('Sensitivity (TPR)')
+plt.legend()
+plt.show()
+```
+### Accuracy
+Percentage of correct predictions
+
+```{python}
+#| fig-align: center
+print('Accuracy of Logistic regression model is {}'.format(accuracy_score(y_test,y_pred)))
+```
+### Null accuracy
+Null accuracy refers to the accuracy that could be achieved by always predicting the most frequent class in the dataset.
+
+In the test set, 66% (127) of patients did not have diabetes, while 34% did. In this case, the null accuracy would be 66%, because if we always predicted "not diabetes," we would be correct 66% of the time.
+
+```{python}
+#| fig-align: center
+y_test.value_counts().head(1) / len(y_test)
+```
+As the null accuracy is less than model accuracy, it indicates a good result.
+
+#### Comparing the true and predicted response values
+
+```{python}
+#| fig-align: center
+#print the 25 first true and predict responses
+print ('True:'), y_test.values[0:25]
+```
+
+```{python}
+print ('Pred:'), y_pred[0:25]
+```
+
+### Confusion Matrix
+Confusion matrix allows to calculate a variety of metrics. It's a useful for multi-class problems (more than two response classes)
+
+- Every observation in the testing set is represented in exactly one box
+- It's 2x2 matrix because there are 2 responses classes
+- The format shown here is not universal
+
+Basic Terminology
+
+- TP: correctly predict that they have diabetes
+- TN: correctly predict that they do not have diabetes
+- FP: incorrectly predict that they do have diabetes
+- FN: incorrectly predict that they do not have diabetes
+
+```{python}
+#IMPORTANT: First argument is true values, second argument is predict values
+metrics.confusion_matrix(y_test, y_pred)
+```
+
+```{python}
+#Graphic visualization
+cm = confusion_matrix(y_test, y_pred, labels=logreg.classes_)
+disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=logreg.classes_)
+disp.plot()
+plt.show()
+```
+
+- TN: 118 patients without diabetes were correctly predicted as no diabetics
+- FP: 9 patients without diabetes were incorrectly predicted as diabetics
+- FN: 34 patients with diabetes were incorrectly predicted as no diabetics
+- TP: 31 patients with diabetes were correctly predicted as diabetics
+
+```{python}
+#save confusion matrix and slice into four pieces
+confusion = metrics.confusion_matrix(y_test, y_pred)
+TN = confusion[0,0]
+FP = confusion[0,1]
+FN = confusion[1,0]
+TP = confusion[1,1]
+confusion
+```
+
+#### Metrics computed from a confusion matrix
+
+```{python}
+#How often the classifier is correct?
+print('Accuracy: {}'.format((TP + TN) / (TP + TN + FP + FN)))
+#print('Accuracy: {}'.format(metrics.accuracy_score(y_test, y_pred_class)))
+```
+
+#### k-Fold Cross-Validation
+The k-fold cross-validation procedure divides a limited dataset into k non-overlapping folds. Each of the k folds is given an opportunity to be used as a held back test set, whilst all other folds collectively are used as a training dataset. A total of k models are fit and evaluated on the k hold-out test sets and the mean performance is reported.
+
+```{python}
+#This will give the overall accuracy of your model .
+kf = KFold(n_splits=10, random_state=1, shuffle=True)
+cv_result = cross_val_score(logreg, x, y, cv=kf, scoring='accuracy', n_jobs=-1)
+print('Accuracy: %.3f (%.3f)' % (mean(cv_result), std(cv_result)))
+```
+
+```{python}
+#How often the classifier is incorrect?
+print('Error: {}'.format((FP + FN)/(TP + TN + FP + FN)))
+#print('Error: {}'.format(1-metrics.accuracy_score(y_test, y_pred_class)))
+```
+
+```{python}
+#When the actual value is positive, how often is the prediction correct?
+print('Sensitivity (TPR): {}'.format(TP / (TP + FN)))
+#metrics.recall_score(y_test, y_pred_class)
+```
+
+```{python}
+#When the actual value is negative, how often is the prediction correct?
+print('Specificity (FPR): {}'.format(TN / (TN + FP))) 
+#recall_score(y_test, y_pred_class, pos_label=0)
+```
+
+```{python}
+#When a positive value is predicted, how often is the prediction correct?
+print('Precision: {}'.format(TP / (TP + FP))) 
+#metrics.precision_score(y_test, y_pred_class)
+```
+
+### Result
+The choice of metrics depends on the business objective.
+
+For this project, sensibility (False Negative) is the metric most important, since predicting diabetics as no diabetics is the worst expected error. This may imply no further investigations and consequently no treatment of the disease.
+
+So the better result is to have a Sensitivity (The correct prediction for positive values) result higher than a Specificity (The correct prediction for negative values) result.
+
+The error in predicting a healthy patient as a diabetic patient is more acceptable than the opposite.
+
+### Adjusting the classification threshold
+
+```{python}
+#print the first 10 predicted responses
+logreg.predict(x_test)[0:10]
+```
+
+```{python}
+#print the first 10 predicted probabilities of class membership
+logreg.predict_proba(x_test)[0:10, :]
+```
+
+```{python}
+#print the first 10 predicted probabilities for class 1
+logreg.predict_proba(x_test)[0:10, 1]
+```
+
+```{python}
+fig = sns.histplot(data=y_score, bins=8)
+plt.xlabel("Predicted probability of diabetes")
+plt.ylabel("Frequency")
+plt.title("Histogram of predicted probabilities") 
+plt.xlim(0,1)
+plt.rcParams['font.size']=10
+plt.show(fig)
+```
+
+#### Finding the best threshold for predicting diabetes and to increase the sensitivity of the classifier
+Threshold of 0.5 is used by default (for binary problems) to convert predicted possibilities into class predictions
+Threshold can be adjusted to increase sensitivity or specificity
+Sensitivity and specificity have an inverse relationship
+
+
+```{python}
+# calculate roc curves
+fpr, tpr, thresholds = roc_curve(y_test, y_score)
+```
+
+```{python}
+# calculate the g-mean for each threshold
+gmeans = sqrt(tpr * (1-fpr))
+# locate the index of the largest g-mean
+ix = argmax(gmeans)
+print('Best Threshold=%f, G-Mean=%.3f' % (thresholds[ix], gmeans[ix]))
+```
+
+```{python}
+# get the best threshold
+J = tpr - fpr
+ix = argmax(J)
+best_thresh = thresholds[ix]
+print('Best Threshold=%f' % (best_thresh))
+```
+
+```{python}
+# define a function that accepts a threshold and prints sensitivity and specificity
+def evaluate_threshold(threshold):
+    print('Sensitivity:', tpr[thresholds > threshold][-1])
+    print('Specificity:', 1 - fpr[thresholds > threshold][-1])
+```
+
+```{python}
+evaluate_threshold(0.5)
+```
+
+```{python}
+evaluate_threshold(0.3)
+```
+
+```{python}
+evaluate_threshold(0.242365)
+```
+
+```{python}
+#predict diabetes if the predicted probabilities is greater than 0.242365
+y_pred_2 = preprocessing.binarize([y_score], threshold=0.242365)[0]
+```
+
+```{python}
+#print the first 10 predicted probabilites
+y_pred[0:10]
+```
+
+```{python}
+#print the first 10 predicted classes with the lower threshold
+y_pred_2[0:10]
+```
+
+```{python}
+#previous confusion matrix (default threshold of 0.5)
+confusion
+```
+
+```{python}
+#now confusion matrix (threshold of 0.3)
+confusion_2 = metrics.confusion_matrix(y_test, y_pred_2)
+TN = confusion_2[0,0]
+FP = confusion_2[0,1]
+FN = confusion_2[1,0]
+TP = confusion_2[1,1]
+```
+
+```{python}
+confusion_2
+```
+
+```{python}
+#sensitivity has increased (used to be 0.7384615384615385)
+print('Sensitivity (TPR): {}'.format(TP / (TP + FN)))
+```
+
+```{python}
+#sensitivity has increased (used to be 0.7795275590551181)
+print('Specificity (FPR): {}'.format(TN / (TN + FP))) 
+```
+
+```{python}
+#AUC is the percentage of the ROC plot that is underneath the curve:
+print(metrics.roc_auc_score(y_test, y_pred_2))
+```
+
+### Conclusion
+With a threshold of 0.242365, the sensitivity has increased from 0.48 to 0.85, and the specificity has decreased from 0.93 to 0.75. Despite the decrease in specificity, for this project, the most important metric is sensitivity, once we want to correctly predict the patients with diabetes, the correct prediction for positive values.
+
+The AUC has also increased after threshold adjustment, from 0.70 to 0.79.

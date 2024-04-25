@@ -16,9 +16,6 @@ I am studying Behavioral Data Science at the Universitat de Barcelona. This prog
 - Specialization in Data Science (Big Data Processing and Analytics) - Mackenzie, SP - 2021
 - Master Behavioral Data Science - Barcelona University - 2024
 
-![](./cv/cv1.png){fig-align="center"}
-![](./cv/cv2.png){fig-align="center"}
-
 ## Tools
 <div style="background-color: #E5E7E9">
 
@@ -32,5 +29,6 @@ I am studying Behavioral Data Science at the Universitat de Barcelona. This prog
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original-wordmark.svg" width="60" height="60" vspace="30" hspace="30"/>
 
 </p>
-
 </div>
+
+![](./cv/cv.jpeg){fig-align="center"}
