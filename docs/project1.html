@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.433">
+<meta name="generator" content="quarto-1.4.552">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Pedro Gasparine Dubiela - Projeto: Previsão de Rotatividade de Clientes Bancários</title>
+<title>Valeska Barbosa Alves - Project: PIMA Indians Diabetes</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,7 +23,7 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/clipboard/clipboard.min.js"></script>
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -43,13 +43,14 @@ ul.task-list li input[type="checkbox"] {
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
 }</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+
 <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
@@ -60,11 +61,11 @@ ul.task-list li input[type="checkbox"] {
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
+      <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="./index.html">
-    <span class="navbar-title">Pedro Gasparine Dubiela</span>
+    <span class="navbar-title">Valeska Barbosa Alves</span>
     </a>
   </div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
@@ -73,102 +74,90 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./index.html" rel="" target="">
- <span class="menu-text">Home</span></a>
+    <a class="nav-link" href="./index.html"> 
+<span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./projects.html" rel="" target="" aria-current="page">
- <span class="menu-text">Projetos</span></a>
+    <a class="nav-link active" href="./projects.html" aria-current="page"> 
+<span class="menu-text">Projects</span></a>
   </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/pedroDubiela95" rel="" target=""><i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/19872909"> <i class="bi bi-github" role="img">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://www.linkedin.com/in/pedro-gasparine-dubiela-478430147/" rel="" target=""><i class="bi bi-linkedin" role="img">
+    <a class="nav-link" href="https://www.linkedin.com/in/valeskaalves/"> <i class="bi bi-linkedin" role="img">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
 </ul>
-            <div class="quarto-navbar-tools">
-</div>
           </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+</div>
       </div> <!-- /container-fluid -->
     </nav>
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./project1.html">Projeto: Previsão de Rotatividade de Clientes Bancários</a></li></ol></nav>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-      </a>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./project1.html">Project: PIMA Indians Diabetes</a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
     </div>
   </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./projects.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Projetos</span></a>
+ <span class="menu-text">Projects</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./project1.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Projeto: Previsão de Rotatividade de Clientes Bancários</span></a>
+ <span class="menu-text">Project: PIMA Indians Diabetes</span></a>
   </div>
 </li>
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#introdução" id="toc-introdução" class="nav-link active" data-scroll-target="#introdução">Introdução</a></li>
-  <li><a href="#problema-de-negócio" id="toc-problema-de-negócio" class="nav-link" data-scroll-target="#problema-de-negócio">Problema de Negócio</a></li>
-  <li><a href="#resolução-do-problema" id="toc-resolução-do-problema" class="nav-link" data-scroll-target="#resolução-do-problema">Resolução do Problema</a>
+  <li><a href="#dataset" id="toc-dataset" class="nav-link active" data-scroll-target="#dataset">Dataset</a></li>
+  <li><a href="#objective" id="toc-objective" class="nav-link" data-scroll-target="#objective">Objective</a></li>
+  <li><a href="#constraints" id="toc-constraints" class="nav-link" data-scroll-target="#constraints">Constraints</a></li>
+  <li><a href="#features" id="toc-features" class="nav-link" data-scroll-target="#features">Features</a>
   <ul class="collapse">
-  <li><a href="#análise-exploratória-dos-dados-eda" id="toc-análise-exploratória-dos-dados-eda" class="nav-link" data-scroll-target="#análise-exploratória-dos-dados-eda">Análise Exploratória dos Dados (EDA)</a>
+  <li><a href="#correlations" id="toc-correlations" class="nav-link" data-scroll-target="#correlations">Correlations</a>
   <ul class="collapse">
-  <li><a href="#churn" id="toc-churn" class="nav-link" data-scroll-target="#churn">Churn</a></li>
-  <li><a href="#country" id="toc-country" class="nav-link" data-scroll-target="#country">Country</a></li>
-  <li><a href="#gender" id="toc-gender" class="nav-link" data-scroll-target="#gender">Gender</a></li>
-  <li><a href="#credit-card" id="toc-credit-card" class="nav-link" data-scroll-target="#credit-card">Credit Card</a></li>
-  <li><a href="#active-member" id="toc-active-member" class="nav-link" data-scroll-target="#active-member">Active Member</a></li>
-  <li><a href="#products-number" id="toc-products-number" class="nav-link" data-scroll-target="#products-number">Products Number</a></li>
-  <li><a href="#tenure" id="toc-tenure" class="nav-link" data-scroll-target="#tenure">Tenure</a></li>
-  <li><a href="#credit-score" id="toc-credit-score" class="nav-link" data-scroll-target="#credit-score">Credit Score</a></li>
-  <li><a href="#age" id="toc-age" class="nav-link" data-scroll-target="#age">Age</a></li>
-  <li><a href="#balance" id="toc-balance" class="nav-link" data-scroll-target="#balance">Balance</a></li>
-  <li><a href="#estimated-salary" id="toc-estimated-salary" class="nav-link" data-scroll-target="#estimated-salary">Estimated Salary</a></li>
+  <li><a href="#correlation-matrix" id="toc-correlation-matrix" class="nav-link" data-scroll-target="#correlation-matrix">Correlation matrix:</a></li>
+  <li><a href="#outliers" id="toc-outliers" class="nav-link" data-scroll-target="#outliers">Outliers</a></li>
+  <li><a href="#logistic-regression-ml-model" id="toc-logistic-regression-ml-model" class="nav-link" data-scroll-target="#logistic-regression-ml-model">Logistic Regression ML Model</a></li>
+  <li><a href="#standardize-features" id="toc-standardize-features" class="nav-link" data-scroll-target="#standardize-features">Standardize features</a></li>
+  <li><a href="#ml-model-assessment" id="toc-ml-model-assessment" class="nav-link" data-scroll-target="#ml-model-assessment">ML Model Assessment</a></li>
+  <li><a href="#roc-curve" id="toc-roc-curve" class="nav-link" data-scroll-target="#roc-curve">ROC Curve</a></li>
+  <li><a href="#accuracy" id="toc-accuracy" class="nav-link" data-scroll-target="#accuracy">Accuracy</a></li>
+  <li><a href="#null-accuracy" id="toc-null-accuracy" class="nav-link" data-scroll-target="#null-accuracy">Null accuracy</a></li>
+  <li><a href="#confusion-matrix" id="toc-confusion-matrix" class="nav-link" data-scroll-target="#confusion-matrix">Confusion Matrix</a></li>
+  <li><a href="#result" id="toc-result" class="nav-link" data-scroll-target="#result">Result</a></li>
+  <li><a href="#adjusting-the-classification-threshold" id="toc-adjusting-the-classification-threshold" class="nav-link" data-scroll-target="#adjusting-the-classification-threshold">Adjusting the classification threshold</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
   </ul></li>
-  <li><a href="#análise-bivariada-dos-dados" id="toc-análise-bivariada-dos-dados" class="nav-link" data-scroll-target="#análise-bivariada-dos-dados">Análise Bivariada dos Dados</a>
-  <ul class="collapse">
-  <li><a href="#age-1" id="toc-age-1" class="nav-link" data-scroll-target="#age-1">Age</a></li>
-  <li><a href="#products-number-1" id="toc-products-number-1" class="nav-link" data-scroll-target="#products-number-1">Products Number</a></li>
-  <li><a href="#country-1" id="toc-country-1" class="nav-link" data-scroll-target="#country-1">Country</a></li>
-  <li><a href="#active-member-1" id="toc-active-member-1" class="nav-link" data-scroll-target="#active-member-1">Active Member</a></li>
-  <li><a href="#balance-1" id="toc-balance-1" class="nav-link" data-scroll-target="#balance-1">Balance</a></li>
-  <li><a href="#gender-1" id="toc-gender-1" class="nav-link" data-scroll-target="#gender-1">Gender</a></li>
-  <li><a href="#credit-score-1" id="toc-credit-score-1" class="nav-link" data-scroll-target="#credit-score-1">Credit Score</a></li>
-  <li><a href="#tenure-1" id="toc-tenure-1" class="nav-link" data-scroll-target="#tenure-1">Tenure</a></li>
-  <li><a href="#estimated-salary-1" id="toc-estimated-salary-1" class="nav-link" data-scroll-target="#estimated-salary-1">Estimated Salary</a></li>
-  <li><a href="#credit-card-1" id="toc-credit-card-1" class="nav-link" data-scroll-target="#credit-card-1">Credit Card</a></li>
-  </ul></li>
-  <li><a href="#o-modelo-preditivo" id="toc-o-modelo-preditivo" class="nav-link" data-scroll-target="#o-modelo-preditivo">O Modelo Preditivo</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -178,7 +167,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Projeto: Previsão de Rotatividade de Clientes Bancários</h1>
+<h1 class="title">Project: PIMA Indians Diabetes</h1>
 </div>
 
 
@@ -191,2245 +180,657 @@ ul.task-list li input[type="checkbox"] {
   </div>
   
 
+
 </header>
 
-<section id="introdução" class="level1">
-<h1>Introdução</h1>
+
+<section id="dataset" class="level1">
+<h1>Dataset</h1>
 <p>
-O problema de <strong>churn</strong>, ou rotatividade de clientes, representa um desafio significativo para instituições bancárias. Refere-se à taxa na qual os clientes encerram seus relacionamentos com o banco, migrando para outras instituições financeiras ou até mesmo abandonando serviços financeiros. Este fenômeno pode ser impulsionado por diversos fatores, como insatisfação com serviços, concorrência acirrada, mudanças nas condições econômicas e até mesmo avanços tecnológicos.
-</p>
-<p>
-Dessa forma, a retenção de clientes torna-se uma prioridade estratégica para os bancos, que buscam constantemente inovar, oferecer experiências mais atrativas e personalizadas, a fim de mitigar o churn e manter uma base sólida de clientes leais.
-</p>
-<p>
-Diante desse cenário, torna-se de extrema valia a capacidade de identificar os clientes mais propensos ao churn, possibilitando que a instituição financeira aja de maneira antecipada, oferecendo planos e serviços atrativos que impeçam a fuga do cliente.
+This dataset is originally from the National Institute of Diabetes and Digestive and Kidney Diseases.
 </p>
 </section>
-<section id="problema-de-negócio" class="level1">
-<h1>Problema de Negócio</h1>
-<p>Temos uma base de dados do ABC Multistate Bank, a qual está hospedada em <a href="https://www.kaggle.com/datasets/gauravtopre/bank-customer-churn-dataset/data" class="uri">https://www.kaggle.com/datasets/gauravtopre/bank-customer-churn-dataset/data</a>. Essa base de dados contém informações anonimizadas de 10.000 clientes, onde o problema de negócio em questão resume-se a construirmos um modelo capaz de predizer a ocorrência ou não de churn para um dado cliente, com base nas informações disponíveis.</p>
-</section>
-<section id="resolução-do-problema" class="level1">
-<h1>Resolução do Problema</h1>
-<section id="análise-exploratória-dos-dados-eda" class="level2">
-<h2 class="anchored" data-anchor-id="análise-exploratória-dos-dados-eda">Análise Exploratória dos Dados (EDA)</h2>
+<section id="objective" class="level1">
+<h1>Objective</h1>
 <p>
-O objetivo desta etapa é investigar e entender os dados disponíveis, a fim de extrair informações preliminares, identificar padrões, tendências, anomalias e insights relevantes.
+The objective is to predict based on diagnostic measurements whether a patient has diabetes.
 </p>
+</section>
+<section id="constraints" class="level1">
+<h1>Constraints</h1>
 <p>
-</p><p>Verificaremos que, ao término dessa análise, todas as variáveis apresentam comportamento adequado para prosseguirem no estudo, pois:</p>
+Several constraints were placed on the selection of these instances from a larger database. In particular, all patients here are females at least 21 years old of Pima Indian heritage.
+</p>
+</section>
+<section id="features" class="level1">
+<h1>Features</h1>
+<li>
+Pregnancies: Number of times pregnant
+</li>
+<li>
+Glucose: Plasma glucose concentration a 2 hours in an oral glucose tolerance test
+</li>
+<li>
+BloodPressure: Diastolic blood pressure (mm Hg)
+</li>
+<li>
+SkinThickness: Triceps skin fold thickness (mm)
+</li>
+<li>
+Insulin: 2-Hour serum insulin (mu U/ml)
+</li>
+<li>
+BMI: Body mass index (weight in kg/(height in m)^2)
+</li>
+<li>
+DiabetesPedigreeFunction: Diabetes pedigree function
+</li>
+<li>
+Age: Age (years)
+</li>
+<li>
+Outcome: Class variable (0 or 1) 1: Diabetic, 0: Healty
+</li>
+<p>#Exploratory Analysis</p>
+<section id="correlations" class="level2">
+<h2 class="anchored" data-anchor-id="correlations">Correlations</h2>
+<p>
+</p><p>Each square shows the correlation between the variables on each axis. Correlation ranges from -1 to +1.</p>
 <ul>
-<li>Não possuem valores faltantes.</li>
-<li>Não têm valores inesperados.</li>
-<li>Não exibem alta concentração em um único valor.</li>
+<li>Values closer to 0: There is no linear trend between the two variables.</li>
+<li>Values closer to 1: The correlation is positive; that is as one increases so does the other and the closer to 1 the stronger this relationship is.</li>
+<li>Values closer to -1: One variable will decrease as the other increases</li>
 </ul>
+The diagonals are all 1/dark because those squares are correlating each variable to itself (so it’s a perfect correlation). For the rest the larger the number and darker the color the higher the correlation between the two variables.
 <p></p>
 <hr>
-<section id="churn" class="level3">
-<h3 class="anchored" data-anchor-id="churn">Churn</h3>
-<p>Essa variável denota a ocorrência ou não do evento de churn.</p>
-<ul>
-<li>Não ocorrência de churn = 0</li>
-<li>Ocorrência de churn = 1</li>
-</ul>
-<strong>Avaliação</strong>: <span style="color: green;"> OK. </span>
-<ul>
-<li>
-Variável target (binária).
-</li>
-<li>
-Temos 20% de ocorrência do evento.
-</li>
-<li>
-Temos 80% de não ocorrência do evento.
-</li>
-</ul>
-<div class="cell" data-execution_count="3">
+<section id="correlation-matrix" class="level3">
+<h3 class="anchored" data-anchor-id="correlation-matrix">Correlation matrix:</h3>
+<p>There is a strong positve correlation between Pregnancies and Age, Glucose and Outcome. There is a strong negative correlation between Skinthickness and Age, Pregnancies and SkinThickness, Pregnance and Insulin</p>
+<div id="d89a422d" class="cell" data-execution_count="3">
 <div class="cell-output cell-output-display" data-execution_count="3">
-<style type="text/css">
-#T_e6975 th:not(.index_name) {
-  background-color: #001820;
-  color: white;
-}
-</style>
+<pre><code>Outcome                     1.000000
+Glucose                     0.466581
+BMI                         0.292695
+Age                         0.238356
+Pregnancies                 0.221898
+DiabetesPedigreeFunction    0.173844
+Insulin                     0.130548
+SkinThickness               0.074752
+BloodPressure               0.065068
+Name: Outcome, dtype: float64</code></pre>
+</div>
+</div>
+<div id="48e96e1e" class="cell" data-execution_count="4">
+<div class="cell-output cell-output-display" data-execution_count="4">
+<div>
+<div>
 
-<table id="T_e6975" data-quarto-postprocess="true" class="table table-sm table-striped small">
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
 <thead>
 <tr class="header">
-<th class="blank level0" data-quarto-table-cell-role="th">&nbsp;</th>
-<th id="T_e6975_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">Class</th>
-<th id="T_e6975_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">Abs. Freq.</th>
-<th id="T_e6975_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">Acc. Abs. Freq.</th>
-<th id="T_e6975_level0_col3" class="col_heading level0 col3" data-quarto-table-cell-role="th">Rel. Freq.</th>
-<th id="T_e6975_level0_col4" class="col_heading level0 col4" data-quarto-table-cell-role="th">Acc. Rel. Freq.</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Pregnancies</th>
+<th data-quarto-table-cell-role="th">Glucose</th>
+<th data-quarto-table-cell-role="th">BloodPressure</th>
+<th data-quarto-table-cell-role="th">SkinThickness</th>
+<th data-quarto-table-cell-role="th">Insulin</th>
+<th data-quarto-table-cell-role="th">BMI</th>
+<th data-quarto-table-cell-role="th">DiabetesPedigreeFunction</th>
+<th data-quarto-table-cell-role="th">Age</th>
+<th data-quarto-table-cell-role="th">Outcome</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td id="T_e6975_level0_row0" class="row_heading level0 row0" data-quarto-table-cell-role="th"></td>
-<td id="T_e6975_row0_col0" class="data row0 col0">0</td>
-<td id="T_e6975_row0_col1" class="data row0 col1">7963</td>
-<td id="T_e6975_row0_col2" class="data row0 col2">7963</td>
-<td id="T_e6975_row0_col3" class="data row0 col3">0.80</td>
-<td id="T_e6975_row0_col4" class="data row0 col4">0.80</td>
+<td data-quarto-table-cell-role="th">2</td>
+<td>8</td>
+<td>183</td>
+<td>64</td>
+<td>0</td>
+<td>0</td>
+<td>23.3</td>
+<td>0.672</td>
+<td>32</td>
+<td>1</td>
 </tr>
 <tr class="even">
-<td id="T_e6975_level0_row1" class="row_heading level0 row1" data-quarto-table-cell-role="th"></td>
-<td id="T_e6975_row1_col0" class="data row1 col0">1</td>
-<td id="T_e6975_row1_col1" class="data row1 col1">2037</td>
-<td id="T_e6975_row1_col2" class="data row1 col2">10000</td>
-<td id="T_e6975_row1_col3" class="data row1 col3">0.20</td>
-<td id="T_e6975_row1_col4" class="data row1 col4">1.00</td>
+<td data-quarto-table-cell-role="th">8</td>
+<td>2</td>
+<td>197</td>
+<td>70</td>
+<td>45</td>
+<td>543</td>
+<td>30.5</td>
+<td>0.158</td>
+<td>53</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">11</td>
+<td>10</td>
+<td>168</td>
+<td>74</td>
+<td>0</td>
+<td>0</td>
+<td>38.0</td>
+<td>0.537</td>
+<td>34</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">13</td>
+<td>1</td>
+<td>189</td>
+<td>60</td>
+<td>23</td>
+<td>846</td>
+<td>30.1</td>
+<td>0.398</td>
+<td>59</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">14</td>
+<td>5</td>
+<td>166</td>
+<td>72</td>
+<td>19</td>
+<td>175</td>
+<td>25.8</td>
+<td>0.587</td>
+<td>51</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">749</td>
+<td>6</td>
+<td>162</td>
+<td>62</td>
+<td>0</td>
+<td>0</td>
+<td>24.3</td>
+<td>0.178</td>
+<td>50</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">753</td>
+<td>0</td>
+<td>181</td>
+<td>88</td>
+<td>44</td>
+<td>510</td>
+<td>43.3</td>
+<td>0.222</td>
+<td>26</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">754</td>
+<td>8</td>
+<td>154</td>
+<td>78</td>
+<td>32</td>
+<td>0</td>
+<td>32.4</td>
+<td>0.443</td>
+<td>45</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">759</td>
+<td>6</td>
+<td>190</td>
+<td>92</td>
+<td>0</td>
+<td>0</td>
+<td>35.5</td>
+<td>0.278</td>
+<td>66</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">761</td>
+<td>9</td>
+<td>170</td>
+<td>74</td>
+<td>31</td>
+<td>0</td>
+<td>44.0</td>
+<td>0.403</td>
+<td>43</td>
+<td>1</td>
 </tr>
 </tbody>
 </table>
-</div>
-</div>
-<div class="cell" data-execution_count="4">
-<div class="cell-output cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="project1_files/figure-html/cell-5-output-1.png" width="793" height="252" class="figure-img"></p>
-</figure>
+
+<p>140 rows × 9 columns</p>
 </div>
 </div>
 </div>
-<hr>
-</section>
-<section id="country" class="level3">
-<h3 class="anchored" data-anchor-id="country">Country</h3>
-<p>País do cliente.</p>
-<strong>Avaliação</strong>: <span style="color: green;"> OK. </span>
-<ul>
-<li>
-Variável categórica.
-</li>
-<li>
-Não possui nenhum valor faltante.
-</li>
-<li>
-França representa 50%.
-</li>
-<li>
-Alemanha e Espanha representam 25% cada.
-</li>
-</ul>
-<div class="cell" data-execution_count="5">
+</div>
+<div id="eb46d3de" class="cell" data-execution_count="5">
 <div class="cell-output cell-output-display" data-execution_count="5">
-<style type="text/css">
-#T_32c82 th:not(.index_name) {
-  background-color: #001820;
-  color: white;
-}
-</style>
-
-<table id="T_32c82" data-quarto-postprocess="true" class="table table-sm table-striped small">
-<thead>
-<tr class="header">
-<th class="blank level0" data-quarto-table-cell-role="th">&nbsp;</th>
-<th id="T_32c82_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">Class</th>
-<th id="T_32c82_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">Abs. Freq.</th>
-<th id="T_32c82_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">Acc. Abs. Freq.</th>
-<th id="T_32c82_level0_col3" class="col_heading level0 col3" data-quarto-table-cell-role="th">Rel. Freq.</th>
-<th id="T_32c82_level0_col4" class="col_heading level0 col4" data-quarto-table-cell-role="th">Acc. Rel. Freq.</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td id="T_32c82_level0_row0" class="row_heading level0 row0" data-quarto-table-cell-role="th"></td>
-<td id="T_32c82_row0_col0" class="data row0 col0">France</td>
-<td id="T_32c82_row0_col1" class="data row0 col1">5014</td>
-<td id="T_32c82_row0_col2" class="data row0 col2">5014</td>
-<td id="T_32c82_row0_col3" class="data row0 col3">0.50</td>
-<td id="T_32c82_row0_col4" class="data row0 col4">0.50</td>
-</tr>
-<tr class="even">
-<td id="T_32c82_level0_row1" class="row_heading level0 row1" data-quarto-table-cell-role="th"></td>
-<td id="T_32c82_row1_col0" class="data row1 col0">Germany</td>
-<td id="T_32c82_row1_col1" class="data row1 col1">2509</td>
-<td id="T_32c82_row1_col2" class="data row1 col2">7523</td>
-<td id="T_32c82_row1_col3" class="data row1 col3">0.25</td>
-<td id="T_32c82_row1_col4" class="data row1 col4">0.75</td>
-</tr>
-<tr class="odd">
-<td id="T_32c82_level0_row2" class="row_heading level0 row2" data-quarto-table-cell-role="th"></td>
-<td id="T_32c82_row2_col0" class="data row2 col0">Spain</td>
-<td id="T_32c82_row2_col1" class="data row2 col1">2477</td>
-<td id="T_32c82_row2_col2" class="data row2 col2">10000</td>
-<td id="T_32c82_row2_col3" class="data row2 col3">0.25</td>
-<td id="T_32c82_row2_col4" class="data row2 col4">1.00</td>
-</tr>
-</tbody>
-</table>
+<pre><code>Outcome
+1    105
+0     35
+Name: count, dtype: int64</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="6">
+<div id="2ee08c47" class="cell" data-execution_count="6">
 <div class="cell-output cell-output-display">
-<div class="quarto-figure quarto-figure-center">
+<div>
 <figure class="figure">
-<p><img src="project1_files/figure-html/cell-7-output-1.png" width="793" height="252" class="figure-img"></p>
+<p><img src="project1_files/figure-html/cell-7-output-1.png" width="1436" height="1147" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="5814e116" class="cell" data-execution_count="7">
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="project1_files/figure-html/cell-8-output-1.png" width="1445" height="1155" class="figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
 <hr>
 </section>
-<section id="gender" class="level3">
-<h3 class="anchored" data-anchor-id="gender">Gender</h3>
-<p>Gênero do cliente.</p>
-<strong>Avaliação</strong>: <span style="color: green;"> OK. </span>
-<ul>
-<li>
-Variável categórica.
-</li>
-<li>
-Não possui nenhum valor faltante.
-</li>
-<li>
-55% Homens.
-</li>
-<li>
-45% Mulheres.
-</li>
-</ul>
-<div class="cell" data-execution_count="7">
-<div class="cell-output cell-output-display" data-execution_count="7">
-<style type="text/css">
-#T_3f800 th:not(.index_name) {
-  background-color: #001820;
-  color: white;
-}
-</style>
-
-<table id="T_3f800" data-quarto-postprocess="true" class="table table-sm table-striped small">
-<thead>
-<tr class="header">
-<th class="blank level0" data-quarto-table-cell-role="th">&nbsp;</th>
-<th id="T_3f800_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">Class</th>
-<th id="T_3f800_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">Abs. Freq.</th>
-<th id="T_3f800_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">Acc. Abs. Freq.</th>
-<th id="T_3f800_level0_col3" class="col_heading level0 col3" data-quarto-table-cell-role="th">Rel. Freq.</th>
-<th id="T_3f800_level0_col4" class="col_heading level0 col4" data-quarto-table-cell-role="th">Acc. Rel. Freq.</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td id="T_3f800_level0_row0" class="row_heading level0 row0" data-quarto-table-cell-role="th"></td>
-<td id="T_3f800_row0_col0" class="data row0 col0">Female</td>
-<td id="T_3f800_row0_col1" class="data row0 col1">4543</td>
-<td id="T_3f800_row0_col2" class="data row0 col2">4543</td>
-<td id="T_3f800_row0_col3" class="data row0 col3">0.45</td>
-<td id="T_3f800_row0_col4" class="data row0 col4">0.45</td>
-</tr>
-<tr class="even">
-<td id="T_3f800_level0_row1" class="row_heading level0 row1" data-quarto-table-cell-role="th"></td>
-<td id="T_3f800_row1_col0" class="data row1 col0">Male</td>
-<td id="T_3f800_row1_col1" class="data row1 col1">5457</td>
-<td id="T_3f800_row1_col2" class="data row1 col2">10000</td>
-<td id="T_3f800_row1_col3" class="data row1 col3">0.55</td>
-<td id="T_3f800_row1_col4" class="data row1 col4">1.00</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<div class="cell" data-execution_count="8">
-<div class="cell-output cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="project1_files/figure-html/cell-9-output-1.png" width="793" height="252" class="figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-<hr>
-</section>
-<section id="credit-card" class="level3">
-<h3 class="anchored" data-anchor-id="credit-card">Credit Card</h3>
-<p>Se o cliente utiliza cartão de crédito.</p>
-<ul>
-<li>Não utiliza cartão de crédito = 0</li>
-<li>Utiliza cartão de crédito = 1</li>
-</ul>
-<strong>Avaliação</strong>: <span style="color: green;"> OK. </span>
-<ul>
-<li>
-Variável categórica.
-</li>
-<li>
-Não possui nenhum valor faltante.
-</li>
-<li>
-71% utiliza cartão de cŕedito.
-</li>
-<li>
-29% não utiliza.
-</li>
-</ul>
-<div class="cell" data-execution_count="9">
+<section id="outliers" class="level3">
+<h3 class="anchored" data-anchor-id="outliers">Outliers</h3>
+<p>There are some outliers analyzed through the distribution of data in the histograms and boxplots.</p>
+<p>They following code has removed the outliers before to proceed with the ML model.</p>
+<section id="iqr---interquartile-range" class="level4">
+<h4 class="anchored" data-anchor-id="iqr---interquartile-range">IQR - Interquartile Range</h4>
+<p>The lower quartile corresponds with the 25th percentile and the upper quartile corresponds with the 75th percentile, so IQR = Q3 − Q1.</p>
+<p>The IQR is an example of a trimmed estimator, defined as the 25% trimmed range, which enhances the accuracy of dataset statistics by dropping lower contribution, outlying points.</p>
+<div id="45649aa7" class="cell" data-execution_count="9">
 <div class="cell-output cell-output-display" data-execution_count="9">
-<style type="text/css">
-#T_7b593 th:not(.index_name) {
-  background-color: #001820;
-  color: white;
-}
-</style>
-
-<table id="T_7b593" data-quarto-postprocess="true" class="table table-sm table-striped small">
-<thead>
-<tr class="header">
-<th class="blank level0" data-quarto-table-cell-role="th">&nbsp;</th>
-<th id="T_7b593_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">Class</th>
-<th id="T_7b593_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">Abs. Freq.</th>
-<th id="T_7b593_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">Acc. Abs. Freq.</th>
-<th id="T_7b593_level0_col3" class="col_heading level0 col3" data-quarto-table-cell-role="th">Rel. Freq.</th>
-<th id="T_7b593_level0_col4" class="col_heading level0 col4" data-quarto-table-cell-role="th">Acc. Rel. Freq.</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td id="T_7b593_level0_row0" class="row_heading level0 row0" data-quarto-table-cell-role="th"></td>
-<td id="T_7b593_row0_col0" class="data row0 col0">0</td>
-<td id="T_7b593_row0_col1" class="data row0 col1">2945</td>
-<td id="T_7b593_row0_col2" class="data row0 col2">2945</td>
-<td id="T_7b593_row0_col3" class="data row0 col3">0.29</td>
-<td id="T_7b593_row0_col4" class="data row0 col4">0.29</td>
-</tr>
-<tr class="even">
-<td id="T_7b593_level0_row1" class="row_heading level0 row1" data-quarto-table-cell-role="th"></td>
-<td id="T_7b593_row1_col0" class="data row1 col0">1</td>
-<td id="T_7b593_row1_col1" class="data row1 col1">7055</td>
-<td id="T_7b593_row1_col2" class="data row1 col2">10000</td>
-<td id="T_7b593_row1_col3" class="data row1 col3">0.71</td>
-<td id="T_7b593_row1_col4" class="data row1 col4">1.00</td>
-</tr>
-</tbody>
-</table>
+<pre><code>Pregnancies                   5.0000
+Glucose                      41.2500
+BloodPressure                18.0000
+SkinThickness                32.0000
+Insulin                     127.2500
+BMI                           9.3000
+DiabetesPedigreeFunction      0.3825
+Age                          17.0000
+Outcome                       1.0000
+dtype: float64</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="10">
-<div class="cell-output cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="project1_files/figure-html/cell-11-output-1.png" width="793" height="252" class="figure-img"></p>
-</figure>
+<div id="aef10397" class="cell" data-execution_count="10">
+<div class="cell-output cell-output-display" data-execution_count="10">
+<pre><code>(768, 9)</code></pre>
 </div>
 </div>
-</div>
-<hr>
-</section>
-<section id="active-member" class="level3">
-<h3 class="anchored" data-anchor-id="active-member">Active Member</h3>
-<p>Denota se um cliente está envolvido e participando ativamente das atividades e serviços oferecidos pelo banco.</p>
-<ul>
-<li>Não ativo = 0</li>
-<li>Ativo = 1</li>
-</ul>
-<strong>Avaliação</strong>: <span style="color: green;"> OK. </span>
-<ul>
-<li>
-Variável categórica.
-</li>
-<li>
-Não possui nenhum valor faltante.
-</li>
-<li>
-Praticamente metade dos clientes são ativos e a outra metade é inativo.
-</li>
-</ul>
-<div class="cell" data-execution_count="11">
+<p>
+The interquartile range is often used to find outliers in data. Outliers here are defined as observations that fall below Q1 − 1.5 IQR or above Q3 + 1.5 IQR. In a boxplot, the highest and lowest occurring value within this limit are indicated by whiskers of the box (frequently with an additional bar at the end of the whisker) and any outliers as individual points.
+</p>
+<div id="05892c40" class="cell" data-execution_count="11">
 <div class="cell-output cell-output-display" data-execution_count="11">
-<style type="text/css">
-#T_46347 th:not(.index_name) {
-  background-color: #001820;
-  color: white;
-}
-</style>
-
-<table id="T_46347" data-quarto-postprocess="true" class="table table-sm table-striped small">
-<thead>
-<tr class="header">
-<th class="blank level0" data-quarto-table-cell-role="th">&nbsp;</th>
-<th id="T_46347_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">Class</th>
-<th id="T_46347_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">Abs. Freq.</th>
-<th id="T_46347_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">Acc. Abs. Freq.</th>
-<th id="T_46347_level0_col3" class="col_heading level0 col3" data-quarto-table-cell-role="th">Rel. Freq.</th>
-<th id="T_46347_level0_col4" class="col_heading level0 col4" data-quarto-table-cell-role="th">Acc. Rel. Freq.</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td id="T_46347_level0_row0" class="row_heading level0 row0" data-quarto-table-cell-role="th"></td>
-<td id="T_46347_row0_col0" class="data row0 col0">0</td>
-<td id="T_46347_row0_col1" class="data row0 col1">4849</td>
-<td id="T_46347_row0_col2" class="data row0 col2">4849</td>
-<td id="T_46347_row0_col3" class="data row0 col3">0.48</td>
-<td id="T_46347_row0_col4" class="data row0 col4">0.48</td>
-</tr>
-<tr class="even">
-<td id="T_46347_level0_row1" class="row_heading level0 row1" data-quarto-table-cell-role="th"></td>
-<td id="T_46347_row1_col0" class="data row1 col0">1</td>
-<td id="T_46347_row1_col1" class="data row1 col1">5151</td>
-<td id="T_46347_row1_col2" class="data row1 col2">10000</td>
-<td id="T_46347_row1_col3" class="data row1 col3">0.52</td>
-<td id="T_46347_row1_col4" class="data row1 col4">1.00</td>
-</tr>
-</tbody>
-</table>
+<pre><code>(639, 9)</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="12">
+<div id="ad3bd481" class="cell" data-execution_count="12">
+<div class="cell-output cell-output-display" data-execution_count="12">
+<pre><code>Outcome
+0    439
+1    200
+Name: count, dtype: int64</code></pre>
+</div>
+</div>
+<div id="cab1d15d" class="cell" data-execution_count="13">
 <div class="cell-output cell-output-display">
-<div class="quarto-figure quarto-figure-center">
+<div>
 <figure class="figure">
-<p><img src="project1_files/figure-html/cell-13-output-1.png" width="793" height="252" class="figure-img"></p>
+<p><img src="project1_files/figure-html/cell-14-output-1.png" width="1445" height="1156" class="figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
-<hr>
-</section>
-<section id="products-number" class="level3">
-<h3 class="anchored" data-anchor-id="products-number">Products Number</h3>
-<p>Número de produtos adiquiridos pelo cliente.</p>
-<strong>Avaliação</strong>: <span style="color: green;"> OK. </span>
-<ul>
-<li>
-Variável numérica discreta, mas será visualizada como categórica.
-</li>
-<li>
-Não possui nenhum valor faltante.
-</li>
-<li>
-~50% dos cliente utilizam somente um produto.
-</li>
-<li>
-~46% dos cliente utilizam 2 produtos.
-</li>
-</ul>
-<div class="cell" data-execution_count="13">
-<div class="cell-output cell-output-display" data-execution_count="13">
-<style type="text/css">
-#T_e7f9a th:not(.index_name) {
-  background-color: #001820;
-  color: white;
-}
-</style>
-
-<table id="T_e7f9a" data-quarto-postprocess="true" class="table table-sm table-striped small">
-<thead>
-<tr class="header">
-<th class="blank level0" data-quarto-table-cell-role="th">&nbsp;</th>
-<th id="T_e7f9a_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">Class</th>
-<th id="T_e7f9a_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">Abs. Freq.</th>
-<th id="T_e7f9a_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">Acc. Abs. Freq.</th>
-<th id="T_e7f9a_level0_col3" class="col_heading level0 col3" data-quarto-table-cell-role="th">Rel. Freq.</th>
-<th id="T_e7f9a_level0_col4" class="col_heading level0 col4" data-quarto-table-cell-role="th">Acc. Rel. Freq.</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td id="T_e7f9a_level0_row0" class="row_heading level0 row0" data-quarto-table-cell-role="th"></td>
-<td id="T_e7f9a_row0_col0" class="data row0 col0">1</td>
-<td id="T_e7f9a_row0_col1" class="data row0 col1">5084</td>
-<td id="T_e7f9a_row0_col2" class="data row0 col2">5084</td>
-<td id="T_e7f9a_row0_col3" class="data row0 col3">0.51</td>
-<td id="T_e7f9a_row0_col4" class="data row0 col4">0.51</td>
-</tr>
-<tr class="even">
-<td id="T_e7f9a_level0_row1" class="row_heading level0 row1" data-quarto-table-cell-role="th"></td>
-<td id="T_e7f9a_row1_col0" class="data row1 col0">2</td>
-<td id="T_e7f9a_row1_col1" class="data row1 col1">4590</td>
-<td id="T_e7f9a_row1_col2" class="data row1 col2">9674</td>
-<td id="T_e7f9a_row1_col3" class="data row1 col3">0.46</td>
-<td id="T_e7f9a_row1_col4" class="data row1 col4">0.97</td>
-</tr>
-<tr class="odd">
-<td id="T_e7f9a_level0_row2" class="row_heading level0 row2" data-quarto-table-cell-role="th"></td>
-<td id="T_e7f9a_row2_col0" class="data row2 col0">3</td>
-<td id="T_e7f9a_row2_col1" class="data row2 col1">266</td>
-<td id="T_e7f9a_row2_col2" class="data row2 col2">9940</td>
-<td id="T_e7f9a_row2_col3" class="data row2 col3">0.03</td>
-<td id="T_e7f9a_row2_col4" class="data row2 col4">0.99</td>
-</tr>
-<tr class="even">
-<td id="T_e7f9a_level0_row3" class="row_heading level0 row3" data-quarto-table-cell-role="th"></td>
-<td id="T_e7f9a_row3_col0" class="data row3 col0">&gt;=4</td>
-<td id="T_e7f9a_row3_col1" class="data row3 col1">60</td>
-<td id="T_e7f9a_row3_col2" class="data row3 col2">10000</td>
-<td id="T_e7f9a_row3_col3" class="data row3 col3">0.01</td>
-<td id="T_e7f9a_row3_col4" class="data row3 col4">1.00</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<div class="cell" data-execution_count="14">
+<div id="9d40ba4e" class="cell" data-execution_count="14">
 <div class="cell-output cell-output-display">
-<div class="quarto-figure quarto-figure-center">
+<div>
 <figure class="figure">
-<p><img src="project1_files/figure-html/cell-15-output-1.png" width="793" height="252" class="figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-<hr>
-</section>
-<section id="tenure" class="level3">
-<h3 class="anchored" data-anchor-id="tenure">Tenure</h3>
-<p>Mensura a quantidade de anos decorridos desde que o cliente aderiu aos serviços prestados pelo banco.</p>
-<strong>Avaliação</strong>: <span style="color: green;"> OK. </span>
-<ul>
-<li>
-Variável numérica discreta, mas será visualizada como categórica.
-</li>
-<li>
-Não possui nenhum valor faltante.
-</li>
-<li>
-25% de 0 a 2 anos.
-</li>
-<li>
-15% de 8 a 10 anos.
-</li>
-<li>
-As demais classes estão bem distribuídos em torno de 20%.
-</li>
-</ul>
-<div class="cell" data-execution_count="15">
-<div class="cell-output cell-output-display" data-execution_count="15">
-<style type="text/css">
-#T_8591d th:not(.index_name) {
-  background-color: #001820;
-  color: white;
-}
-</style>
-
-<table id="T_8591d" data-quarto-postprocess="true" class="table table-sm table-striped small">
-<thead>
-<tr class="header">
-<th class="blank level0" data-quarto-table-cell-role="th">&nbsp;</th>
-<th id="T_8591d_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">Class</th>
-<th id="T_8591d_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">Abs. Freq.</th>
-<th id="T_8591d_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">Acc. Abs. Freq.</th>
-<th id="T_8591d_level0_col3" class="col_heading level0 col3" data-quarto-table-cell-role="th">Rel. Freq.</th>
-<th id="T_8591d_level0_col4" class="col_heading level0 col4" data-quarto-table-cell-role="th">Acc. Rel. Freq.</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td id="T_8591d_level0_row0" class="row_heading level0 row0" data-quarto-table-cell-role="th"></td>
-<td id="T_8591d_row0_col0" class="data row0 col0">[0, 2]</td>
-<td id="T_8591d_row0_col1" class="data row0 col1">2496</td>
-<td id="T_8591d_row0_col2" class="data row0 col2">2496</td>
-<td id="T_8591d_row0_col3" class="data row0 col3">0.25</td>
-<td id="T_8591d_row0_col4" class="data row0 col4">0.25</td>
-</tr>
-<tr class="even">
-<td id="T_8591d_level0_row1" class="row_heading level0 row1" data-quarto-table-cell-role="th"></td>
-<td id="T_8591d_row1_col0" class="data row1 col0">(2, 4]</td>
-<td id="T_8591d_row1_col1" class="data row1 col1">1998</td>
-<td id="T_8591d_row1_col2" class="data row1 col2">4494</td>
-<td id="T_8591d_row1_col3" class="data row1 col3">0.20</td>
-<td id="T_8591d_row1_col4" class="data row1 col4">0.45</td>
-</tr>
-<tr class="odd">
-<td id="T_8591d_level0_row2" class="row_heading level0 row2" data-quarto-table-cell-role="th"></td>
-<td id="T_8591d_row2_col0" class="data row2 col0">(4, 6]</td>
-<td id="T_8591d_row2_col1" class="data row2 col1">1979</td>
-<td id="T_8591d_row2_col2" class="data row2 col2">6473</td>
-<td id="T_8591d_row2_col3" class="data row2 col3">0.20</td>
-<td id="T_8591d_row2_col4" class="data row2 col4">0.65</td>
-</tr>
-<tr class="even">
-<td id="T_8591d_level0_row3" class="row_heading level0 row3" data-quarto-table-cell-role="th"></td>
-<td id="T_8591d_row3_col0" class="data row3 col0">(6, 8]</td>
-<td id="T_8591d_row3_col1" class="data row3 col1">2053</td>
-<td id="T_8591d_row3_col2" class="data row3 col2">8526</td>
-<td id="T_8591d_row3_col3" class="data row3 col3">0.21</td>
-<td id="T_8591d_row3_col4" class="data row3 col4">0.85</td>
-</tr>
-<tr class="odd">
-<td id="T_8591d_level0_row4" class="row_heading level0 row4" data-quarto-table-cell-role="th"></td>
-<td id="T_8591d_row4_col0" class="data row4 col0">(8, 10]</td>
-<td id="T_8591d_row4_col1" class="data row4 col1">1474</td>
-<td id="T_8591d_row4_col2" class="data row4 col2">10000</td>
-<td id="T_8591d_row4_col3" class="data row4 col3">0.15</td>
-<td id="T_8591d_row4_col4" class="data row4 col4">1.00</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<div class="cell" data-execution_count="16">
-<div class="cell-output cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="project1_files/figure-html/cell-17-output-1.png" width="793" height="252" class="figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-<hr>
-</section>
-<section id="credit-score" class="level3">
-<h3 class="anchored" data-anchor-id="credit-score">Credit Score</h3>
-<p>É uma medida da probabilidade de um indivíduo pagar suas dívidas com base em seu histórico de crédito passado.</p>
-<strong>Avaliação</strong>: <span style="color: green;"> OK. </span>
-<ul>
-<li>
-Variável numérica.
-</li>
-<li>
-Não possui nenhum valor faltante.
-</li>
-<li>
-Possui distribuição aproximadamente normal, com média = 650.
-</li>
-</ul>
-<div class="cell" data-execution_count="17">
-<div class="cell-output cell-output-display" data-execution_count="17">
-<style type="text/css">
-#T_cf005 th:not(.index_name) {
-  background-color: #001820;
-  color: white;
-}
-</style>
-
-<table id="T_cf005" data-quarto-postprocess="true" class="table table-sm table-striped small">
-<thead>
-<tr class="header">
-<th class="blank level0" data-quarto-table-cell-role="th">&nbsp;</th>
-<th id="T_cf005_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">SUM</th>
-<th id="T_cf005_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">CNT</th>
-<th id="T_cf005_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">AVG</th>
-<th id="T_cf005_level0_col3" class="col_heading level0 col3" data-quarto-table-cell-role="th">STDEV</th>
-<th id="T_cf005_level0_col4" class="col_heading level0 col4" data-quarto-table-cell-role="th">PERC_zeros</th>
-<th id="T_cf005_level0_col5" class="col_heading level0 col5" data-quarto-table-cell-role="th">PERC_negatives</th>
-<th id="T_cf005_level0_col6" class="col_heading level0 col6" data-quarto-table-cell-role="th">MIN</th>
-<th id="T_cf005_level0_col7" class="col_heading level0 col7" data-quarto-table-cell-role="th">P1</th>
-<th id="T_cf005_level0_col8" class="col_heading level0 col8" data-quarto-table-cell-role="th">P25</th>
-<th id="T_cf005_level0_col9" class="col_heading level0 col9" data-quarto-table-cell-role="th">P50</th>
-<th id="T_cf005_level0_col10" class="col_heading level0 col10" data-quarto-table-cell-role="th">P75</th>
-<th id="T_cf005_level0_col11" class="col_heading level0 col11" data-quarto-table-cell-role="th">P90</th>
-<th id="T_cf005_level0_col12" class="col_heading level0 col12" data-quarto-table-cell-role="th">P95</th>
-<th id="T_cf005_level0_col13" class="col_heading level0 col13" data-quarto-table-cell-role="th">P99</th>
-<th id="T_cf005_level0_col14" class="col_heading level0 col14" data-quarto-table-cell-role="th">MAX</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td id="T_cf005_level0_row0" class="row_heading level0 row0" data-quarto-table-cell-role="th"></td>
-<td id="T_cf005_row0_col0" class="data row0 col0">6,505,288.00</td>
-<td id="T_cf005_row0_col1" class="data row0 col1">10000</td>
-<td id="T_cf005_row0_col2" class="data row0 col2">650.53</td>
-<td id="T_cf005_row0_col3" class="data row0 col3">96.65</td>
-<td id="T_cf005_row0_col4" class="data row0 col4">0.00</td>
-<td id="T_cf005_row0_col5" class="data row0 col5">0.00</td>
-<td id="T_cf005_row0_col6" class="data row0 col6">350.00</td>
-<td id="T_cf005_row0_col7" class="data row0 col7">432.00</td>
-<td id="T_cf005_row0_col8" class="data row0 col8">584.00</td>
-<td id="T_cf005_row0_col9" class="data row0 col9">652.00</td>
-<td id="T_cf005_row0_col10" class="data row0 col10">718.00</td>
-<td id="T_cf005_row0_col11" class="data row0 col11">778.00</td>
-<td id="T_cf005_row0_col12" class="data row0 col12">812.00</td>
-<td id="T_cf005_row0_col13" class="data row0 col13">850.00</td>
-<td id="T_cf005_row0_col14" class="data row0 col14">850.00</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<div class="cell" data-execution_count="18">
-<div class="cell-output cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="project1_files/figure-html/cell-19-output-1.png" width="793" height="252" class="figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-<hr>
-</section>
-<section id="age" class="level3">
-<h3 class="anchored" data-anchor-id="age">Age</h3>
-<p>Idade em anos do cliente.</p>
-<strong>Avaliação</strong>: <span style="color: green;"> OK. </span>
-<ul>
-<li>
-Variável numérica.
-</li>
-<li>
-Não possui nenhum valor faltante.
-</li>
-<li>
-Possui distribuição assimétrica á direita.
-</li>
-<li>
-Cliente mais novo tem 18 anos.
-</li>
-<li>
-Cliente mais velho tem 92 anos.
-</li>
-<li>
-O valor mediano da idade do cliente é de 37 anos.
-</li>
-</ul>
-<div class="cell" data-execution_count="19">
-<div class="cell-output cell-output-display" data-execution_count="19">
-<style type="text/css">
-#T_abc4d th:not(.index_name) {
-  background-color: #001820;
-  color: white;
-}
-</style>
-
-<table id="T_abc4d" data-quarto-postprocess="true" class="table table-sm table-striped small">
-<thead>
-<tr class="header">
-<th class="blank level0" data-quarto-table-cell-role="th">&nbsp;</th>
-<th id="T_abc4d_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">SUM</th>
-<th id="T_abc4d_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">CNT</th>
-<th id="T_abc4d_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">AVG</th>
-<th id="T_abc4d_level0_col3" class="col_heading level0 col3" data-quarto-table-cell-role="th">STDEV</th>
-<th id="T_abc4d_level0_col4" class="col_heading level0 col4" data-quarto-table-cell-role="th">PERC_zeros</th>
-<th id="T_abc4d_level0_col5" class="col_heading level0 col5" data-quarto-table-cell-role="th">PERC_negatives</th>
-<th id="T_abc4d_level0_col6" class="col_heading level0 col6" data-quarto-table-cell-role="th">MIN</th>
-<th id="T_abc4d_level0_col7" class="col_heading level0 col7" data-quarto-table-cell-role="th">P1</th>
-<th id="T_abc4d_level0_col8" class="col_heading level0 col8" data-quarto-table-cell-role="th">P25</th>
-<th id="T_abc4d_level0_col9" class="col_heading level0 col9" data-quarto-table-cell-role="th">P50</th>
-<th id="T_abc4d_level0_col10" class="col_heading level0 col10" data-quarto-table-cell-role="th">P75</th>
-<th id="T_abc4d_level0_col11" class="col_heading level0 col11" data-quarto-table-cell-role="th">P90</th>
-<th id="T_abc4d_level0_col12" class="col_heading level0 col12" data-quarto-table-cell-role="th">P95</th>
-<th id="T_abc4d_level0_col13" class="col_heading level0 col13" data-quarto-table-cell-role="th">P99</th>
-<th id="T_abc4d_level0_col14" class="col_heading level0 col14" data-quarto-table-cell-role="th">MAX</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td id="T_abc4d_level0_row0" class="row_heading level0 row0" data-quarto-table-cell-role="th"></td>
-<td id="T_abc4d_row0_col0" class="data row0 col0">389,218.00</td>
-<td id="T_abc4d_row0_col1" class="data row0 col1">10000</td>
-<td id="T_abc4d_row0_col2" class="data row0 col2">38.92</td>
-<td id="T_abc4d_row0_col3" class="data row0 col3">10.49</td>
-<td id="T_abc4d_row0_col4" class="data row0 col4">0.00</td>
-<td id="T_abc4d_row0_col5" class="data row0 col5">0.00</td>
-<td id="T_abc4d_row0_col6" class="data row0 col6">18.00</td>
-<td id="T_abc4d_row0_col7" class="data row0 col7">21.00</td>
-<td id="T_abc4d_row0_col8" class="data row0 col8">32.00</td>
-<td id="T_abc4d_row0_col9" class="data row0 col9">37.00</td>
-<td id="T_abc4d_row0_col10" class="data row0 col10">44.00</td>
-<td id="T_abc4d_row0_col11" class="data row0 col11">53.00</td>
-<td id="T_abc4d_row0_col12" class="data row0 col12">60.00</td>
-<td id="T_abc4d_row0_col13" class="data row0 col13">72.00</td>
-<td id="T_abc4d_row0_col14" class="data row0 col14">92.00</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<div class="cell" data-execution_count="20">
-<div class="cell-output cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="project1_files/figure-html/cell-21-output-1.png" width="793" height="252" class="figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-<hr>
-</section>
-<section id="balance" class="level3">
-<h3 class="anchored" data-anchor-id="balance">Balance</h3>
-<p>Saldo bancário do cliente</p>
-<strong>Avaliação</strong>: <span style="color: green;"> OK. </span>
-<ul>
-<li>
-Variável numérica.
-</li>
-<li>
-Não possui nenhum valor faltante.
-</li>
-<li>
-Variável com distribuição assimétrica.
-</li>
-<li>
-Alta concetração de clientes com saldo entre 0 e 25 mil.
-</li>
-</ul>
-<div class="cell" data-execution_count="21">
-<div class="cell-output cell-output-display" data-execution_count="21">
-<style type="text/css">
-#T_54318 th:not(.index_name) {
-  background-color: #001820;
-  color: white;
-}
-</style>
-
-<table id="T_54318" data-quarto-postprocess="true" class="table table-sm table-striped small">
-<thead>
-<tr class="header">
-<th class="blank level0" data-quarto-table-cell-role="th">&nbsp;</th>
-<th id="T_54318_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">SUM</th>
-<th id="T_54318_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">CNT</th>
-<th id="T_54318_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">AVG</th>
-<th id="T_54318_level0_col3" class="col_heading level0 col3" data-quarto-table-cell-role="th">STDEV</th>
-<th id="T_54318_level0_col4" class="col_heading level0 col4" data-quarto-table-cell-role="th">PERC_zeros</th>
-<th id="T_54318_level0_col5" class="col_heading level0 col5" data-quarto-table-cell-role="th">PERC_negatives</th>
-<th id="T_54318_level0_col6" class="col_heading level0 col6" data-quarto-table-cell-role="th">MIN</th>
-<th id="T_54318_level0_col7" class="col_heading level0 col7" data-quarto-table-cell-role="th">P1</th>
-<th id="T_54318_level0_col8" class="col_heading level0 col8" data-quarto-table-cell-role="th">P25</th>
-<th id="T_54318_level0_col9" class="col_heading level0 col9" data-quarto-table-cell-role="th">P50</th>
-<th id="T_54318_level0_col10" class="col_heading level0 col10" data-quarto-table-cell-role="th">P75</th>
-<th id="T_54318_level0_col11" class="col_heading level0 col11" data-quarto-table-cell-role="th">P90</th>
-<th id="T_54318_level0_col12" class="col_heading level0 col12" data-quarto-table-cell-role="th">P95</th>
-<th id="T_54318_level0_col13" class="col_heading level0 col13" data-quarto-table-cell-role="th">P99</th>
-<th id="T_54318_level0_col14" class="col_heading level0 col14" data-quarto-table-cell-role="th">MAX</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td id="T_54318_level0_row0" class="row_heading level0 row0" data-quarto-table-cell-role="th"></td>
-<td id="T_54318_row0_col0" class="data row0 col0">764,858,892.88</td>
-<td id="T_54318_row0_col1" class="data row0 col1">10000</td>
-<td id="T_54318_row0_col2" class="data row0 col2">76,485.89</td>
-<td id="T_54318_row0_col3" class="data row0 col3">62,397.41</td>
-<td id="T_54318_row0_col4" class="data row0 col4">0.36</td>
-<td id="T_54318_row0_col5" class="data row0 col5">0.00</td>
-<td id="T_54318_row0_col6" class="data row0 col6">0.00</td>
-<td id="T_54318_row0_col7" class="data row0 col7">0.00</td>
-<td id="T_54318_row0_col8" class="data row0 col8">0.00</td>
-<td id="T_54318_row0_col9" class="data row0 col9">97,198.54</td>
-<td id="T_54318_row0_col10" class="data row0 col10">127,644.24</td>
-<td id="T_54318_row0_col11" class="data row0 col11">149,244.79</td>
-<td id="T_54318_row0_col12" class="data row0 col12">162,711.67</td>
-<td id="T_54318_row0_col13" class="data row0 col13">185,967.99</td>
-<td id="T_54318_row0_col14" class="data row0 col14">250,898.09</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<div class="cell" data-execution_count="22">
-<div class="cell-output cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="project1_files/figure-html/cell-23-output-1.png" width="793" height="252" class="figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-<hr>
-</section>
-<section id="estimated-salary" class="level3">
-<h3 class="anchored" data-anchor-id="estimated-salary">Estimated Salary</h3>
-<p>Salario estimado.</p>
-<strong>Avaliação</strong>: <span style="color: green;"> OK. </span>
-<ul>
-<li>
-Variável numérica.
-</li>
-<li>
-Não possui nenhum valor faltante.
-</li>
-<li>
-Variável com distribuição uniforme.
-</li>
-</ul>
-<div class="cell" data-execution_count="23">
-<div class="cell-output cell-output-display" data-execution_count="23">
-<style type="text/css">
-#T_d6444 th:not(.index_name) {
-  background-color: #001820;
-  color: white;
-}
-</style>
-
-<table id="T_d6444" data-quarto-postprocess="true" class="table table-sm table-striped small">
-<thead>
-<tr class="header">
-<th class="blank level0" data-quarto-table-cell-role="th">&nbsp;</th>
-<th id="T_d6444_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">SUM</th>
-<th id="T_d6444_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">CNT</th>
-<th id="T_d6444_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">AVG</th>
-<th id="T_d6444_level0_col3" class="col_heading level0 col3" data-quarto-table-cell-role="th">STDEV</th>
-<th id="T_d6444_level0_col4" class="col_heading level0 col4" data-quarto-table-cell-role="th">PERC_zeros</th>
-<th id="T_d6444_level0_col5" class="col_heading level0 col5" data-quarto-table-cell-role="th">PERC_negatives</th>
-<th id="T_d6444_level0_col6" class="col_heading level0 col6" data-quarto-table-cell-role="th">MIN</th>
-<th id="T_d6444_level0_col7" class="col_heading level0 col7" data-quarto-table-cell-role="th">P1</th>
-<th id="T_d6444_level0_col8" class="col_heading level0 col8" data-quarto-table-cell-role="th">P25</th>
-<th id="T_d6444_level0_col9" class="col_heading level0 col9" data-quarto-table-cell-role="th">P50</th>
-<th id="T_d6444_level0_col10" class="col_heading level0 col10" data-quarto-table-cell-role="th">P75</th>
-<th id="T_d6444_level0_col11" class="col_heading level0 col11" data-quarto-table-cell-role="th">P90</th>
-<th id="T_d6444_level0_col12" class="col_heading level0 col12" data-quarto-table-cell-role="th">P95</th>
-<th id="T_d6444_level0_col13" class="col_heading level0 col13" data-quarto-table-cell-role="th">P99</th>
-<th id="T_d6444_level0_col14" class="col_heading level0 col14" data-quarto-table-cell-role="th">MAX</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td id="T_d6444_level0_row0" class="row_heading level0 row0" data-quarto-table-cell-role="th"></td>
-<td id="T_d6444_row0_col0" class="data row0 col0">1,000,902,398.81</td>
-<td id="T_d6444_row0_col1" class="data row0 col1">10000</td>
-<td id="T_d6444_row0_col2" class="data row0 col2">100,090.24</td>
-<td id="T_d6444_row0_col3" class="data row0 col3">57,510.49</td>
-<td id="T_d6444_row0_col4" class="data row0 col4">0.00</td>
-<td id="T_d6444_row0_col5" class="data row0 col5">0.00</td>
-<td id="T_d6444_row0_col6" class="data row0 col6">11.58</td>
-<td id="T_d6444_row0_col7" class="data row0 col7">1,842.83</td>
-<td id="T_d6444_row0_col8" class="data row0 col8">51,002.11</td>
-<td id="T_d6444_row0_col9" class="data row0 col9">100,193.92</td>
-<td id="T_d6444_row0_col10" class="data row0 col10">149,388.25</td>
-<td id="T_d6444_row0_col11" class="data row0 col11">179,674.70</td>
-<td id="T_d6444_row0_col12" class="data row0 col12">190,155.38</td>
-<td id="T_d6444_row0_col13" class="data row0 col13">198,069.73</td>
-<td id="T_d6444_row0_col14" class="data row0 col14">199,992.48</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<div class="cell" data-execution_count="24">
-<div class="cell-output cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="project1_files/figure-html/cell-25-output-1.png" width="793" height="252" class="figure-img"></p>
+<p><img src="project1_files/figure-html/cell-15-output-1.png" width="1437" height="1148" class="figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
 </section>
 </section>
-<section id="análise-bivariada-dos-dados" class="level2">
-<h2 class="anchored" data-anchor-id="análise-bivariada-dos-dados">Análise Bivariada dos Dados</h2>
-<p>
-A análise bivariada tem como objetivo examinar a relação entre duas variáveis em um conjunto de dados. Ao contrário da análise univariada, que se concentra em uma única variável (EDA que fizemos no item anterior), a análise bivariada explora a associação entre duas variáveis.
-</p>
-<p>
-</p><p>Existem diferentes técnicas e métodos para realizar uma análise bivariada, dependendo da natureza das variáveis envolvidas. Para o nosso problema, estamos interessados em avaliar o grau de associação entre cada uma das possíveis variáveis preditoras e a variável target, dessa forma temos que:</p>
-<ul>
-<li><p>churn: Categórica Binária (target)</p></li>
-<li><p>country: Categórica</p></li>
-<li><p>gender: Categórica</p></li>
-<li><p>credit_card: Categórica</p></li>
-<li><p>active_member: Categórica</p></li>
-<li><p>producs_number: Numérica Discreta</p></li>
-<li><p>tenure: Numérica Discreta</p></li>
-<li><p>credit_score: Numérica Contínua</p></li>
-<li><p>age: Numérica Discreta</p></li>
-<li><p>balance: Numérica Contínua</p></li>
-<li><p>estimated_salary: Numérica Contínua</p></li>
-</ul>
-<p></p>
-<p>
-A nossa abordagem será transformar todas as variáveis preditoras em categóricas, para posteriormente avaliarmos o grau de associação de cada uma delas frente a variável target, para isso teremos basicamente duas etapas:
-</p><ol>
-<li>
-Binning das variáveis.
-</li>
-<li>
-Avaliação do Grau de Associação.
-</li>
-</ol>
-<p></p>
+<section id="logistic-regression-ml-model" class="level3">
+<h3 class="anchored" data-anchor-id="logistic-regression-ml-model">Logistic Regression ML Model</h3>
 <hr>
-<strong>Binning</strong>
-<p>
-Chamaremos esse processo de transformação de uma variável numérica em categórica de binning. O processo de binning será feito através de um método denominado de <strong>optimal binning</strong> <a href="https://gnpalencia.org/optbinning/" class="uri">https://gnpalencia.org/optbinning/</a>.
-</p>
-<p>
-O optimal binning refere-se a uma abordagem estatística utilizada em análise de dados para agrupar valores de uma variável em intervalos (ou “bins”) de maneira a otimizar algum critério específico. A principal ideia por trás do binning ótimo é encontrar a divisão mais informativa ou significativa das observações, geralmente com base em algum critério de interesse, como a maximização da diferença nas médias entre os grupos ou a minimização da variabilidade intra-bin.
-</p>
-<p>
-Ou seja, de forma resumida, vamos pegar um certa variável, por exemplo o balance (saldo da conta) e tentar discretizar em categorias onde fique mais evidente se a ocorrência de churn é maior ou menor.
-</p>
-<p>
-Vale ressaltar que também vamos aplicar o optimal binning para as variáveis que já são categóricas, uma vez que esse processo de otimização pode gerar agrupamentos mais informativos (quanto a ocorrência de churn) do que as categorias já existentes.
-</p>
-<hr>
-<strong>Avaliação do Grau de Associação</strong>
-<p>
-Neste momento todas as nossas variáveis (preditoras e target) são categóricas, então para mensurar o grau de associação entre cada preditora e o target, utilizaremos o coeficiente <strong>Cramer’s V</strong> (V de Cramer).
-</p>
-<p>
-</p><p>O coeficiente V de Cramer é uma medida estatística utilizada em análises bivariadas para quantificar a força de associação entre duas variáveis categóricas. Essa medida é uma extensão do coeficiente qui-quadrado, que é comumente utilizado para testar a independência entre variáveis categóricas.</p>
-O coeficiente V de Cramer varia de 0 a 1, onde 0 indica nenhuma associação e 1 indica associação total entre as variáveis categóricas. <a href="https://en.wikipedia.org/wiki/Cram%C3%A9r%27s_V" class="uri">https://en.wikipedia.org/wiki/Cram%C3%A9r%27s_V</a>
-<p></p>
-<hr>
-<p><strong>Resultado da Análise Bivariada</strong></p>
-<p>Após o término da análise bivariada, conforme a tabela abaixo e os demais resultados que veremos na sequência, veremos que:</p>
-<ul>
-<li>age: É a variável com maior grau de associação com o evento de churn (Alta discriminância).</li>
-<li>products_number, country, active_member: Estão associadas de forma moderada com o evento de churn (Média discriminância).</li>
-<li>credit_score, tenure, estimated_salary e credit_card: Possuem baixo grau de associação com o evento de churn (Baixa discriminância).</li>
-</ul>
-<p>As variáveis com alta e média discriminância têm maiores chances de serem consideradas como preditoras no modelo preditivo que iremos construir. Em contrapartida, as variáveis de baixa discriminância possuem menor propensão de serem utilizadas como preditoras nesse modelo.”</p>
-<strong>Observação</strong>
-<p>
-</p><p>O critério utilizado para definir a discriminância não está levando em conta apenas se o valor de Cramer’s V está muito próximo de 0 ou 1, mas também considera o contexto dessa análise. Por exemplo, para a variável idade, temos Cramer’s V = 0.36, que é um valor mais próximo de 0 do que de 1. Se considerássemos apenas essa questão, diríamos que o grau de associação é moderado ou baixo.</p>
-<p>No entanto, no contexto desta análise, a variável idade é a que possui o maior Cramer’s V. Portanto, dentro do nosso contexto, estamos considerando que o grau de associação com o evento é forte.</p>
-<p>Para fins de esclarecimento, consideramos que:</p>
-<ul>
-<li>Cramer’s V &gt; 0.20: Discriminância Alta.</li>
-<li>0.20 &lt;= Cramer’s V &lt; 0.05: Discriminância Média.</li>
-<li>Cramer’s V &lt;= 0.05: Discriminância Baixa.</li>
-</ul>
-<p></p>
-<div class="cell" data-execution_count="25">
-<div class="cell-output cell-output-display" data-execution_count="25">
-<style type="text/css">
-#T_c8e3b th:not(.index_name) {
-  background-color: #001820;
-  color: white;
-}
-</style>
-
-<table id="T_c8e3b" data-quarto-postprocess="true" class="table table-sm table-striped small">
-<thead>
-<tr class="header">
-<th class="blank level0" data-quarto-table-cell-role="th">&nbsp;</th>
-<th id="T_c8e3b_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">Feature</th>
-<th id="T_c8e3b_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">Cramer's V</th>
-<th id="T_c8e3b_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">Discriminância</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td id="T_c8e3b_level0_row0" class="row_heading level0 row0" data-quarto-table-cell-role="th"></td>
-<td id="T_c8e3b_row0_col0" class="data row0 col0">age</td>
-<td id="T_c8e3b_row0_col1" class="data row0 col1">0.36</td>
-<td id="T_c8e3b_row0_col2" class="data row0 col2">Alta</td>
-</tr>
-<tr class="even">
-<td id="T_c8e3b_level0_row1" class="row_heading level0 row1" data-quarto-table-cell-role="th"></td>
-<td id="T_c8e3b_row1_col0" class="data row1 col0">products_number</td>
-<td id="T_c8e3b_row1_col1" class="data row1 col1">0.19</td>
-<td id="T_c8e3b_row1_col2" class="data row1 col2">Média</td>
-</tr>
-<tr class="odd">
-<td id="T_c8e3b_level0_row2" class="row_heading level0 row2" data-quarto-table-cell-role="th"></td>
-<td id="T_c8e3b_row2_col0" class="data row2 col0">country</td>
-<td id="T_c8e3b_row2_col1" class="data row2 col1">0.17</td>
-<td id="T_c8e3b_row2_col2" class="data row2 col2">Média</td>
-</tr>
-<tr class="even">
-<td id="T_c8e3b_level0_row3" class="row_heading level0 row3" data-quarto-table-cell-role="th"></td>
-<td id="T_c8e3b_row3_col0" class="data row3 col0">active_member</td>
-<td id="T_c8e3b_row3_col1" class="data row3 col1">0.16</td>
-<td id="T_c8e3b_row3_col2" class="data row3 col2">Média</td>
-</tr>
-<tr class="odd">
-<td id="T_c8e3b_level0_row4" class="row_heading level0 row4" data-quarto-table-cell-role="th"></td>
-<td id="T_c8e3b_row4_col0" class="data row4 col0">balance</td>
-<td id="T_c8e3b_row4_col1" class="data row4 col1">0.12</td>
-<td id="T_c8e3b_row4_col2" class="data row4 col2">Média</td>
-</tr>
-<tr class="even">
-<td id="T_c8e3b_level0_row5" class="row_heading level0 row5" data-quarto-table-cell-role="th"></td>
-<td id="T_c8e3b_row5_col0" class="data row5 col0">gender</td>
-<td id="T_c8e3b_row5_col1" class="data row5 col1">0.11</td>
-<td id="T_c8e3b_row5_col2" class="data row5 col2">Média</td>
-</tr>
-<tr class="odd">
-<td id="T_c8e3b_level0_row6" class="row_heading level0 row6" data-quarto-table-cell-role="th"></td>
-<td id="T_c8e3b_row6_col0" class="data row6 col0">credit_score</td>
-<td id="T_c8e3b_row6_col1" class="data row6 col1">0.04</td>
-<td id="T_c8e3b_row6_col2" class="data row6 col2">Baixa</td>
-</tr>
-<tr class="even">
-<td id="T_c8e3b_level0_row7" class="row_heading level0 row7" data-quarto-table-cell-role="th"></td>
-<td id="T_c8e3b_row7_col0" class="data row7 col0">tenure</td>
-<td id="T_c8e3b_row7_col1" class="data row7 col1">0.04</td>
-<td id="T_c8e3b_row7_col2" class="data row7 col2">Baixa</td>
-</tr>
-<tr class="odd">
-<td id="T_c8e3b_level0_row8" class="row_heading level0 row8" data-quarto-table-cell-role="th"></td>
-<td id="T_c8e3b_row8_col0" class="data row8 col0">estimated_salary</td>
-<td id="T_c8e3b_row8_col1" class="data row8 col1">0.03</td>
-<td id="T_c8e3b_row8_col2" class="data row8 col2">Baixa</td>
-</tr>
-<tr class="even">
-<td id="T_c8e3b_level0_row9" class="row_heading level0 row9" data-quarto-table-cell-role="th"></td>
-<td id="T_c8e3b_row9_col0" class="data row9 col0">credit_card</td>
-<td id="T_c8e3b_row9_col1" class="data row9 col1">0.01</td>
-<td id="T_c8e3b_row9_col2" class="data row9 col2">Baixa</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<section id="age-1" class="level3">
-<h3 class="anchored" data-anchor-id="age-1">Age</h3>
-<strong>Discriminância</strong>: <span style="color: green;"> Alta. </span>
-<ul>
-<li>
-Quanto mais velho for o cliente, maior é a propensão de ocorrência do churn.
-</li>
-</ul>
-<div class="cell" data-execution_count="26">
-<div class="cell-output cell-output-display" data-execution_count="26">
-<style type="text/css">
-#T_d838e th:not(.index_name) {
-  background-color: #001820;
-  color: white;
-}
-</style>
-
-<table id="T_d838e" data-quarto-postprocess="true" class="table table-sm table-striped small">
-<thead>
-<tr class="header">
-<th class="blank level0" data-quarto-table-cell-role="th">&nbsp;</th>
-<th id="T_d838e_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">Categoria</th>
-<th id="T_d838e_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">Não Churn</th>
-<th id="T_d838e_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">Churn</th>
-<th id="T_d838e_level0_col3" class="col_heading level0 col3" data-quarto-table-cell-role="th">Total</th>
-<th id="T_d838e_level0_col4" class="col_heading level0 col4" data-quarto-table-cell-role="th">% Churn</th>
-<th id="T_d838e_level0_col5" class="col_heading level0 col5" data-quarto-table-cell-role="th">% Categoria</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td id="T_d838e_level0_row0" class="row_heading level0 row0" data-quarto-table-cell-role="th"></td>
-<td id="T_d838e_row0_col0" class="data row0 col0">(-inf, 27.50)</td>
-<td id="T_d838e_row0_col1" class="data row0 col1">947</td>
-<td id="T_d838e_row0_col2" class="data row0 col2">73</td>
-<td id="T_d838e_row0_col3" class="data row0 col3">1020</td>
-<td id="T_d838e_row0_col4" class="data row0 col4">7.16</td>
-<td id="T_d838e_row0_col5" class="data row0 col5">10.20</td>
-</tr>
-<tr class="even">
-<td id="T_d838e_level0_row1" class="row_heading level0 row1" data-quarto-table-cell-role="th"></td>
-<td id="T_d838e_row1_col0" class="data row1 col0">[27.50, 32.50)</td>
-<td id="T_d838e_row1_col1" class="data row1 col1">1630</td>
-<td id="T_d838e_row1_col2" class="data row1 col2">140</td>
-<td id="T_d838e_row1_col3" class="data row1 col3">1770</td>
-<td id="T_d838e_row1_col4" class="data row1 col4">7.91</td>
-<td id="T_d838e_row1_col5" class="data row1 col5">17.70</td>
-</tr>
-<tr class="odd">
-<td id="T_d838e_level0_row2" class="row_heading level0 row2" data-quarto-table-cell-role="th"></td>
-<td id="T_d838e_row2_col0" class="data row2 col0">[32.50, 34.50)</td>
-<td id="T_d838e_row2_col1" class="data row2 col1">812</td>
-<td id="T_d838e_row2_col2" class="data row2 col2">77</td>
-<td id="T_d838e_row2_col3" class="data row2 col3">889</td>
-<td id="T_d838e_row2_col4" class="data row2 col4">8.66</td>
-<td id="T_d838e_row2_col5" class="data row2 col5">8.89</td>
-</tr>
-<tr class="even">
-<td id="T_d838e_level0_row3" class="row_heading level0 row3" data-quarto-table-cell-role="th"></td>
-<td id="T_d838e_row3_col0" class="data row3 col0">[34.50, 36.50)</td>
-<td id="T_d838e_row3_col1" class="data row3 col1">820</td>
-<td id="T_d838e_row3_col2" class="data row3 col2">110</td>
-<td id="T_d838e_row3_col3" class="data row3 col3">930</td>
-<td id="T_d838e_row3_col4" class="data row3 col4">11.83</td>
-<td id="T_d838e_row3_col5" class="data row3 col5">9.30</td>
-</tr>
-<tr class="odd">
-<td id="T_d838e_level0_row4" class="row_heading level0 row4" data-quarto-table-cell-role="th"></td>
-<td id="T_d838e_row4_col0" class="data row4 col0">[36.50, 38.50)</td>
-<td id="T_d838e_row4_col1" class="data row4 col1">830</td>
-<td id="T_d838e_row4_col2" class="data row4 col2">125</td>
-<td id="T_d838e_row4_col3" class="data row4 col3">955</td>
-<td id="T_d838e_row4_col4" class="data row4 col4">13.09</td>
-<td id="T_d838e_row4_col5" class="data row4 col5">9.55</td>
-</tr>
-<tr class="even">
-<td id="T_d838e_level0_row5" class="row_heading level0 row5" data-quarto-table-cell-role="th"></td>
-<td id="T_d838e_row5_col0" class="data row5 col0">[38.50, 40.50)</td>
-<td id="T_d838e_row5_col1" class="data row5 col1">694</td>
-<td id="T_d838e_row5_col2" class="data row5 col2">161</td>
-<td id="T_d838e_row5_col3" class="data row5 col3">855</td>
-<td id="T_d838e_row5_col4" class="data row5 col4">18.83</td>
-<td id="T_d838e_row5_col5" class="data row5 col5">8.55</td>
-</tr>
-<tr class="odd">
-<td id="T_d838e_level0_row6" class="row_heading level0 row6" data-quarto-table-cell-role="th"></td>
-<td id="T_d838e_row6_col0" class="data row6 col0">[40.50, 42.50)</td>
-<td id="T_d838e_row6_col1" class="data row6 col1">541</td>
-<td id="T_d838e_row6_col2" class="data row6 col2">146</td>
-<td id="T_d838e_row6_col3" class="data row6 col3">687</td>
-<td id="T_d838e_row6_col4" class="data row6 col4">21.25</td>
-<td id="T_d838e_row6_col5" class="data row6 col5">6.87</td>
-</tr>
-<tr class="even">
-<td id="T_d838e_level0_row7" class="row_heading level0 row7" data-quarto-table-cell-role="th"></td>
-<td id="T_d838e_row7_col0" class="data row7 col0">[42.50, 46.50)</td>
-<td id="T_d838e_row7_col1" class="data row7 col1">670</td>
-<td id="T_d838e_row7_col2" class="data row7 col2">339</td>
-<td id="T_d838e_row7_col3" class="data row7 col3">1009</td>
-<td id="T_d838e_row7_col4" class="data row7 col4">33.60</td>
-<td id="T_d838e_row7_col5" class="data row7 col5">10.09</td>
-</tr>
-<tr class="odd">
-<td id="T_d838e_level0_row8" class="row_heading level0 row8" data-quarto-table-cell-role="th"></td>
-<td id="T_d838e_row8_col0" class="data row8 col0">[46.50, inf)</td>
-<td id="T_d838e_row8_col1" class="data row8 col1">1019</td>
-<td id="T_d838e_row8_col2" class="data row8 col2">866</td>
-<td id="T_d838e_row8_col3" class="data row8 col3">1885</td>
-<td id="T_d838e_row8_col4" class="data row8 col4">45.94</td>
-<td id="T_d838e_row8_col5" class="data row8 col5">18.85</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<div class="cell" data-execution_count="27">
-<div class="cell-output cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="project1_files/figure-html/cell-28-output-1.png" width="837" height="293" class="figure-img"></p>
-</figure>
-</div>
+</section>
+<section id="standardize-features" class="level3">
+<h3 class="anchored" data-anchor-id="standardize-features">Standardize features</h3>
+<p>Standardize features by removing the mean and scaling to unit variance.</p>
+<p>The standard score of a sample x is calculated as: z = (x - u) / s, where u is the mean of the training samples or zero if with_mean=False, and s is the standard deviation of the training samples or one if with_std=False.</p>
+<div id="da42d048" class="cell" data-execution_count="18">
+<div class="cell-output cell-output-display" data-execution_count="18">
+<style>#sk-container-id-1 {color: black;}#sk-container-id-1 pre{padding: 0;}#sk-container-id-1 div.sk-toggleable {background-color: white;}#sk-container-id-1 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-1 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-1 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-1 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-1 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-1 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-1 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-1 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-1 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-1 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-1 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-1 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-1 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-1 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-1 div.sk-item {position: relative;z-index: 1;}#sk-container-id-1 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-1 div.sk-item::before, #sk-container-id-1 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-1 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-1 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-1 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-1 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-1 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-1 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-1 div.sk-label-container {text-align: center;}#sk-container-id-1 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-1 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-1" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>LogisticRegression(max_iter=3000)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br>On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden=""><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-1" type="checkbox" checked=""><label for="sk-estimator-id-1" class="sk-toggleable__label sk-toggleable__label-arrow">LogisticRegression</label><div class="sk-toggleable__content"><pre>LogisticRegression(max_iter=3000)</pre></div></div></div></div></div>
 </div>
 </div>
 <hr>
 </section>
-<section id="products-number-1" class="level3">
-<h3 class="anchored" data-anchor-id="products-number-1">Products Number</h3>
-<strong>Discriminância</strong>: <span style="color: yellow;"> Média. </span>
+<section id="ml-model-assessment" class="level3">
+<h3 class="anchored" data-anchor-id="ml-model-assessment">ML Model Assessment</h3>
 <ul>
-<li>
-A ocorrência do churn é maior para clientes que contrataram somente 1 produto.
-</li>
+<li>Precision: Percentage of correct positive predictions relative to total positive predictions.</li>
+<li>Recall: Percentage of correct positive predictions relative to total actual positives.</li>
+<li>F1 Score: A weighted harmonic mean of precision and recall. The closer to 1, the better the model. F1 Score: 2 * (Precision * Recall) / (Precision + Recall)</li>
 </ul>
-<div class="cell" data-execution_count="28">
+<div id="a1b8629e" class="cell" data-execution_count="21">
+<div class="cell-output cell-output-stdout">
+<pre><code>              precision    recall  f1-score   support
+
+           0       0.78      0.93      0.85       127
+           1       0.78      0.48      0.59        65
+
+    accuracy                           0.78       192
+   macro avg       0.78      0.70      0.72       192
+weighted avg       0.78      0.78      0.76       192
+</code></pre>
+</div>
+</div>
+<ul>
+<li>Precision: Out of all the patients that the model predicted would get diabetes, 78% actually did.</li>
+<li>Recall: Out of all the patients that actually did get diabetes, the model predicted this outcome correctly for 48% of those patients.</li>
+<li>F1 Score: 0.59 - Since this value is close to 1, it tells us that the model does a good job of predicting whether or not patients will get diabetes. 2 * (Precision * Recall) / (Precision + Recall) ***** 2 * (.78 * .48) / (.78 + .48)</li>
+<li>Support: These values is regarding how many patients belonged to each class in the test dataset. Among the patientis in the test dataset, 127 did not get diabetes and 65 did get diabetes.</li>
+</ul>
+<div id="4f66a3d8" class="cell" data-execution_count="22">
+<div class="cell-output cell-output-display" data-execution_count="22">
+<pre><code>0.4732423621500228</code></pre>
+</div>
+</div>
+<hr>
+</section>
+<section id="roc-curve" class="level3">
+<h3 class="anchored" data-anchor-id="roc-curve">ROC Curve</h3>
+<p>The ROC curve shows the trade-off between sensitivity (or True Positve Rate) and specificity (1 – False Positive Rate).</p>
+<p>Classifiers that give curves closer to the top-left corner indicate a better performance</p>
+<p>ROC/AUC does not require to set a classification threshold and it’s still useful when there is high class imbalance</p>
+<ul>
+<li><p>ROC curve can help you to choose a threshold that balances sensitivity and specificity in a way that makes sense for your particular context</p></li>
+<li><p>You can’t actually see the thresholds used to generate the curve on the ROC curve itself</p></li>
+</ul>
+<div id="2174ad35" class="cell" data-execution_count="24">
+<div class="cell-output cell-output-stdout">
+<pre><code>0.7030284675953968</code></pre>
+</div>
+</div>
+<div id="30da6fb8" class="cell" data-execution_count="25">
+<div class="cell-output cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="project1_files/figure-html/cell-26-output-1.png" class="quarto-figure quarto-figure-center figure-img" width="515" height="373"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="accuracy" class="level3">
+<h3 class="anchored" data-anchor-id="accuracy">Accuracy</h3>
+<p>Percentage of correct predictions</p>
+<div id="06c2e11a" class="cell" data-execution_count="26">
+<div class="cell-output cell-output-stdout">
+<pre><code>Accuracy of Logistic regression model is 0.7760416666666666</code></pre>
+</div>
+</div>
+</section>
+<section id="null-accuracy" class="level3">
+<h3 class="anchored" data-anchor-id="null-accuracy">Null accuracy</h3>
+<p>Null accuracy refers to the accuracy that could be achieved by always predicting the most frequent class in the dataset.</p>
+<p>In the test set, 66% (127) of patients did not have diabetes, while 34% did. In this case, the null accuracy would be 66%, because if we always predicted “not diabetes,” we would be correct 66% of the time.</p>
+<div id="472b701a" class="cell" data-execution_count="27">
+<div class="cell-output cell-output-display" data-execution_count="27">
+<pre><code>Outcome
+0    0.661458
+Name: count, dtype: float64</code></pre>
+</div>
+</div>
+<p>As the null accuracy is less than model accuracy, it indicates a good result.</p>
+<section id="comparing-the-true-and-predicted-response-values" class="level4">
+<h4 class="anchored" data-anchor-id="comparing-the-true-and-predicted-response-values">Comparing the true and predicted response values</h4>
+<div id="6d424240" class="cell" data-execution_count="28">
+<div class="cell-output cell-output-stdout">
+<pre><code>True:</code></pre>
+</div>
 <div class="cell-output cell-output-display" data-execution_count="28">
-<style type="text/css">
-#T_a10ca th:not(.index_name) {
-  background-color: #001820;
-  color: white;
-}
-</style>
-
-<table id="T_a10ca" data-quarto-postprocess="true" class="table table-sm table-striped small">
-<thead>
-<tr class="header">
-<th class="blank level0" data-quarto-table-cell-role="th">&nbsp;</th>
-<th id="T_a10ca_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">Categoria</th>
-<th id="T_a10ca_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">Não Churn</th>
-<th id="T_a10ca_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">Churn</th>
-<th id="T_a10ca_level0_col3" class="col_heading level0 col3" data-quarto-table-cell-role="th">Total</th>
-<th id="T_a10ca_level0_col4" class="col_heading level0 col4" data-quarto-table-cell-role="th">% Churn</th>
-<th id="T_a10ca_level0_col5" class="col_heading level0 col5" data-quarto-table-cell-role="th">% Categoria</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td id="T_a10ca_level0_row0" class="row_heading level0 row0" data-quarto-table-cell-role="th"></td>
-<td id="T_a10ca_row0_col0" class="data row0 col0">(-inf, 1.50)</td>
-<td id="T_a10ca_row0_col1" class="data row0 col1">3675</td>
-<td id="T_a10ca_row0_col2" class="data row0 col2">1409</td>
-<td id="T_a10ca_row0_col3" class="data row0 col3">5084</td>
-<td id="T_a10ca_row0_col4" class="data row0 col4">27.71</td>
-<td id="T_a10ca_row0_col5" class="data row0 col5">50.84</td>
-</tr>
-<tr class="even">
-<td id="T_a10ca_level0_row1" class="row_heading level0 row1" data-quarto-table-cell-role="th"></td>
-<td id="T_a10ca_row1_col0" class="data row1 col0">[1.50, inf)</td>
-<td id="T_a10ca_row1_col1" class="data row1 col1">4288</td>
-<td id="T_a10ca_row1_col2" class="data row1 col2">628</td>
-<td id="T_a10ca_row1_col3" class="data row1 col3">4916</td>
-<td id="T_a10ca_row1_col4" class="data row1 col4">12.77</td>
-<td id="T_a10ca_row1_col5" class="data row1 col5">49.16</td>
-</tr>
-</tbody>
-</table>
+<pre><code>(None,
+ array([0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 1, 0, 1, 1, 0, 1, 0, 0, 1,
+        0, 0, 0]))</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="29">
-<div class="cell-output cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="project1_files/figure-html/cell-30-output-1.png" width="837" height="282" class="figure-img"></p>
-</figure>
+<div id="aab5c2ee" class="cell" data-execution_count="29">
+<div class="cell-output cell-output-stdout">
+<pre><code>Pred:</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="29">
+<pre><code>(None,
+ array([0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0,
+        0, 0, 1]))</code></pre>
 </div>
 </div>
-</div>
-<hr>
 </section>
-<section id="country-1" class="level3">
-<h3 class="anchored" data-anchor-id="country-1">Country</h3>
-<strong>Discriminância</strong>: <span style="color: yellow;"> Média. </span>
+</section>
+<section id="confusion-matrix" class="level3">
+<h3 class="anchored" data-anchor-id="confusion-matrix">Confusion Matrix</h3>
+<p>Confusion matrix allows to calculate a variety of metrics. It’s a useful for multi-class problems (more than two response classes)</p>
 <ul>
-<li>
-A ocorrência do churn é maior para clientes da Alemanha.
-</li>
+<li>Every observation in the testing set is represented in exactly one box</li>
+<li>It’s 2x2 matrix because there are 2 responses classes</li>
+<li>The format shown here is not universal</li>
 </ul>
-<div class="cell" data-execution_count="30">
+<p>Basic Terminology</p>
+<ul>
+<li>TP: correctly predict that they have diabetes</li>
+<li>TN: correctly predict that they do not have diabetes</li>
+<li>FP: incorrectly predict that they do have diabetes</li>
+<li>FN: incorrectly predict that they do not have diabetes</li>
+</ul>
+<div id="99a45ebf" class="cell" data-execution_count="30">
 <div class="cell-output cell-output-display" data-execution_count="30">
-<style type="text/css">
-#T_179ae th:not(.index_name) {
-  background-color: #001820;
-  color: white;
-}
-</style>
-
-<table id="T_179ae" data-quarto-postprocess="true" class="table table-sm table-striped small">
-<thead>
-<tr class="header">
-<th class="blank level0" data-quarto-table-cell-role="th">&nbsp;</th>
-<th id="T_179ae_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">Categoria</th>
-<th id="T_179ae_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">Não Churn</th>
-<th id="T_179ae_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">Churn</th>
-<th id="T_179ae_level0_col3" class="col_heading level0 col3" data-quarto-table-cell-role="th">Total</th>
-<th id="T_179ae_level0_col4" class="col_heading level0 col4" data-quarto-table-cell-role="th">% Churn</th>
-<th id="T_179ae_level0_col5" class="col_heading level0 col5" data-quarto-table-cell-role="th">% Categoria</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td id="T_179ae_level0_row0" class="row_heading level0 row0" data-quarto-table-cell-role="th"></td>
-<td id="T_179ae_row0_col0" class="data row0 col0">['France']</td>
-<td id="T_179ae_row0_col1" class="data row0 col1">4204</td>
-<td id="T_179ae_row0_col2" class="data row0 col2">810</td>
-<td id="T_179ae_row0_col3" class="data row0 col3">5014</td>
-<td id="T_179ae_row0_col4" class="data row0 col4">16.15</td>
-<td id="T_179ae_row0_col5" class="data row0 col5">50.14</td>
-</tr>
-<tr class="even">
-<td id="T_179ae_level0_row1" class="row_heading level0 row1" data-quarto-table-cell-role="th"></td>
-<td id="T_179ae_row1_col0" class="data row1 col0">['Germany']</td>
-<td id="T_179ae_row1_col1" class="data row1 col1">1695</td>
-<td id="T_179ae_row1_col2" class="data row1 col2">814</td>
-<td id="T_179ae_row1_col3" class="data row1 col3">2509</td>
-<td id="T_179ae_row1_col4" class="data row1 col4">32.44</td>
-<td id="T_179ae_row1_col5" class="data row1 col5">25.09</td>
-</tr>
-<tr class="odd">
-<td id="T_179ae_level0_row2" class="row_heading level0 row2" data-quarto-table-cell-role="th"></td>
-<td id="T_179ae_row2_col0" class="data row2 col0">['Spain']</td>
-<td id="T_179ae_row2_col1" class="data row2 col1">2064</td>
-<td id="T_179ae_row2_col2" class="data row2 col2">413</td>
-<td id="T_179ae_row2_col3" class="data row2 col3">2477</td>
-<td id="T_179ae_row2_col4" class="data row2 col4">16.67</td>
-<td id="T_179ae_row2_col5" class="data row2 col5">24.77</td>
-</tr>
-</tbody>
-</table>
+<pre><code>array([[118,   9],
+       [ 34,  31]])</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="31">
+<div id="b0e613d3" class="cell" data-execution_count="31">
 <div class="cell-output cell-output-display">
-<div class="quarto-figure quarto-figure-center">
+<div>
 <figure class="figure">
-<p><img src="project1_files/figure-html/cell-32-output-1.png" width="837" height="286" class="figure-img"></p>
+<p><img src="project1_files/figure-html/cell-32-output-1.png" width="495" height="423" class="figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
-<hr>
-</section>
-<section id="active-member-1" class="level3">
-<h3 class="anchored" data-anchor-id="active-member-1">Active Member</h3>
-<strong>Discriminância</strong>: <span style="color: yellow;"> Média. </span>
 <ul>
-<li>
-A ocorrência do churn é maior para clientes que não são ativos.
-</li>
+<li>TN: 118 patients without diabetes were correctly predicted as no diabetics</li>
+<li>FP: 9 patients without diabetes were incorrectly predicted as diabetics</li>
+<li>FN: 34 patients with diabetes were incorrectly predicted as no diabetics</li>
+<li>TP: 31 patients with diabetes were correctly predicted as diabetics</li>
 </ul>
-<div class="cell" data-execution_count="32">
+<div id="57b1a7ed" class="cell" data-execution_count="32">
 <div class="cell-output cell-output-display" data-execution_count="32">
-<style type="text/css">
-#T_50214 th:not(.index_name) {
-  background-color: #001820;
-  color: white;
-}
-</style>
-
-<table id="T_50214" data-quarto-postprocess="true" class="table table-sm table-striped small">
-<thead>
-<tr class="header">
-<th class="blank level0" data-quarto-table-cell-role="th">&nbsp;</th>
-<th id="T_50214_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">Categoria</th>
-<th id="T_50214_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">Não Churn</th>
-<th id="T_50214_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">Churn</th>
-<th id="T_50214_level0_col3" class="col_heading level0 col3" data-quarto-table-cell-role="th">Total</th>
-<th id="T_50214_level0_col4" class="col_heading level0 col4" data-quarto-table-cell-role="th">% Churn</th>
-<th id="T_50214_level0_col5" class="col_heading level0 col5" data-quarto-table-cell-role="th">% Categoria</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td id="T_50214_level0_row0" class="row_heading level0 row0" data-quarto-table-cell-role="th"></td>
-<td id="T_50214_row0_col0" class="data row0 col0">['0']</td>
-<td id="T_50214_row0_col1" class="data row0 col1">3547</td>
-<td id="T_50214_row0_col2" class="data row0 col2">1302</td>
-<td id="T_50214_row0_col3" class="data row0 col3">4849</td>
-<td id="T_50214_row0_col4" class="data row0 col4">26.85</td>
-<td id="T_50214_row0_col5" class="data row0 col5">48.49</td>
-</tr>
-<tr class="even">
-<td id="T_50214_level0_row1" class="row_heading level0 row1" data-quarto-table-cell-role="th"></td>
-<td id="T_50214_row1_col0" class="data row1 col0">['1']</td>
-<td id="T_50214_row1_col1" class="data row1 col1">4416</td>
-<td id="T_50214_row1_col2" class="data row1 col2">735</td>
-<td id="T_50214_row1_col3" class="data row1 col3">5151</td>
-<td id="T_50214_row1_col4" class="data row1 col4">14.27</td>
-<td id="T_50214_row1_col5" class="data row1 col5">51.51</td>
-</tr>
-</tbody>
-</table>
+<pre><code>array([[118,   9],
+       [ 34,  31]])</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="33">
-<div class="cell-output cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="project1_files/figure-html/cell-34-output-1.png" width="837" height="262" class="figure-img"></p>
-</figure>
+<section id="metrics-computed-from-a-confusion-matrix" class="level4">
+<h4 class="anchored" data-anchor-id="metrics-computed-from-a-confusion-matrix">Metrics computed from a confusion matrix</h4>
+<div id="6023d319" class="cell" data-execution_count="33">
+<div class="cell-output cell-output-stdout">
+<pre><code>Accuracy: 0.7760416666666666</code></pre>
 </div>
 </div>
-</div>
-<hr>
 </section>
-<section id="balance-1" class="level3">
-<h3 class="anchored" data-anchor-id="balance-1">Balance</h3>
-<strong>Discriminância</strong>: <span style="color: yellow;"> Média. </span>
-<ul>
-<li>
-A ocorrência do churn é maior para clientes com saldo em conta maior ou igual a 1884.34 .
-</li>
-</ul>
-<div class="cell" data-execution_count="34">
-<div class="cell-output cell-output-display" data-execution_count="34">
-<style type="text/css">
-#T_9e7c8 th:not(.index_name) {
-  background-color: #001820;
-  color: white;
-}
-</style>
-
-<table id="T_9e7c8" data-quarto-postprocess="true" class="table table-sm table-striped small">
-<thead>
-<tr class="header">
-<th class="blank level0" data-quarto-table-cell-role="th">&nbsp;</th>
-<th id="T_9e7c8_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">Categoria</th>
-<th id="T_9e7c8_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">Não Churn</th>
-<th id="T_9e7c8_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">Churn</th>
-<th id="T_9e7c8_level0_col3" class="col_heading level0 col3" data-quarto-table-cell-role="th">Total</th>
-<th id="T_9e7c8_level0_col4" class="col_heading level0 col4" data-quarto-table-cell-role="th">% Churn</th>
-<th id="T_9e7c8_level0_col5" class="col_heading level0 col5" data-quarto-table-cell-role="th">% Categoria</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td id="T_9e7c8_level0_row0" class="row_heading level0 row0" data-quarto-table-cell-role="th"></td>
-<td id="T_9e7c8_row0_col0" class="data row0 col0">['&lt; 1884.34']</td>
-<td id="T_9e7c8_row0_col1" class="data row0 col1">3117</td>
-<td id="T_9e7c8_row0_col2" class="data row0 col2">500</td>
-<td id="T_9e7c8_row0_col3" class="data row0 col3">3617</td>
-<td id="T_9e7c8_row0_col4" class="data row0 col4">13.82</td>
-<td id="T_9e7c8_row0_col5" class="data row0 col5">36.17</td>
-</tr>
-<tr class="even">
-<td id="T_9e7c8_level0_row1" class="row_heading level0 row1" data-quarto-table-cell-role="th"></td>
-<td id="T_9e7c8_row1_col0" class="data row1 col0">['&gt;= 1884.34']</td>
-<td id="T_9e7c8_row1_col1" class="data row1 col1">4846</td>
-<td id="T_9e7c8_row1_col2" class="data row1 col2">1537</td>
-<td id="T_9e7c8_row1_col3" class="data row1 col3">6383</td>
-<td id="T_9e7c8_row1_col4" class="data row1 col4">24.08</td>
-<td id="T_9e7c8_row1_col5" class="data row1 col5">63.83</td>
-</tr>
-</tbody>
-</table>
+<section id="k-fold-cross-validation" class="level4">
+<h4 class="anchored" data-anchor-id="k-fold-cross-validation">k-Fold Cross-Validation</h4>
+<p>The k-fold cross-validation procedure divides a limited dataset into k non-overlapping folds. Each of the k folds is given an opportunity to be used as a held back test set, whilst all other folds collectively are used as a training dataset. A total of k models are fit and evaluated on the k hold-out test sets and the mean performance is reported.</p>
+<div id="8b2fb1cf" class="cell" data-execution_count="34">
+<div class="cell-output cell-output-stdout">
+<pre><code>Accuracy: 0.784 (0.033)</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="35">
-<div class="cell-output cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="project1_files/figure-html/cell-36-output-1.png" width="837" height="295" class="figure-img"></p>
-</figure>
+<div id="bf542b44" class="cell" data-execution_count="35">
+<div class="cell-output cell-output-stdout">
+<pre><code>Error: 0.22395833333333334</code></pre>
 </div>
 </div>
+<div id="2ae002ca" class="cell" data-execution_count="36">
+<div class="cell-output cell-output-stdout">
+<pre><code>Sensitivity (TPR): 0.47692307692307695</code></pre>
 </div>
-<hr>
+</div>
+<div id="58050ed3" class="cell" data-execution_count="37">
+<div class="cell-output cell-output-stdout">
+<pre><code>Specificity (FPR): 0.9291338582677166</code></pre>
+</div>
+</div>
+<div id="0f34a8f3" class="cell" data-execution_count="38">
+<div class="cell-output cell-output-stdout">
+<pre><code>Precision: 0.775</code></pre>
+</div>
+</div>
 </section>
-<section id="gender-1" class="level3">
-<h3 class="anchored" data-anchor-id="gender-1">Gender</h3>
-<strong>Discriminância</strong>: <span style="color: yellow;"> Média. </span>
-<ul>
-<li>
-A ocorrência do churn é maior para clientes do sexo feminino.
-</li>
-</ul>
-<div class="cell" data-execution_count="36">
-<div class="cell-output cell-output-display" data-execution_count="36">
-<style type="text/css">
-#T_31518 th:not(.index_name) {
-  background-color: #001820;
-  color: white;
-}
-</style>
-
-<table id="T_31518" data-quarto-postprocess="true" class="table table-sm table-striped small">
-<thead>
-<tr class="header">
-<th class="blank level0" data-quarto-table-cell-role="th">&nbsp;</th>
-<th id="T_31518_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">Categoria</th>
-<th id="T_31518_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">Não Churn</th>
-<th id="T_31518_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">Churn</th>
-<th id="T_31518_level0_col3" class="col_heading level0 col3" data-quarto-table-cell-role="th">Total</th>
-<th id="T_31518_level0_col4" class="col_heading level0 col4" data-quarto-table-cell-role="th">% Churn</th>
-<th id="T_31518_level0_col5" class="col_heading level0 col5" data-quarto-table-cell-role="th">% Categoria</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td id="T_31518_level0_row0" class="row_heading level0 row0" data-quarto-table-cell-role="th"></td>
-<td id="T_31518_row0_col0" class="data row0 col0">['Female']</td>
-<td id="T_31518_row0_col1" class="data row0 col1">3404</td>
-<td id="T_31518_row0_col2" class="data row0 col2">1139</td>
-<td id="T_31518_row0_col3" class="data row0 col3">4543</td>
-<td id="T_31518_row0_col4" class="data row0 col4">25.07</td>
-<td id="T_31518_row0_col5" class="data row0 col5">45.43</td>
-</tr>
-<tr class="even">
-<td id="T_31518_level0_row1" class="row_heading level0 row1" data-quarto-table-cell-role="th"></td>
-<td id="T_31518_row1_col0" class="data row1 col0">['Male']</td>
-<td id="T_31518_row1_col1" class="data row1 col1">4559</td>
-<td id="T_31518_row1_col2" class="data row1 col2">898</td>
-<td id="T_31518_row1_col3" class="data row1 col3">5457</td>
-<td id="T_31518_row1_col4" class="data row1 col4">16.46</td>
-<td id="T_31518_row1_col5" class="data row1 col5">54.57</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<div class="cell" data-execution_count="37">
-<div class="cell-output cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="project1_files/figure-html/cell-38-output-1.png" width="837" height="280" class="figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-<hr>
 </section>
-<section id="credit-score-1" class="level3">
-<h3 class="anchored" data-anchor-id="credit-score-1">Credit Score</h3>
-<strong>Discriminância</strong>: <span style="color: #800000;"> Baixa. </span>
-<ul>
-<li>
-O fato isolado de quão bom ou ruim é o credit_score do cliente, não tem forte relação com o evento de churn.
-</li>
-</ul>
-<div class="cell" data-execution_count="38">
-<div class="cell-output cell-output-display" data-execution_count="38">
-<style type="text/css">
-#T_1ae20 th:not(.index_name) {
-  background-color: #001820;
-  color: white;
-}
-</style>
-
-<table id="T_1ae20" data-quarto-postprocess="true" class="table table-sm table-striped small">
-<thead>
-<tr class="header">
-<th class="blank level0" data-quarto-table-cell-role="th">&nbsp;</th>
-<th id="T_1ae20_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">Categoria</th>
-<th id="T_1ae20_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">Não Churn</th>
-<th id="T_1ae20_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">Churn</th>
-<th id="T_1ae20_level0_col3" class="col_heading level0 col3" data-quarto-table-cell-role="th">Total</th>
-<th id="T_1ae20_level0_col4" class="col_heading level0 col4" data-quarto-table-cell-role="th">% Churn</th>
-<th id="T_1ae20_level0_col5" class="col_heading level0 col5" data-quarto-table-cell-role="th">% Categoria</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td id="T_1ae20_level0_row0" class="row_heading level0 row0" data-quarto-table-cell-role="th"></td>
-<td id="T_1ae20_row0_col0" class="data row0 col0">(-inf, 489.50)</td>
-<td id="T_1ae20_row0_col1" class="data row0 col1">377</td>
-<td id="T_1ae20_row0_col2" class="data row0 col2">125</td>
-<td id="T_1ae20_row0_col3" class="data row0 col3">502</td>
-<td id="T_1ae20_row0_col4" class="data row0 col4">24.90</td>
-<td id="T_1ae20_row0_col5" class="data row0 col5">5.02</td>
-</tr>
-<tr class="even">
-<td id="T_1ae20_level0_row1" class="row_heading level0 row1" data-quarto-table-cell-role="th"></td>
-<td id="T_1ae20_row1_col0" class="data row1 col0">[489.50, 552.50)</td>
-<td id="T_1ae20_row1_col1" class="data row1 col1">903</td>
-<td id="T_1ae20_row1_col2" class="data row1 col2">254</td>
-<td id="T_1ae20_row1_col3" class="data row1 col3">1157</td>
-<td id="T_1ae20_row1_col4" class="data row1 col4">21.95</td>
-<td id="T_1ae20_row1_col5" class="data row1 col5">11.57</td>
-</tr>
-<tr class="odd">
-<td id="T_1ae20_level0_row2" class="row_heading level0 row2" data-quarto-table-cell-role="th"></td>
-<td id="T_1ae20_row2_col0" class="data row2 col0">[552.50, 629.50)</td>
-<td id="T_1ae20_row2_col1" class="data row2 col1">1937</td>
-<td id="T_1ae20_row2_col2" class="data row2 col2">514</td>
-<td id="T_1ae20_row2_col3" class="data row2 col3">2451</td>
-<td id="T_1ae20_row2_col4" class="data row2 col4">20.97</td>
-<td id="T_1ae20_row2_col5" class="data row2 col5">24.51</td>
-</tr>
-<tr class="even">
-<td id="T_1ae20_level0_row3" class="row_heading level0 row3" data-quarto-table-cell-role="th"></td>
-<td id="T_1ae20_row3_col0" class="data row3 col0">[629.50, 651.50)</td>
-<td id="T_1ae20_row3_col1" class="data row3 col1">696</td>
-<td id="T_1ae20_row3_col2" class="data row3 col2">181</td>
-<td id="T_1ae20_row3_col3" class="data row3 col3">877</td>
-<td id="T_1ae20_row3_col4" class="data row3 col4">20.64</td>
-<td id="T_1ae20_row3_col5" class="data row3 col5">8.77</td>
-</tr>
-<tr class="odd">
-<td id="T_1ae20_level0_row4" class="row_heading level0 row4" data-quarto-table-cell-role="th"></td>
-<td id="T_1ae20_row4_col0" class="data row4 col0">[651.50, 678.50)</td>
-<td id="T_1ae20_row4_col1" class="data row4 col1">859</td>
-<td id="T_1ae20_row4_col2" class="data row4 col2">194</td>
-<td id="T_1ae20_row4_col3" class="data row4 col3">1053</td>
-<td id="T_1ae20_row4_col4" class="data row4 col4">18.42</td>
-<td id="T_1ae20_row4_col5" class="data row4 col5">10.53</td>
-</tr>
-<tr class="even">
-<td id="T_1ae20_level0_row5" class="row_heading level0 row5" data-quarto-table-cell-role="th"></td>
-<td id="T_1ae20_row5_col0" class="data row5 col0">[678.50, 703.50)</td>
-<td id="T_1ae20_row5_col1" class="data row5 col1">782</td>
-<td id="T_1ae20_row5_col2" class="data row5 col2">162</td>
-<td id="T_1ae20_row5_col3" class="data row5 col3">944</td>
-<td id="T_1ae20_row5_col4" class="data row5 col4">17.16</td>
-<td id="T_1ae20_row5_col5" class="data row5 col5">9.44</td>
-</tr>
-<tr class="odd">
-<td id="T_1ae20_level0_row6" class="row_heading level0 row6" data-quarto-table-cell-role="th"></td>
-<td id="T_1ae20_row6_col0" class="data row6 col0">[703.50, 734.50)</td>
-<td id="T_1ae20_row6_col1" class="data row6 col1">816</td>
-<td id="T_1ae20_row6_col2" class="data row6 col2">195</td>
-<td id="T_1ae20_row6_col3" class="data row6 col3">1011</td>
-<td id="T_1ae20_row6_col4" class="data row6 col4">19.29</td>
-<td id="T_1ae20_row6_col5" class="data row6 col5">10.11</td>
-</tr>
-<tr class="even">
-<td id="T_1ae20_level0_row7" class="row_heading level0 row7" data-quarto-table-cell-role="th"></td>
-<td id="T_1ae20_row7_col0" class="data row7 col0">[734.50, inf)</td>
-<td id="T_1ae20_row7_col1" class="data row7 col1">1593</td>
-<td id="T_1ae20_row7_col2" class="data row7 col2">412</td>
-<td id="T_1ae20_row7_col3" class="data row7 col3">2005</td>
-<td id="T_1ae20_row7_col4" class="data row7 col4">20.55</td>
-<td id="T_1ae20_row7_col5" class="data row7 col5">20.05</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<div class="cell" data-execution_count="39">
-<div class="cell-output cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="project1_files/figure-html/cell-40-output-1.png" width="837" height="301" class="figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-<hr>
+<section id="result" class="level3">
+<h3 class="anchored" data-anchor-id="result">Result</h3>
+<p>The choice of metrics depends on the business objective.</p>
+<p>For this project, sensibility (False Negative) is the metric most important, since predicting diabetics as no diabetics is the worst expected error. This may imply no further investigations and consequently no treatment of the disease.</p>
+<p>So the better result is to have a Sensitivity (The correct prediction for positive values) result higher than a Specificity (The correct prediction for negative values) result.</p>
+<p>The error in predicting a healthy patient as a diabetic patient is more acceptable than the opposite.</p>
 </section>
-<section id="tenure-1" class="level3">
-<h3 class="anchored" data-anchor-id="tenure-1">Tenure</h3>
-<strong>Discriminância</strong>: <span style="color: #800000;"> Baixa. </span>
-<ul>
-<li>
-O fato isolado da quantidade de anos decorridos desde que o cliente aderiu aos serviços prestados pelo banco, não tem forte relação com o evento de churn.
-</li>
-</ul>
-<div class="cell" data-execution_count="40">
+<section id="adjusting-the-classification-threshold" class="level3">
+<h3 class="anchored" data-anchor-id="adjusting-the-classification-threshold">Adjusting the classification threshold</h3>
+<div id="cf26e022" class="cell" data-execution_count="39">
+<div class="cell-output cell-output-display" data-execution_count="39">
+<pre><code>array([0, 0, 0, 0, 0, 1, 0, 0, 0, 0])</code></pre>
+</div>
+</div>
+<div id="26e48478" class="cell" data-execution_count="40">
 <div class="cell-output cell-output-display" data-execution_count="40">
-<style type="text/css">
-#T_cdd77 th:not(.index_name) {
-  background-color: #001820;
-  color: white;
-}
-</style>
-
-<table id="T_cdd77" data-quarto-postprocess="true" class="table table-sm table-striped small">
-<thead>
-<tr class="header">
-<th class="blank level0" data-quarto-table-cell-role="th">&nbsp;</th>
-<th id="T_cdd77_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">Categoria</th>
-<th id="T_cdd77_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">Não Churn</th>
-<th id="T_cdd77_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">Churn</th>
-<th id="T_cdd77_level0_col3" class="col_heading level0 col3" data-quarto-table-cell-role="th">Total</th>
-<th id="T_cdd77_level0_col4" class="col_heading level0 col4" data-quarto-table-cell-role="th">% Churn</th>
-<th id="T_cdd77_level0_col5" class="col_heading level0 col5" data-quarto-table-cell-role="th">% Categoria</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td id="T_cdd77_level0_row0" class="row_heading level0 row0" data-quarto-table-cell-role="th"></td>
-<td id="T_cdd77_row0_col0" class="data row0 col0">(-inf, 1.50)</td>
-<td id="T_cdd77_row0_col1" class="data row0 col1">1121</td>
-<td id="T_cdd77_row0_col2" class="data row0 col2">327</td>
-<td id="T_cdd77_row0_col3" class="data row0 col3">1448</td>
-<td id="T_cdd77_row0_col4" class="data row0 col4">22.58</td>
-<td id="T_cdd77_row0_col5" class="data row0 col5">14.48</td>
-</tr>
-<tr class="even">
-<td id="T_cdd77_level0_row1" class="row_heading level0 row1" data-quarto-table-cell-role="th"></td>
-<td id="T_cdd77_row1_col0" class="data row1 col0">[1.50, 5.50)</td>
-<td id="T_cdd77_row1_col1" class="data row1 col1">3232</td>
-<td id="T_cdd77_row1_col2" class="data row1 col2">826</td>
-<td id="T_cdd77_row1_col3" class="data row1 col3">4058</td>
-<td id="T_cdd77_row1_col4" class="data row1 col4">20.35</td>
-<td id="T_cdd77_row1_col5" class="data row1 col5">40.58</td>
-</tr>
-<tr class="odd">
-<td id="T_cdd77_level0_row2" class="row_heading level0 row2" data-quarto-table-cell-role="th"></td>
-<td id="T_cdd77_row2_col0" class="data row2 col0">[5.50, 6.50)</td>
-<td id="T_cdd77_row2_col1" class="data row2 col1">771</td>
-<td id="T_cdd77_row2_col2" class="data row2 col2">196</td>
-<td id="T_cdd77_row2_col3" class="data row2 col3">967</td>
-<td id="T_cdd77_row2_col4" class="data row2 col4">20.27</td>
-<td id="T_cdd77_row2_col5" class="data row2 col5">9.67</td>
-</tr>
-<tr class="even">
-<td id="T_cdd77_level0_row3" class="row_heading level0 row3" data-quarto-table-cell-role="th"></td>
-<td id="T_cdd77_row3_col0" class="data row3 col0">[6.50, 7.50)</td>
-<td id="T_cdd77_row3_col1" class="data row3 col1">851</td>
-<td id="T_cdd77_row3_col2" class="data row3 col2">177</td>
-<td id="T_cdd77_row3_col3" class="data row3 col3">1028</td>
-<td id="T_cdd77_row3_col4" class="data row3 col4">17.22</td>
-<td id="T_cdd77_row3_col5" class="data row3 col5">10.28</td>
-</tr>
-<tr class="odd">
-<td id="T_cdd77_level0_row4" class="row_heading level0 row4" data-quarto-table-cell-role="th"></td>
-<td id="T_cdd77_row4_col0" class="data row4 col0">[7.50, 8.50)</td>
-<td id="T_cdd77_row4_col1" class="data row4 col1">828</td>
-<td id="T_cdd77_row4_col2" class="data row4 col2">197</td>
-<td id="T_cdd77_row4_col3" class="data row4 col3">1025</td>
-<td id="T_cdd77_row4_col4" class="data row4 col4">19.22</td>
-<td id="T_cdd77_row4_col5" class="data row4 col5">10.25</td>
-</tr>
-<tr class="even">
-<td id="T_cdd77_level0_row5" class="row_heading level0 row5" data-quarto-table-cell-role="th"></td>
-<td id="T_cdd77_row5_col0" class="data row5 col0">[8.50, inf)</td>
-<td id="T_cdd77_row5_col1" class="data row5 col1">1160</td>
-<td id="T_cdd77_row5_col2" class="data row5 col2">314</td>
-<td id="T_cdd77_row5_col3" class="data row5 col3">1474</td>
-<td id="T_cdd77_row5_col4" class="data row5 col4">21.30</td>
-<td id="T_cdd77_row5_col5" class="data row5 col5">14.74</td>
-</tr>
-</tbody>
-</table>
+<pre><code>array([[0.83358342, 0.16641658],
+       [0.80138151, 0.19861849],
+       [0.95231282, 0.04768718],
+       [0.87348851, 0.12651149],
+       [0.67158939, 0.32841061],
+       [0.38292382, 0.61707618],
+       [0.93226643, 0.06773357],
+       [0.5219636 , 0.4780364 ],
+       [0.92950252, 0.07049748],
+       [0.69118097, 0.30881903]])</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="41">
+<div id="cd4c7e71" class="cell" data-execution_count="41">
+<div class="cell-output cell-output-display" data-execution_count="41">
+<pre><code>array([0.16641658, 0.19861849, 0.04768718, 0.12651149, 0.32841061,
+       0.61707618, 0.06773357, 0.4780364 , 0.07049748, 0.30881903])</code></pre>
+</div>
+</div>
+<div id="1d8262a4" class="cell" data-execution_count="42">
 <div class="cell-output cell-output-display">
-<div class="quarto-figure quarto-figure-center">
+<div>
 <figure class="figure">
-<p><img src="project1_files/figure-html/cell-42-output-1.png" width="837" height="285" class="figure-img"></p>
+<p><img src="project1_files/figure-html/cell-43-output-1.png" width="587" height="441" class="figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
-<hr>
-</section>
-<section id="estimated-salary-1" class="level3">
-<h3 class="anchored" data-anchor-id="estimated-salary-1">Estimated Salary</h3>
-<strong>Discriminância</strong>: <span style="color: #800000;"> Baixa. </span>
-<ul>
-<li>
-O fato isolado de quão alto ou baixo é o salário do cliente, não tem forte relação com o evento de churn.
-</li>
-</ul>
-<div class="cell" data-execution_count="42">
-<div class="cell-output cell-output-display" data-execution_count="42">
-<style type="text/css">
-#T_db783 th:not(.index_name) {
-  background-color: #001820;
-  color: white;
-}
-</style>
-
-<table id="T_db783" data-quarto-postprocess="true" class="table table-sm table-striped small">
-<thead>
-<tr class="header">
-<th class="blank level0" data-quarto-table-cell-role="th">&nbsp;</th>
-<th id="T_db783_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">Categoria</th>
-<th id="T_db783_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">Não Churn</th>
-<th id="T_db783_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">Churn</th>
-<th id="T_db783_level0_col3" class="col_heading level0 col3" data-quarto-table-cell-role="th">Total</th>
-<th id="T_db783_level0_col4" class="col_heading level0 col4" data-quarto-table-cell-role="th">% Churn</th>
-<th id="T_db783_level0_col5" class="col_heading level0 col5" data-quarto-table-cell-role="th">% Categoria</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td id="T_db783_level0_row0" class="row_heading level0 row0" data-quarto-table-cell-role="th"></td>
-<td id="T_db783_row0_col0" class="data row0 col0">(-inf, 33482.46)</td>
-<td id="T_db783_row0_col1" class="data row0 col1">1297</td>
-<td id="T_db783_row0_col2" class="data row0 col2">343</td>
-<td id="T_db783_row0_col3" class="data row0 col3">1640</td>
-<td id="T_db783_row0_col4" class="data row0 col4">20.91</td>
-<td id="T_db783_row0_col5" class="data row0 col5">16.40</td>
-</tr>
-<tr class="even">
-<td id="T_db783_level0_row1" class="row_heading level0 row1" data-quarto-table-cell-role="th"></td>
-<td id="T_db783_row1_col0" class="data row1 col0">[106162.09, 169420.42)</td>
-<td id="T_db783_row1_col1" class="data row1 col1">2474</td>
-<td id="T_db783_row1_col2" class="data row1 col2">647</td>
-<td id="T_db783_row1_col3" class="data row1 col3">3121</td>
-<td id="T_db783_row1_col4" class="data row1 col4">20.73</td>
-<td id="T_db783_row1_col5" class="data row1 col5">31.21</td>
-</tr>
-<tr class="odd">
-<td id="T_db783_level0_row2" class="row_heading level0 row2" data-quarto-table-cell-role="th"></td>
-<td id="T_db783_row2_col0" class="data row2 col0">[169420.42, inf)</td>
-<td id="T_db783_row2_col1" class="data row2 col1">1201</td>
-<td id="T_db783_row2_col2" class="data row2 col2">341</td>
-<td id="T_db783_row2_col3" class="data row2 col3">1542</td>
-<td id="T_db783_row2_col4" class="data row2 col4">22.11</td>
-<td id="T_db783_row2_col5" class="data row2 col5">15.42</td>
-</tr>
-<tr class="even">
-<td id="T_db783_level0_row3" class="row_heading level0 row3" data-quarto-table-cell-role="th"></td>
-<td id="T_db783_row3_col0" class="data row3 col0">[33482.46, 73970.20)</td>
-<td id="T_db783_row3_col1" class="data row3 col1">1620</td>
-<td id="T_db783_row3_col2" class="data row3 col2">402</td>
-<td id="T_db783_row3_col3" class="data row3 col3">2022</td>
-<td id="T_db783_row3_col4" class="data row3 col4">19.88</td>
-<td id="T_db783_row3_col5" class="data row3 col5">20.22</td>
-</tr>
-<tr class="odd">
-<td id="T_db783_level0_row4" class="row_heading level0 row4" data-quarto-table-cell-role="th"></td>
-<td id="T_db783_row4_col0" class="data row4 col0">[73970.20, 83463.54)</td>
-<td id="T_db783_row4_col1" class="data row4 col1">423</td>
-<td id="T_db783_row4_col2" class="data row4 col2">78</td>
-<td id="T_db783_row4_col3" class="data row4 col3">501</td>
-<td id="T_db783_row4_col4" class="data row4 col4">15.57</td>
-<td id="T_db783_row4_col5" class="data row4 col5">5.01</td>
-</tr>
-<tr class="even">
-<td id="T_db783_level0_row5" class="row_heading level0 row5" data-quarto-table-cell-role="th"></td>
-<td id="T_db783_row5_col0" class="data row5 col0">[83463.54, 106162.09)</td>
-<td id="T_db783_row5_col1" class="data row5 col1">948</td>
-<td id="T_db783_row5_col2" class="data row5 col2">226</td>
-<td id="T_db783_row5_col3" class="data row5 col3">1174</td>
-<td id="T_db783_row5_col4" class="data row5 col4">19.25</td>
-<td id="T_db783_row5_col5" class="data row5 col5">11.74</td>
-</tr>
-</tbody>
-</table>
+<section id="finding-the-best-threshold-for-predicting-diabetes-and-to-increase-the-sensitivity-of-the-classifier" class="level4">
+<h4 class="anchored" data-anchor-id="finding-the-best-threshold-for-predicting-diabetes-and-to-increase-the-sensitivity-of-the-classifier">Finding the best threshold for predicting diabetes and to increase the sensitivity of the classifier</h4>
+<p>Threshold of 0.5 is used by default (for binary problems) to convert predicted possibilities into class predictions Threshold can be adjusted to increase sensitivity or specificity Sensitivity and specificity have an inverse relationship</p>
+<div id="bb5abb11" class="cell" data-execution_count="44">
+<div class="cell-output cell-output-stdout">
+<pre><code>Best Threshold=0.242365, G-Mean=0.796</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="43">
-<div class="cell-output cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="project1_files/figure-html/cell-44-output-1.png" width="837" height="323" class="figure-img"></p>
-</figure>
+<div id="e04272f0" class="cell" data-execution_count="45">
+<div class="cell-output cell-output-stdout">
+<pre><code>Best Threshold=0.242365</code></pre>
 </div>
 </div>
-</div>
-<hr>
-</section>
-<section id="credit-card-1" class="level3">
-<h3 class="anchored" data-anchor-id="credit-card-1">Credit Card</h3>
-<strong>Discriminância</strong>: <span style="color: #800000;"> Baixa. </span>
-<ul>
-<li>
-O fato isolado do cliente ter ou não cartão de cŕedito, não tem forte relação com o evento de churn.
-</li>
-</ul>
-<div class="cell" data-execution_count="44">
-<div class="cell-output cell-output-display" data-execution_count="44">
-<style type="text/css">
-#T_ebedf th:not(.index_name) {
-  background-color: #001820;
-  color: white;
-}
-</style>
-
-<table id="T_ebedf" data-quarto-postprocess="true" class="table table-sm table-striped small">
-<thead>
-<tr class="header">
-<th class="blank level0" data-quarto-table-cell-role="th">&nbsp;</th>
-<th id="T_ebedf_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">Categoria</th>
-<th id="T_ebedf_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">Não Churn</th>
-<th id="T_ebedf_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">Churn</th>
-<th id="T_ebedf_level0_col3" class="col_heading level0 col3" data-quarto-table-cell-role="th">Total</th>
-<th id="T_ebedf_level0_col4" class="col_heading level0 col4" data-quarto-table-cell-role="th">% Churn</th>
-<th id="T_ebedf_level0_col5" class="col_heading level0 col5" data-quarto-table-cell-role="th">% Categoria</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td id="T_ebedf_level0_row0" class="row_heading level0 row0" data-quarto-table-cell-role="th"></td>
-<td id="T_ebedf_row0_col0" class="data row0 col0">['0']</td>
-<td id="T_ebedf_row0_col1" class="data row0 col1">2332</td>
-<td id="T_ebedf_row0_col2" class="data row0 col2">613</td>
-<td id="T_ebedf_row0_col3" class="data row0 col3">2945</td>
-<td id="T_ebedf_row0_col4" class="data row0 col4">20.81</td>
-<td id="T_ebedf_row0_col5" class="data row0 col5">29.45</td>
-</tr>
-<tr class="even">
-<td id="T_ebedf_level0_row1" class="row_heading level0 row1" data-quarto-table-cell-role="th"></td>
-<td id="T_ebedf_row1_col0" class="data row1 col0">['1']</td>
-<td id="T_ebedf_row1_col1" class="data row1 col1">5631</td>
-<td id="T_ebedf_row1_col2" class="data row1 col2">1424</td>
-<td id="T_ebedf_row1_col3" class="data row1 col3">7055</td>
-<td id="T_ebedf_row1_col4" class="data row1 col4">20.18</td>
-<td id="T_ebedf_row1_col5" class="data row1 col5">70.55</td>
-</tr>
-</tbody>
-</table>
+<div id="f67b0de5" class="cell" data-execution_count="47">
+<div class="cell-output cell-output-stdout">
+<pre><code>Sensitivity: 0.47692307692307695
+Specificity: 0.9291338582677166</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="45">
-<div class="cell-output cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="project1_files/figure-html/cell-46-output-1.png" width="837" height="262" class="figure-img"></p>
-</figure>
+<div id="01deb6ef" class="cell" data-execution_count="48">
+<div class="cell-output cell-output-stdout">
+<pre><code>Sensitivity: 0.7230769230769231
+Specificity: 0.7795275590551181</code></pre>
 </div>
+</div>
+<div id="712376fc" class="cell" data-execution_count="49">
+<div class="cell-output cell-output-stdout">
+<pre><code>Sensitivity: 0.8461538461538461
+Specificity: 0.7480314960629921</code></pre>
+</div>
+</div>
+<div id="37c6c2c7" class="cell" data-execution_count="51">
+<div class="cell-output cell-output-display" data-execution_count="51">
+<pre><code>array([0, 0, 0, 0, 0, 1, 0, 0, 0, 0])</code></pre>
+</div>
+</div>
+<div id="7a691561" class="cell" data-execution_count="52">
+<div class="cell-output cell-output-display" data-execution_count="52">
+<pre><code>array([0., 0., 0., 0., 1., 1., 0., 1., 0., 1.])</code></pre>
+</div>
+</div>
+<div id="cac2fa1c" class="cell" data-execution_count="53">
+<div class="cell-output cell-output-display" data-execution_count="53">
+<pre><code>array([[118,   9],
+       [ 34,  31]])</code></pre>
+</div>
+</div>
+<div id="3a087152" class="cell" data-execution_count="55">
+<div class="cell-output cell-output-display" data-execution_count="55">
+<pre><code>array([[95, 32],
+       [10, 55]])</code></pre>
+</div>
+</div>
+<div id="e3b3cf9b" class="cell" data-execution_count="56">
+<div class="cell-output cell-output-stdout">
+<pre><code>Sensitivity (TPR): 0.8461538461538461</code></pre>
+</div>
+</div>
+<div id="9c9370fc" class="cell" data-execution_count="57">
+<div class="cell-output cell-output-stdout">
+<pre><code>Specificity (FPR): 0.7480314960629921</code></pre>
+</div>
+</div>
+<div id="b7546d41" class="cell" data-execution_count="58">
+<div class="cell-output cell-output-stdout">
+<pre><code>0.7970926711084192</code></pre>
 </div>
 </div>
 </section>
 </section>
-<section id="o-modelo-preditivo" class="level2">
-<h2 class="anchored" data-anchor-id="o-modelo-preditivo">O Modelo Preditivo</h2>
-<p><strong>Em desenvolvimento - Não está pronto ainda</strong></p>
-<p><strong>Técnica Utilizada</strong></p>
-<p>
-Quanto à modelagem, um ponto deve ser enfatizado: o principal objetivo aqui é a construção de um modelo preditivo que possua um grau de interpretabilidade relativamente fácil para a área de negócios. Portanto, nosso foco é obter não apenas um modelo assertivo, mas sim um modelo com bom desempenho e de fácil entendimento. Dito isso, vamos modelar utilizando a técnica de <strong>Regressão Logística</strong>.
-</p>
-<p>
-A regressão logística é uma técnica estatística utilizada para modelar a relação entre uma variável dependente binária (que possui apenas dois valores possíveis, geralmente 0 e 1) e uma ou mais variáveis independentes. Ela é amplamente empregada em problemas de classificação, onde o objetivo é prever a probabilidade de uma observação pertencer a uma determinada categoria.
-</p>
-<p>
-A principal característica da regressão logística é sua capacidade de lidar com problemas de classificação binária, como por exemplo, prever se um e-mail é spam ou não, se um paciente tem uma determinada condição médica ou não, entre outros cenários onde a resposta desejada é dicotômica.
-</p>
-<p>
-</p><p>A forma básica da regressão logística é expressa pela seguinte equação:</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="./img/regressao_logistica.png" class="img-fluid figure-img"></p>
-</figure>
-</div>
-<p>Contextualizando a formula acima para o nosso problema, temos que:</p>
-<ul>
-<li>X1, X2, … Xn são as nossas features: country, gender, credit_card, active_member, producs_number, tenure, credit_score, age, balance, estimated_salary.</li>
-<li>A probabilide p do evento Y = 1, é a probabilidade de ocorrência de churn.</li>
-<li>Os betas B0, B1, … Bn representam os parâmetros do modelo, que pretendemos obter ao construir o modelo matemático.</li>
-</ul>
-<p></p>
-<hr>
-<p><strong>Avaliação do Modelo</strong></p>
-<p>
-O teste de Kolmogorov-Smirnov (KS) pode ser utilizado como uma métrica para avaliar a qualidade de modelos de classificação, especialmente em problemas de classificação binária. Nesse contexto, o KS é frequentemente empregado para avaliar a capacidade do modelo em distinguir entre as classes positiva e negativa.
-</p>
-<p>
-A abordagem mais comum envolve a geração de pontuações (scores) ou probabilidades de predição para as instâncias de ambas as classes pelo modelo. Em seguida, o teste de Kolmogorov-Smirnov é aplicado às distribuições cumulativas dessas pontuações para as duas classes. O objetivo é verificar se há uma diferença significativa entre as distribuições cumulativas das classes positiva e negativa.
-</p>
-<p>
-Quanto maior for a diferença entre as distribuições cumulativas, maior será o valor de KS e, consequentemente, mais eficiente será o modelo, ou seja, mais capaz de classificar corretamente o que é churn e o que não é churn.
-</p>
-<hr>
-<p><strong>Obtendo o melhor modelo</strong></p>
-<p>
-A partir das 10 variáveis preditoras disponíveis, foram testadas todas as combinações possíveis, selecionando de 5 a 10 variáveis por vez. Dessa forma, examinamos 638 modelos de regressão logística, avaliando o valor de KS para cada modelo nos dados de teste. Optamos pelo modelo que apresentou o maior valor de KS e o menor número de variáveis preditoras que parecem ser mais relevantes para o negócio.
-</p>
-<p>
-</p><p>Portanto, o modelo selecionado foi o que apresentou KS = 0.36 e possui as seguintes variáveis preditoras:</p>
-<ul>
-<li>‘products_number’</li>
-<li>‘country’</li>
-<li>‘gender’</li>
-<li>‘credit_card’</li>
-<li>‘active_member’</li>
-</ul>
-<p></p>
-<p>
-Representação gráfica do cálculo do KS nos dados de teste para o modelo selecionado.
-</p>
-<div class="cell" data-execution_count="47">
-<div class="cell-output cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="project1_files/figure-html/cell-48-output-1.png" width="586" height="446" class="figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-<p><strong>Faixas de operação do modelo selecionado</strong></p>
-<p>
-A tabela abaixo apresenta todas as possíveis faixas de operação do modelo selecionado a qual foi aplicada na base de testes. Do ponto de vista técnico, a faixa 8 em destaque é considerada a faixa ótima, pois possui <strong>Sens. + Espec. - 1 = KS = 0</strong>. Isso significa que essa é a faixa com maior capacidade de classificação correta do que é <strong>Churn</strong> e <strong>Não-Churn</strong>.
-</p>
-<p>
-</p><p>Interpretando a tabela para essa faixa, temos que:</p>
-<p><strong>Prob = 19%</strong>: Significa que, se a probabilidade de ocorrência do churn for maior ou igual a 19%, o modelo classificará como churn.</p>
-<p><strong>% Total acumulado = 40%</strong>: Significa que, dos clientes que o algoritmo avaliar, ele classificará 40% como churn.</p>
-<p><strong>Tx. classificados como 1 corretamente = 35%</strong>: Significa que, dos clientes que o algoritmo classificar como churn, 35% realmente realizariam churn, enquanto os outros 65% não realizariam.</p>
-<p><strong>Tx. classificados como 0 corretamente = 89%</strong>: Significa que, dos clientes que o algoritmo classificar como Não-Churn, 89% realmente não realizariam churn, enquanto os outros 11% realizariam.</p>
-<p><strong>Sens. = 68%</strong>: É a sensibilidade. Significa que, de todos os casos de churn, o modelo será capaz de classificar corretamente 68% deles, enquanto os outros 32% serão classificados como Não-Churn.</p>
-<p><strong>Espec. = 67%</strong>: É a especificidade. Significa que, de todos os casos de Não-churn, o modelo será capaz de classificar corretamente 67% deles, enquanto os outros 33% serão classificados como Churn.</p>
-<p><strong>Sens. + Espec. - 1 = 0.36</strong>: Utilizado para calcular o valor aproximado de KS e comparar com o KS obtido no gráfico acima.</p>
-<strong>Acurácia</strong>: De todos os clientes avaliados pelo algoritmo, o percentual de acertos, incluindo churn e não churn, é de 67%.
-<p></p>
-<div class="cell" data-execution_count="48">
-<div class="cell-output cell-output-display" data-execution_count="48">
-<style type="text/css">
-#T_c31c6 th:not(.index_name) {
-  background-color: #001820;
-  color: white;
-  text-align: center;
-}
-#T_c31c6_row0_col0, #T_c31c6_row0_col1, #T_c31c6_row0_col2, #T_c31c6_row0_col3, #T_c31c6_row0_col4, #T_c31c6_row0_col5, #T_c31c6_row0_col6, #T_c31c6_row0_col7, #T_c31c6_row0_col8, #T_c31c6_row1_col0, #T_c31c6_row1_col1, #T_c31c6_row1_col2, #T_c31c6_row1_col3, #T_c31c6_row1_col4, #T_c31c6_row1_col5, #T_c31c6_row1_col6, #T_c31c6_row1_col7, #T_c31c6_row1_col8, #T_c31c6_row2_col0, #T_c31c6_row2_col1, #T_c31c6_row2_col2, #T_c31c6_row2_col3, #T_c31c6_row2_col4, #T_c31c6_row2_col5, #T_c31c6_row2_col6, #T_c31c6_row2_col7, #T_c31c6_row2_col8, #T_c31c6_row3_col0, #T_c31c6_row3_col1, #T_c31c6_row3_col2, #T_c31c6_row3_col3, #T_c31c6_row3_col4, #T_c31c6_row3_col5, #T_c31c6_row3_col6, #T_c31c6_row3_col7, #T_c31c6_row3_col8, #T_c31c6_row4_col0, #T_c31c6_row4_col1, #T_c31c6_row4_col2, #T_c31c6_row4_col3, #T_c31c6_row4_col4, #T_c31c6_row4_col5, #T_c31c6_row4_col6, #T_c31c6_row4_col7, #T_c31c6_row4_col8, #T_c31c6_row5_col0, #T_c31c6_row5_col1, #T_c31c6_row5_col2, #T_c31c6_row5_col3, #T_c31c6_row5_col4, #T_c31c6_row5_col5, #T_c31c6_row5_col6, #T_c31c6_row5_col7, #T_c31c6_row5_col8, #T_c31c6_row6_col0, #T_c31c6_row6_col1, #T_c31c6_row6_col2, #T_c31c6_row6_col3, #T_c31c6_row6_col4, #T_c31c6_row6_col5, #T_c31c6_row6_col6, #T_c31c6_row6_col7, #T_c31c6_row6_col8, #T_c31c6_row8_col0, #T_c31c6_row8_col1, #T_c31c6_row8_col2, #T_c31c6_row8_col3, #T_c31c6_row8_col4, #T_c31c6_row8_col5, #T_c31c6_row8_col6, #T_c31c6_row8_col7, #T_c31c6_row8_col8, #T_c31c6_row9_col0, #T_c31c6_row9_col1, #T_c31c6_row9_col2, #T_c31c6_row9_col3, #T_c31c6_row9_col4, #T_c31c6_row9_col5, #T_c31c6_row9_col6, #T_c31c6_row9_col7, #T_c31c6_row9_col8, #T_c31c6_row10_col0, #T_c31c6_row10_col1, #T_c31c6_row10_col2, #T_c31c6_row10_col3, #T_c31c6_row10_col4, #T_c31c6_row10_col5, #T_c31c6_row10_col6, #T_c31c6_row10_col7, #T_c31c6_row10_col8, #T_c31c6_row11_col0, #T_c31c6_row11_col1, #T_c31c6_row11_col2, #T_c31c6_row11_col3, #T_c31c6_row11_col4, #T_c31c6_row11_col5, #T_c31c6_row11_col6, #T_c31c6_row11_col7, #T_c31c6_row11_col8, #T_c31c6_row12_col0, #T_c31c6_row12_col1, #T_c31c6_row12_col2, #T_c31c6_row12_col3, #T_c31c6_row12_col4, #T_c31c6_row12_col5, #T_c31c6_row12_col6, #T_c31c6_row12_col7, #T_c31c6_row12_col8, #T_c31c6_row13_col0, #T_c31c6_row13_col1, #T_c31c6_row13_col2, #T_c31c6_row13_col3, #T_c31c6_row13_col4, #T_c31c6_row13_col5, #T_c31c6_row13_col6, #T_c31c6_row13_col7, #T_c31c6_row13_col8, #T_c31c6_row14_col0, #T_c31c6_row14_col1, #T_c31c6_row14_col2, #T_c31c6_row14_col3, #T_c31c6_row14_col4, #T_c31c6_row14_col5, #T_c31c6_row14_col6, #T_c31c6_row14_col7, #T_c31c6_row14_col8, #T_c31c6_row15_col0, #T_c31c6_row15_col1, #T_c31c6_row15_col2, #T_c31c6_row15_col3, #T_c31c6_row15_col4, #T_c31c6_row15_col5, #T_c31c6_row15_col6, #T_c31c6_row15_col7, #T_c31c6_row15_col8, #T_c31c6_row16_col0, #T_c31c6_row16_col1, #T_c31c6_row16_col2, #T_c31c6_row16_col3, #T_c31c6_row16_col4, #T_c31c6_row16_col5, #T_c31c6_row16_col6, #T_c31c6_row16_col7, #T_c31c6_row16_col8, #T_c31c6_row17_col0, #T_c31c6_row17_col1, #T_c31c6_row17_col2, #T_c31c6_row17_col3, #T_c31c6_row17_col4, #T_c31c6_row17_col5, #T_c31c6_row17_col6, #T_c31c6_row17_col7, #T_c31c6_row17_col8, #T_c31c6_row18_col0, #T_c31c6_row18_col1, #T_c31c6_row18_col2, #T_c31c6_row18_col3, #T_c31c6_row18_col4, #T_c31c6_row18_col5, #T_c31c6_row18_col6, #T_c31c6_row18_col7, #T_c31c6_row18_col8 {
-  text-align: center;
-}
-#T_c31c6_row7_col0, #T_c31c6_row7_col1, #T_c31c6_row7_col2, #T_c31c6_row7_col3, #T_c31c6_row7_col4, #T_c31c6_row7_col5, #T_c31c6_row7_col6, #T_c31c6_row7_col7, #T_c31c6_row7_col8 {
-  text-align: center;
-  background-color: #C5D9F1;
-  color: black;
-  font-weight: bold;
-  text-align: center;
-}
-</style>
-
-<table id="T_c31c6" data-quarto-postprocess="true" class="table table-sm table-striped small">
-<thead>
-<tr class="header">
-<th id="T_c31c6_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">Faixa</th>
-<th id="T_c31c6_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">Prob</th>
-<th id="T_c31c6_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">% Total acumulado</th>
-<th id="T_c31c6_level0_col3" class="col_heading level0 col3" data-quarto-table-cell-role="th">Tx. classificados como 1 corretamente</th>
-<th id="T_c31c6_level0_col4" class="col_heading level0 col4" data-quarto-table-cell-role="th">Tx. classificados como 0 corretamente</th>
-<th id="T_c31c6_level0_col5" class="col_heading level0 col5" data-quarto-table-cell-role="th">Sens.</th>
-<th id="T_c31c6_level0_col6" class="col_heading level0 col6" data-quarto-table-cell-role="th">Espec.</th>
-<th id="T_c31c6_level0_col7" class="col_heading level0 col7" data-quarto-table-cell-role="th">Sens. + Espec. - 1</th>
-<th id="T_c31c6_level0_col8" class="col_heading level0 col8" data-quarto-table-cell-role="th">Acurácia</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td id="T_c31c6_row0_col0" class="data row0 col0">1</td>
-<td id="T_c31c6_row0_col1" class="data row0 col1">44%</td>
-<td id="T_c31c6_row0_col2" class="data row0 col2">5%</td>
-<td id="T_c31c6_row0_col3" class="data row0 col3">49%</td>
-<td id="T_c31c6_row0_col4" class="data row0 col4">81%</td>
-<td id="T_c31c6_row0_col5" class="data row0 col5">12%</td>
-<td id="T_c31c6_row0_col6" class="data row0 col6">97%</td>
-<td id="T_c31c6_row0_col7" class="data row0 col7">0.09</td>
-<td id="T_c31c6_row0_col8" class="data row0 col8">79%</td>
-</tr>
-<tr class="even">
-<td id="T_c31c6_row1_col0" class="data row1 col0">2</td>
-<td id="T_c31c6_row1_col1" class="data row1 col1">38%</td>
-<td id="T_c31c6_row1_col2" class="data row1 col2">10%</td>
-<td id="T_c31c6_row1_col3" class="data row1 col3">47%</td>
-<td id="T_c31c6_row1_col4" class="data row1 col4">82%</td>
-<td id="T_c31c6_row1_col5" class="data row1 col5">23%</td>
-<td id="T_c31c6_row1_col6" class="data row1 col6">93%</td>
-<td id="T_c31c6_row1_col7" class="data row1 col7">0.16</td>
-<td id="T_c31c6_row1_col8" class="data row1 col8">79%</td>
-</tr>
-<tr class="odd">
-<td id="T_c31c6_row2_col0" class="data row2 col0">3</td>
-<td id="T_c31c6_row2_col1" class="data row2 col1">34%</td>
-<td id="T_c31c6_row2_col2" class="data row2 col2">16%</td>
-<td id="T_c31c6_row2_col3" class="data row2 col3">42%</td>
-<td id="T_c31c6_row2_col4" class="data row2 col4">84%</td>
-<td id="T_c31c6_row2_col5" class="data row2 col5">34%</td>
-<td id="T_c31c6_row2_col6" class="data row2 col6">88%</td>
-<td id="T_c31c6_row2_col7" class="data row2 col7">0.22</td>
-<td id="T_c31c6_row2_col8" class="data row2 col8">77%</td>
-</tr>
-<tr class="even">
-<td id="T_c31c6_row3_col0" class="data row3 col0">4</td>
-<td id="T_c31c6_row3_col1" class="data row3 col1">34%</td>
-<td id="T_c31c6_row3_col2" class="data row3 col2">20%</td>
-<td id="T_c31c6_row3_col3" class="data row3 col3">43%</td>
-<td id="T_c31c6_row3_col4" class="data row3 col4">85%</td>
-<td id="T_c31c6_row3_col5" class="data row3 col5">43%</td>
-<td id="T_c31c6_row3_col6" class="data row3 col6">86%</td>
-<td id="T_c31c6_row3_col7" class="data row3 col7">0.28</td>
-<td id="T_c31c6_row3_col8" class="data row3 col8">77%</td>
-</tr>
-<tr class="odd">
-<td id="T_c31c6_row4_col0" class="data row4 col0">5</td>
-<td id="T_c31c6_row4_col1" class="data row4 col1">26%</td>
-<td id="T_c31c6_row4_col2" class="data row4 col2">26%</td>
-<td id="T_c31c6_row4_col3" class="data row4 col3">39%</td>
-<td id="T_c31c6_row4_col4" class="data row4 col4">86%</td>
-<td id="T_c31c6_row4_col5" class="data row4 col5">51%</td>
-<td id="T_c31c6_row4_col6" class="data row4 col6">80%</td>
-<td id="T_c31c6_row4_col7" class="data row4 col7">0.31</td>
-<td id="T_c31c6_row4_col8" class="data row4 col8">74%</td>
-</tr>
-<tr class="even">
-<td id="T_c31c6_row5_col0" class="data row5 col0">6</td>
-<td id="T_c31c6_row5_col1" class="data row5 col1">23%</td>
-<td id="T_c31c6_row5_col2" class="data row5 col2">31%</td>
-<td id="T_c31c6_row5_col3" class="data row5 col3">37%</td>
-<td id="T_c31c6_row5_col4" class="data row5 col4">87%</td>
-<td id="T_c31c6_row5_col5" class="data row5 col5">56%</td>
-<td id="T_c31c6_row5_col6" class="data row5 col6">75%</td>
-<td id="T_c31c6_row5_col7" class="data row5 col7">0.31</td>
-<td id="T_c31c6_row5_col8" class="data row5 col8">71%</td>
-</tr>
-<tr class="odd">
-<td id="T_c31c6_row6_col0" class="data row6 col0">7</td>
-<td id="T_c31c6_row6_col1" class="data row6 col1">23%</td>
-<td id="T_c31c6_row6_col2" class="data row6 col2">36%</td>
-<td id="T_c31c6_row6_col3" class="data row6 col3">36%</td>
-<td id="T_c31c6_row6_col4" class="data row6 col4">88%</td>
-<td id="T_c31c6_row6_col5" class="data row6 col5">63%</td>
-<td id="T_c31c6_row6_col6" class="data row6 col6">72%</td>
-<td id="T_c31c6_row6_col7" class="data row6 col7">0.34</td>
-<td id="T_c31c6_row6_col8" class="data row6 col8">70%</td>
-</tr>
-<tr class="even">
-<td id="T_c31c6_row7_col0" class="data row7 col0">8</td>
-<td id="T_c31c6_row7_col1" class="data row7 col1">19%</td>
-<td id="T_c31c6_row7_col2" class="data row7 col2">40%</td>
-<td id="T_c31c6_row7_col3" class="data row7 col3">35%</td>
-<td id="T_c31c6_row7_col4" class="data row7 col4">89%</td>
-<td id="T_c31c6_row7_col5" class="data row7 col5">68%</td>
-<td id="T_c31c6_row7_col6" class="data row7 col6">67%</td>
-<td id="T_c31c6_row7_col7" class="data row7 col7">0.36</td>
-<td id="T_c31c6_row7_col8" class="data row7 col8">67%</td>
-</tr>
-<tr class="odd">
-<td id="T_c31c6_row8_col0" class="data row8 col0">9</td>
-<td id="T_c31c6_row8_col1" class="data row8 col1">19%</td>
-<td id="T_c31c6_row8_col2" class="data row8 col2">47%</td>
-<td id="T_c31c6_row8_col3" class="data row8 col3">33%</td>
-<td id="T_c31c6_row8_col4" class="data row8 col4">90%</td>
-<td id="T_c31c6_row8_col5" class="data row8 col5">75%</td>
-<td id="T_c31c6_row8_col6" class="data row8 col6">60%</td>
-<td id="T_c31c6_row8_col7" class="data row8 col7">0.35</td>
-<td id="T_c31c6_row8_col8" class="data row8 col8">63%</td>
-</tr>
-<tr class="even">
-<td id="T_c31c6_row9_col0" class="data row9 col0">10</td>
-<td id="T_c31c6_row9_col1" class="data row9 col1">17%</td>
-<td id="T_c31c6_row9_col2" class="data row9 col2">51%</td>
-<td id="T_c31c6_row9_col3" class="data row9 col3">31%</td>
-<td id="T_c31c6_row9_col4" class="data row9 col4">90%</td>
-<td id="T_c31c6_row9_col5" class="data row9 col5">77%</td>
-<td id="T_c31c6_row9_col6" class="data row9 col6">56%</td>
-<td id="T_c31c6_row9_col7" class="data row9 col7">0.33</td>
-<td id="T_c31c6_row9_col8" class="data row9 col8">60%</td>
-</tr>
-<tr class="odd">
-<td id="T_c31c6_row10_col0" class="data row10 col0">11</td>
-<td id="T_c31c6_row10_col1" class="data row10 col1">14%</td>
-<td id="T_c31c6_row10_col2" class="data row10 col2">56%</td>
-<td id="T_c31c6_row10_col3" class="data row10 col3">30%</td>
-<td id="T_c31c6_row10_col4" class="data row10 col4">91%</td>
-<td id="T_c31c6_row10_col5" class="data row10 col5">81%</td>
-<td id="T_c31c6_row10_col6" class="data row10 col6">51%</td>
-<td id="T_c31c6_row10_col7" class="data row10 col7">0.31</td>
-<td id="T_c31c6_row10_col8" class="data row10 col8">57%</td>
-</tr>
-<tr class="even">
-<td id="T_c31c6_row11_col0" class="data row11 col0">12</td>
-<td id="T_c31c6_row11_col1" class="data row11 col1">13%</td>
-<td id="T_c31c6_row11_col2" class="data row11 col2">60%</td>
-<td id="T_c31c6_row11_col3" class="data row11 col3">28%</td>
-<td id="T_c31c6_row11_col4" class="data row11 col4">91%</td>
-<td id="T_c31c6_row11_col5" class="data row11 col5">82%</td>
-<td id="T_c31c6_row11_col6" class="data row11 col6">46%</td>
-<td id="T_c31c6_row11_col7" class="data row11 col7">0.28</td>
-<td id="T_c31c6_row11_col8" class="data row11 col8">53%</td>
-</tr>
-<tr class="odd">
-<td id="T_c31c6_row12_col0" class="data row12 col0">13</td>
-<td id="T_c31c6_row12_col1" class="data row12 col1">12%</td>
-<td id="T_c31c6_row12_col2" class="data row12 col2">65%</td>
-<td id="T_c31c6_row12_col3" class="data row12 col3">27%</td>
-<td id="T_c31c6_row12_col4" class="data row12 col4">91%</td>
-<td id="T_c31c6_row12_col5" class="data row12 col5">84%</td>
-<td id="T_c31c6_row12_col6" class="data row12 col6">40%</td>
-<td id="T_c31c6_row12_col7" class="data row12 col7">0.24</td>
-<td id="T_c31c6_row12_col8" class="data row12 col8">49%</td>
-</tr>
-<tr class="even">
-<td id="T_c31c6_row13_col0" class="data row13 col0">14</td>
-<td id="T_c31c6_row13_col1" class="data row13 col1">12%</td>
-<td id="T_c31c6_row13_col2" class="data row13 col2">70%</td>
-<td id="T_c31c6_row13_col3" class="data row13 col3">25%</td>
-<td id="T_c31c6_row13_col4" class="data row13 col4">91%</td>
-<td id="T_c31c6_row13_col5" class="data row13 col5">87%</td>
-<td id="T_c31c6_row13_col6" class="data row13 col6">34%</td>
-<td id="T_c31c6_row13_col7" class="data row13 col7">0.21</td>
-<td id="T_c31c6_row13_col8" class="data row13 col8">45%</td>
-</tr>
-<tr class="odd">
-<td id="T_c31c6_row14_col0" class="data row14 col0">15</td>
-<td id="T_c31c6_row14_col1" class="data row14 col1">10%</td>
-<td id="T_c31c6_row14_col2" class="data row14 col2">80%</td>
-<td id="T_c31c6_row14_col3" class="data row14 col3">23%</td>
-<td id="T_c31c6_row14_col4" class="data row14 col4">90%</td>
-<td id="T_c31c6_row14_col5" class="data row14 col5">90%</td>
-<td id="T_c31c6_row14_col6" class="data row14 col6">23%</td>
-<td id="T_c31c6_row14_col7" class="data row14 col7">0.13</td>
-<td id="T_c31c6_row14_col8" class="data row14 col8">37%</td>
-</tr>
-<tr class="even">
-<td id="T_c31c6_row15_col0" class="data row15 col0">16</td>
-<td id="T_c31c6_row15_col1" class="data row15 col1">10%</td>
-<td id="T_c31c6_row15_col2" class="data row15 col2">81%</td>
-<td id="T_c31c6_row15_col3" class="data row15 col3">23%</td>
-<td id="T_c31c6_row15_col4" class="data row15 col4">91%</td>
-<td id="T_c31c6_row15_col5" class="data row15 col5">91%</td>
-<td id="T_c31c6_row15_col6" class="data row15 col6">22%</td>
-<td id="T_c31c6_row15_col7" class="data row15 col7">0.13</td>
-<td id="T_c31c6_row15_col8" class="data row15 col8">36%</td>
-</tr>
-<tr class="odd">
-<td id="T_c31c6_row16_col0" class="data row16 col0">17</td>
-<td id="T_c31c6_row16_col1" class="data row16 col1">8%</td>
-<td id="T_c31c6_row16_col2" class="data row16 col2">89%</td>
-<td id="T_c31c6_row16_col3" class="data row16 col3">22%</td>
-<td id="T_c31c6_row16_col4" class="data row16 col4">92%</td>
-<td id="T_c31c6_row16_col5" class="data row16 col5">96%</td>
-<td id="T_c31c6_row16_col6" class="data row16 col6">13%</td>
-<td id="T_c31c6_row16_col7" class="data row16 col7">0.08</td>
-<td id="T_c31c6_row16_col8" class="data row16 col8">30%</td>
-</tr>
-<tr class="even">
-<td id="T_c31c6_row17_col0" class="data row17 col0">18</td>
-<td id="T_c31c6_row17_col1" class="data row17 col1">6%</td>
-<td id="T_c31c6_row17_col2" class="data row17 col2">90%</td>
-<td id="T_c31c6_row17_col3" class="data row17 col3">22%</td>
-<td id="T_c31c6_row17_col4" class="data row17 col4">92%</td>
-<td id="T_c31c6_row17_col5" class="data row17 col5">96%</td>
-<td id="T_c31c6_row17_col6" class="data row17 col6">11%</td>
-<td id="T_c31c6_row17_col7" class="data row17 col7">0.07</td>
-<td id="T_c31c6_row17_col8" class="data row17 col8">29%</td>
-</tr>
-<tr class="odd">
-<td id="T_c31c6_row18_col0" class="data row18 col0">19</td>
-<td id="T_c31c6_row18_col1" class="data row18 col1">5%</td>
-<td id="T_c31c6_row18_col2" class="data row18 col2">100%</td>
-<td id="T_c31c6_row18_col3" class="data row18 col3">21%</td>
-<td id="T_c31c6_row18_col4" class="data row18 col4">0%</td>
-<td id="T_c31c6_row18_col5" class="data row18 col5">100%</td>
-<td id="T_c31c6_row18_col6" class="data row18 col6">0%</td>
-<td id="T_c31c6_row18_col7" class="data row18 col7">0.00</td>
-<td id="T_c31c6_row18_col8" class="data row18 col8">21%</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<p><strong>Conclusões Sobre o Modelo</strong></p>
-<p>Mas afinal, esse modelo é bom ou ruim? Para responder a essa pergunta, devemos comparar duas situações: quando o modelo é utilizado e quando não é.</p>
-<p><strong><em>Sem o modelo:</em></strong></p>
-<ul>
-<li><p>Sem o modelo, não temos nenhuma outra forma de identificar quais clientes estariam mais propensos ao churn e tentar alguma abordagem para resgatar a confiança deles, evitando sua fuga.</p></li>
-<li><p>Isso ocorrendo, o banco teria uma redução de cerca de 20% de seus clientes.</p></li>
-</ul>
-<p><strong><em>Com o modelo:</em></strong></p>
-<ul>
-<li><p>68% dos casos possíveis de churn seriam identificados previamente, enquanto os demais 32% não seriam identificados.</p></li>
-<li><p>Supondo que um plano de ação seja capaz de impedir o churn de todos os possíveis churn identificados (os 68%), o banco teria uma redução em sua carteira de clientes de apenas 6,4% (32% dos churns, os quais não foram identificados pelo modelo).</p></li>
-<li><p>Obviamente, os erros do modelo em classificar Não-churn como churn também geram custos para o banco, pois ele gastará dinheiro para resgatar um cliente que, de fato, não corria risco de perda. Isso ocorrerá em 65% dos casos em que o modelo classificar como churn. De fato, 40% de todos os clientes serão classificados como churn pelo modelo, sendo que apenas 35% desse público realizaria o churn. A questão é que o modelo adota uma postura muito conservadora, onde a perda do cliente é considerada algo muito mais severo do que o gasto com programas para evitar o churn. Por isso, se a probabilidade de ocorrência do churn for maior ou superior a 19%, o modelo prefere recomendar uma ação do banco para tentar evitar a fuga desse cliente.</p></li>
-<li><p>Diante do exposto anteriormente, podemos afirmar que o modelo tem uma boa performance. No entanto, a decisão final de utilizá-lo ou não viria após uma análise de ganho financeiro, comparando o seu uso com a não utilização.</p></li>
-</ul>
+<section id="conclusion" class="level3">
+<h3 class="anchored" data-anchor-id="conclusion">Conclusion</h3>
+<p>With a threshold of 0.242365, the sensitivity has increased from 0.48 to 0.85, and the specificity has decreased from 0.93 to 0.75. Despite the decrease in specificity, for this project, the most important metric is sensitivity, once we want to correctly predict the patients with diabetes, the correct prediction for positive values.</p>
+<p>The AUC has also increased after threshold adjustment, from 0.70 to 0.79.</p>
 
 
+</section>
 </section>
 </section>
 
@@ -2513,10 +914,27 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-  function tippyHover(el, contentFn) {
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -2526,8 +944,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -2539,7 +966,130 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -2583,6 +1133,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -2608,6 +1159,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -2673,12 +1250,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     <div class="nav-footer-left">
       &nbsp;
     </div>   
-    <div class="nav-footer-center">Copyright 2024</div>
+    <div class="nav-footer-center">
+<p>Copyright 2024</p>
+</div>
     <div class="nav-footer-right">
       &nbsp;
     </div>
   </div>
 </footer>
+
 
 
 

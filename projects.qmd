@@ -1,7 +1,11 @@
 ---
-title: "Projetos"
+title: "Projects"
 ---
  
-Os projetos apresentados aqui serão sempre aplicados em bases de dados públicas. No entanto, utilizarei a mesma abordagem profissional que emprego no meu dia a dia. O objetivo é que, à medida que eu criar novos projetos (ou avançar dentro de um deles), eu vá atualizando esta página. Portanto, constantemente haverá atualizações aqui.
+Welcome to the projects section of my portfolio, where I am pleased to share with you a selection of work that I have undertaken during my academic journey in the field of data science.
 
-Em caso de dúvidas e/ou sugestões, sinta-se à vontade para me contatar via inbox no LinkedIn.
+This page is an invitation for you to dive into the projects that not only demonstrate my technical competence but also my passion for transforming data into meaningful insights and practical solutions.
+
+Should any project capture your interest or if any questions arise, I encourage you to contact me. I am always available to exchange ideas, explore opportunities for collaboration, or simply to discuss the challenges and beauties found in the realm of data science.
+
+Thank you for visiting, and I hope you find inspiration and valuable information here.

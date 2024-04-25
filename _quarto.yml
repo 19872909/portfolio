@@ -3,39 +3,39 @@ project:
   output-dir: ./docs
 
 website:
-  title: "Pedro Gasparine Dubiela"
+  title: "Valeska Barbosa Alves"
   search: false
 
   # Header
   navbar:
-    background: "#1a3d4a"
-    foreground: "white"
+    background: "#1B1F23"
+    foreground: "#E8E8E8"
     pinned: true
     right: 
       - icon: github
-        href: https://github.com/pedroDubiela95
+        href: https://github.com/19872909
       - icon: linkedin 
-        href: https://www.linkedin.com/in/pedro-gasparine-dubiela-478430147/ 
+        href: https://www.linkedin.com/in/valeskaalves/
     left:
       - text: "Home"
         file: index.qmd
-      - text: "Projetos"
+      - text: "Projects"
         file: projects.qmd
 
   # Foot
   page-footer:
-    background: "#1a3d4a"
-    foreground: "white"
+    background: "#1B1F23"
+    foreground: "#E8E8E8"
     center: "Copyright 2024" 
     border: true
 
   # Barra
   sidebar:
-  - title: "Projetos"
+  - title: "Projects"
     style: "docked"
     border: true
-    background: "#1a3d4a"
-    foreground: "white"
+    background: "#1B1F23"
+    foreground: "#E8E8E8"
     contents:
       - projects.qmd
       - project1.qmd

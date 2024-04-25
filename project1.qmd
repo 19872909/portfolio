@@ -1,81 +1,77 @@
 ---
-title: "Projeto: Previsão de Rotatividade de Clientes Bancários"
+title: "Project: PIMA Indians Diabetes"
 ---
 
-# Introdução
+# Dataset
+<p>This dataset is originally from the National Institute of Diabetes and Digestive and Kidney Diseases.</p>
 
-<p>
-O problema de **churn**, ou rotatividade de clientes, representa um desafio significativo para instituições bancárias. Refere-se à taxa na qual os clientes encerram seus relacionamentos com o banco, migrando para outras instituições financeiras ou até mesmo abandonando serviços financeiros. Este fenômeno pode ser impulsionado por diversos fatores, como insatisfação com serviços, concorrência acirrada, mudanças nas condições econômicas e até mesmo avanços tecnológicos.
-</p>
+# Objective
+<p>The objective is to predict based on diagnostic measurements whether a patient has diabetes.</p>
 
-<p>
-Dessa forma, a retenção de clientes torna-se uma prioridade estratégica para os bancos, que buscam constantemente inovar, oferecer experiências mais atrativas e personalizadas, a fim de mitigar o churn e manter uma base sólida de clientes leais.
-</p>
+# Constraints
+<p>Several constraints were placed on the selection of these instances from a larger database. In particular, all patients here are females at least 21 years old of Pima Indian heritage.</p>
 
-<p>
-Diante desse cenário, torna-se de extrema valia a capacidade de identificar os clientes mais propensos ao churn, possibilitando que a instituição financeira aja de maneira antecipada, oferecendo planos e serviços atrativos que impeçam a fuga do cliente.
-</p>
+# Features
+<li>Pregnancies: Number of times pregnant</li>
+<li>Glucose: Plasma glucose concentration a 2 hours in an oral glucose tolerance test</li>
+<li>BloodPressure: Diastolic blood pressure (mm Hg)</li>
+<li>SkinThickness: Triceps skin fold thickness (mm)</li>
+<li>Insulin: 2-Hour serum insulin (mu U/ml)</li>
+<li>BMI: Body mass index (weight in kg/(height in m)^2)</li>
+<li>DiabetesPedigreeFunction: Diabetes pedigree function</li>
+<li>Age: Age (years)</li>
+<li>Outcome: Class variable (0 or 1) 1: Diabetic, 0: Healty</li>
 
-# Problema de Negócio
-Temos uma base de dados do ABC Multistate Bank, a qual está hospedada em <https://www.kaggle.com/datasets/gauravtopre/bank-customer-churn-dataset/data>. Essa base de dados contém informações anonimizadas de 10.000 clientes, onde o problema de negócio em questão resume-se a construirmos um modelo capaz de predizer a ocorrência ou não de churn para um dado cliente, com base nas informações disponíveis.
-
-
-# Resolução do Problema
-
+#Exploratory Analysis
 ```{python}
 #| echo: false
 #| output: false
 #| warning: false
 
 #%% Setup
-import itertools
-import numpy as np
+#Libraries import
 import pandas as pd
+import matplotlib.pyplot as plt
+%matplotlib inline
+import seaborn as sns
+from numpy import sqrt
+from numpy import argmax
+from numpy import mean
+from numpy import std
+from sklearn import metrics
+from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay, accuracy_score, classification_report, mean_squared_error, roc_curve, RocCurveDisplay, recall_score
+from sklearn import preprocessing
+from sklearn.preprocessing import StandardScaler
+from sklearn.model_selection import train_test_split, cross_val_score, KFold
+from sklearn.linear_model import LogisticRegression
 
-from scipy.stats             import shapiro, ks_2samp
-from sklearn.model_selection import train_test_split
-from sklearn.linear_model    import LogisticRegression
-from sklearn.svm             import SVC, LinearSVC
-from sklearn.neighbors       import KNeighborsClassifier
-from sklearn.tree            import DecisionTreeClassifier
-from sklearn.ensemble        import RandomForestClassifier
-from sklearn.model_selection import cross_val_score
-from sklearn.preprocessing   import OneHotEncoder
-import warnings
+#Dataset read
+pima = pd.read_csv('./source/diabetes.csv')
 
-from functions import (
-    create_table_categorical,
-    create_graph_categorical,
-    create_table_numeric_continuous,
-    create_graph_numeric_continuous,
-    bivariate,
-    create_table_bivariate_summary,
-    create_table_bivariate_html,
-    create_graph_bivariate_html,
-    create_graph_h_bivariate_html,
-    binning_to_model,
-    create_ks_table_for_logistic_regression,
-    calculate_CramersV,
-    calculate_CramersV2,
-    show_df,
-    create_confusion_matrix,
-    show_confusion_matrix
-    )
+#The dataset has 768 rows and 9 columns
+pima.shape
 
-warnings.filterwarnings("ignore")
-pd.set_option('display.max_columns', None) 
+pima.head()
+
+#This output shows that all dataset features are numeric.
+pima.info()
+
+#This function show the main statistics for the features. 
+pima.describe().T
+
+#This function shows that any of the features has null values
+pima.isna().sum()
 ```
 
-## Análise Exploratória dos Dados (EDA)
-<p>O objetivo desta etapa é investigar e entender os dados disponíveis, a fim de extrair informações preliminares, identificar padrões, tendências, anomalias e insights relevantes.
-</p>
-
+## Correlations
 <p>
-Verificaremos que, ao término dessa análise, todas as variáveis apresentam comportamento adequado para prosseguirem no estudo, pois:
+Each square shows the correlation between the variables on each axis. Correlation ranges from -1 to +1.
 
-- Não possuem valores faltantes.
-- Não têm valores inesperados.
-- Não exibem alta concentração em um único valor.
+- Values closer to 0: There is no linear trend between the two variables.
+- Values closer to 1: The correlation is positive; that is as one increases so does the other and the closer to 1 the stronger this relationship is.
+- Values closer to -1: One variable will decrease as the other increases
+
+The diagonals are all 1/dark because those squares are correlating each variable to itself (so it's a perfect correlation). For the rest the larger the number and darker the color the higher the correlation between the two variables.
 </p>
 <hr>
 
@@ -83,1015 +79,500 @@ Verificaremos que, ao término dessa análise, todas as variáveis apresentam co
 #| echo: false
 #| output: false
 
-# Read files
-file_name = "Bank Customer Churn Prediction"
-df = pd.read_csv(f"./source/{file_name}.csv")
+# Generate a custom diverging colormap
+cmap = sns.diverging_palette(230, 20, as_cmap=True)
 
-
-# -> there is no duplciated customer
-df.duplicated("customer_id").sum()
-
-# -> there is no missing values
-df.isna().sum()
-
-# -> remove cols not useful
-df.drop("customer_id", axis = 1, inplace = True)
-
-# -> preprocessing
-df_base = df.copy()
-
-# "products_number"
-df["products_number"] = np.where(df["products_number"] >= 4 , ">=4", df["products_number"].astype(int).astype(str))
-
-# tenure
-var_name = 'tenure'
-c1 = df[var_name].between(0,  2,      inclusive = "both")
-c2 = df[var_name].between(2,  4,      inclusive = "right")
-c3 = df[var_name].between(4,  6,      inclusive = "right")
-c4 = df[var_name].between(6,  8,      inclusive = "right")
-c5 = df[var_name].between(8,  10,     inclusive = "right")
-c6 = df[var_name].between(10, np.inf, inclusive = "neither")
-
-df[var_name] = np.where(
-    c1, '[0, 2]', np.where(
-        c2, '(2, 4]', np.where(
-            c3, '(4, 6]', np.where(
-                c4, '(6, 8]', np.where(
-                    c5, '(8, 10]', '>10' 
-                    )
-                )
-            )
-        )
-    ) 
+correlation = pima.corr()
+plt.figure(figsize = (8,7))
+sns.heatmap(correlation, cmap = cmap, annot = True)
 ```
 
-### Churn
-Essa variável denota a ocorrência ou não do evento de churn.
+### Correlation matrix:
 
-- Não ocorrência de churn = 0
-- Ocorrência de churn = 1
-
-
-**Avaliação**: <span style="color: green;"> OK. </span>
-<ul>
-  <li>Variável target (binária).</li>
-  <li>Temos 20% de ocorrência do evento.</li>
-  <li>Temos 80% de não ocorrência do evento.</li>
-</ul>
+There is a strong positve correlation between Pregnancies and Age, Glucose and Outcome.
+There is a strong negative correlation between Skinthickness and Age, Pregnancies and SkinThickness, Pregnance and Insulin
 
 ```{python}
 #| fig-align: center
-create_table_categorical("churn", df)
+
+#Correlation of features with the Outcome
+corr_report = pima.corr()['Outcome']
+corr_report.sort_values(ascending=False)
 ```
 
 ```{python}
 #| fig-align: center
-create_graph_categorical("churn", df)
+
+outliers = pima[pima['Glucose'] > 150]
+outliers
+```
+```{python}
+outliers['Outcome'].value_counts()
+```
+
+```{python}
+# Histogram to analyze the distribution of data
+fig, ax = plt.subplots(ncols=3, nrows=3, figsize=(15,12))
+index = 0
+ax = ax.flatten()
+
+for col, value in pima.items():
+    col_dist = sns.histplot(value, ax=ax[index], kde=True, stat="density", linewidth=0)
+    col_dist.set_xlabel(col,fontsize=10)
+    col_dist.set_ylabel('density',fontsize=10)
+    index += 1
+plt.tight_layout(pad=0.8, w_pad=0.5, h_pad=5.0)
+```
+
+```{python}
+# Boxplot to analyze the distribution of data
+fig, ax = plt.subplots(ncols=3, nrows=3, figsize=(15,12))
+index = 0
+ax = ax.flatten()
+
+for col, value in pima.items():
+    col_dist = sns.boxplot(value, ax=ax[index])
+    col_dist.set_xlabel(col,fontsize=10)
+    col_dist.set_ylabel('density',fontsize=10)
+    index += 1
+plt.tight_layout(pad=0.5, w_pad=0.7, h_pad=5.0)
 ```
 
 <hr>
 
-### Country
-País do cliente.
+### Outliers
+There are some outliers analyzed through the distribution of data in the histograms and boxplots.
 
-**Avaliação**: <span style="color: green;"> OK. </span>
-<ul>
-  <li>Variável categórica.</li>
-  <li>Não possui nenhum valor faltante.</li>
-  <li>França representa 50%.</li>
-  <li>Alemanha e Espanha representam 25% cada.</li>
-</ul>
+They following code has removed the outliers before to proceed with the ML model.
+
+#### IQR - Interquartile Range
+The lower quartile corresponds with the 25th percentile and the upper quartile corresponds with the 75th percentile, so IQR = Q3 − Q1.
+
+The IQR is an example of a trimmed estimator, defined as the 25% trimmed range, which enhances the accuracy of dataset statistics by dropping lower contribution, outlying points.
 
 ```{python}
 #| fig-align: center
-create_table_categorical("country", df)
+
+Q1 = pima.quantile(0.25)
+Q3 = pima.quantile(0.75)
 ```
 
 ```{python}
 #| fig-align: center
-create_graph_categorical("country", df)
+
+IQR = Q3 - Q1
+IQR
 ```
-
-<hr>
-
-### Gender
-Gênero do cliente.
-
-**Avaliação**: <span style="color: green;"> OK. </span>
-<ul>
-  <li>Variável categórica.</li>
-  <li>Não possui nenhum valor faltante.</li>
-  <li>55% Homens.</li>
-  <li>45% Mulheres.</li>
-</ul>
 
 ```{python}
-#| fig-align: center
-create_table_categorical("gender", df)
+pima.shape
 ```
-```{python}
-#| fig-align: center
-create_graph_categorical("gender", df)
-```
-
-<hr>
-
-### Credit Card
-Se o cliente utiliza cartão de crédito.
-
-- Não utiliza cartão de crédito = 0
-- Utiliza cartão de crédito = 1
-
-**Avaliação**: <span style="color: green;"> OK. </span>
-<ul>
-  <li>Variável categórica.</li>
-  <li>Não possui nenhum valor faltante.</li>
-  <li>71% utiliza cartão de cŕedito.</li>
-  <li>29% não utiliza.</li>
-</ul>
-
-```{python}
-#| fig-align: center
-create_table_categorical("credit_card", df)
-```
-```{python}
-#| fig-align: center
-create_graph_categorical("credit_card", df)
-```
-
-<hr>
-
-### Active Member
-Denota se um cliente está envolvido e participando ativamente das atividades e serviços oferecidos pelo banco.
-
-- Não ativo = 0
-- Ativo = 1
-
-
-**Avaliação**: <span style="color: green;"> OK. </span>
-<ul>
-  <li>Variável categórica.</li>
-  <li>Não possui nenhum valor faltante.</li>
-  <li>Praticamente metade dos clientes são ativos e a outra metade é inativo.</li>
-</ul>
-
-```{python}
-#| fig-align: center
-create_table_categorical("active_member", df)
-```
-```{python}
-#| fig-align: center
-create_graph_categorical("active_member", df)
-```
-
-<hr>
-
-### Products Number
-Número de produtos adiquiridos pelo cliente.
-
-**Avaliação**: <span style="color: green;"> OK. </span>
-<ul>
-  <li>Variável numérica discreta, mas será visualizada como categórica.</li>
-  <li>Não possui nenhum valor faltante.</li>
-  <li>~50% dos cliente utilizam somente um produto.</li>
-  <li>~46% dos cliente utilizam 2 produtos.</li>
-</ul>
-
-```{python}
-#| fig-align: center
-create_table_categorical("products_number", df, ['1', '2', '3', '>=4'])
-```
-```{python}
-#| fig-align: center
-create_graph_categorical("products_number", df, ['1', '2', '3', '>=4'])
-```
-
-<hr>
-
-### Tenure
-Mensura a quantidade de anos decorridos desde que o cliente aderiu aos serviços prestados pelo banco.
-
-**Avaliação**: <span style="color: green;"> OK. </span>
-<ul>
-  <li>Variável numérica discreta, mas será visualizada como categórica.</li>
-  <li>Não possui nenhum valor faltante.</li>
-  <li>25% de 0 a 2 anos.</li>
-  <li>15% de 8 a 10 anos.</li>
-  <li>As demais classes estão bem distribuídos em torno de 20%.</li>
-</ul>
-
-```{python}
-#| fig-align: center
-#fazer a mesma ordenção de baixo aqui
-create_table_categorical("tenure", df, ['[0, 2]', '(2, 4]', '(4, 6]', '(6, 8]', '(8, 10]'])
-```
-```{python}
-#| fig-align: center
-create_graph_categorical("tenure", df, ['[0, 2]', '(2, 4]', '(4, 6]', '(6, 8]', '(8, 10]'])
-```
-
-<hr>
-
-### Credit Score
-É uma medida da probabilidade de um indivíduo pagar suas dívidas com base em seu histórico de crédito passado.
-
-**Avaliação**: <span style="color: green;"> OK. </span>
-<ul>
-  <li>Variável numérica.</li>
-  <li>Não possui nenhum valor faltante.</li>
-  <li>Possui distribuição aproximadamente normal, com média = 650.</li>
-</ul>
-
-```{python}
-#| fig-align: center
-create_table_numeric_continuous("credit_score", df)
-```
-```{python}
-#| fig-align: center
-create_graph_numeric_continuous("credit_score", df)
-```
-
-<hr>
-
-### Age
-Idade em anos do cliente.
-
-**Avaliação**: <span style="color: green;"> OK. </span>
-<ul>
-  <li>Variável numérica.</li>
-  <li>Não possui nenhum valor faltante.</li>
-  <li>Possui distribuição assimétrica á direita.</li>
-  <li>Cliente mais novo tem 18 anos.</li>
-  <li>Cliente mais velho tem 92 anos.</li>
-  <li>O valor mediano da idade do cliente é de 37 anos.</li>
-
-</ul>
-
-```{python}
-#| fig-align: center
-create_table_numeric_continuous("age", df)
-```
-```{python}
-#| fig-align: center
-create_graph_numeric_continuous("age", df)
-```
-
-<hr>
-
-### Balance
-Saldo bancário do cliente
-
-**Avaliação**: <span style="color: green;"> OK. </span>
-<ul>
-  <li>Variável numérica.</li>
-  <li>Não possui nenhum valor faltante.</li>
-  <li>Variável com distribuição assimétrica.</li>
-  <li>Alta concetração de clientes com saldo entre 0 e 25 mil.</li>
-</ul>
-
-```{python}
-#| fig-align: center
-create_table_numeric_continuous("balance", df)
-```
-```{python}
-#| fig-align: center
-create_graph_numeric_continuous("balance", df)
-```
-
-<hr>
-
-### Estimated Salary
-Salario estimado.
-
-**Avaliação**: <span style="color: green;"> OK. </span>
-<ul>
-  <li>Variável numérica.</li>
-  <li>Não possui nenhum valor faltante.</li>
-  <li>Variável com distribuição uniforme.</li>
-</ul>
-
-```{python}
-#| fig-align: center
-create_table_numeric_continuous("estimated_salary", df)
-```
-```{python}
-#| fig-align: center
-create_graph_numeric_continuous("estimated_salary", df)
-```
-
-## Análise Bivariada dos Dados
 <p>
-A análise bivariada tem como objetivo examinar a relação entre duas variáveis em um conjunto de dados. Ao contrário da análise univariada, que se concentra em uma única variável (EDA que fizemos no item anterior), a análise bivariada explora a associação entre duas variáveis.
-</p>
- 
-<p>
-Existem diferentes técnicas e métodos para realizar uma análise bivariada, dependendo da natureza das variáveis envolvidas.
-Para o nosso problema, estamos interessados em avaliar o grau de associação entre cada uma das possíveis variáveis preditoras e a variável target, dessa forma temos que:
-
-- churn: Categórica Binária (target)
-
-- country: Categórica
-- gender: Categórica
-- credit_card: Categórica
-- active_member: Categórica
-
-- producs_number: Numérica Discreta
-- tenure: Numérica Discreta
-- credit_score: Numérica Contínua
-- age: Numérica Discreta 
-
-- balance: Numérica Contínua
-- estimated_salary: Numérica Contínua
-</p>
-
-<p>
-A nossa abordagem será transformar todas as variáveis preditoras em categóricas, para posteriormente avaliarmos o grau de associação de cada uma delas frente a variável target, para isso teremos basicamente duas etapas:
-<ol>
-  <li>Binning das variáveis.</li>
-  <li>Avaliação do Grau de Associação.</li>
-</ol>
-</p>
-
-<hr>
-
-**Binning**
-<p>
-Chamaremos esse processo de transformação de uma variável numérica em categórica de binning. O processo de binning será feito através de um método denominado de  **optimal binning** <https://gnpalencia.org/optbinning/>.
-</p>
-
-<p>
-O optimal binning refere-se a uma abordagem estatística utilizada em análise de dados para agrupar valores de uma variável em intervalos (ou "bins") de maneira a otimizar algum critério específico. A principal ideia por trás do binning ótimo é encontrar a divisão mais informativa ou significativa das observações, geralmente com base em algum critério de interesse, como a maximização da diferença nas médias entre os grupos ou a minimização da variabilidade intra-bin.
-</p>
-
-<p>
-Ou seja, de forma resumida, vamos pegar um certa variável, por exemplo o balance (saldo da conta) e tentar discretizar em categorias onde fique mais evidente se a ocorrência de churn é maior ou menor.
-</p>
-
-<p>
-Vale ressaltar que também vamos aplicar o optimal binning para as variáveis que já são categóricas, uma vez que esse processo de otimização pode gerar agrupamentos mais informativos (quanto a ocorrência de churn) do que as categorias já existentes.
-</p>
-
-<hr>
-
-**Avaliação do Grau de Associação**
-<p>
-Neste momento todas as nossas variáveis (preditoras e target) são categóricas, então para mensurar o grau de associação entre cada preditora e o target, utilizaremos o coeficiente **Cramer's V** (V de Cramer).
-</p>
-
-<p>
-O coeficiente V de Cramer é uma medida estatística utilizada em análises bivariadas para quantificar a força de associação entre duas variáveis categóricas. Essa medida é uma extensão do coeficiente qui-quadrado, que é comumente utilizado para testar a independência entre variáveis categóricas.
-
-O coeficiente V de Cramer varia de 0 a 1, onde 0 indica nenhuma associação e 1 indica associação total entre as variáveis categóricas.
-<https://en.wikipedia.org/wiki/Cram%C3%A9r%27s_V>
-</p>
-
-<hr>
-
-**Resultado da Análise Bivariada**
-
-Após o término da análise bivariada, conforme a tabela abaixo e os demais resultados que veremos na sequência, veremos que:
-
-- age: É a variável com maior grau de associação com o evento de churn (Alta discriminância).
-- products_number, country, active_member: Estão associadas de forma moderada com o evento de churn (Média discriminância).
-- credit_score, tenure, estimated_salary e credit_card: Possuem baixo grau de associação com o evento de churn (Baixa discriminância).
-
-As variáveis com alta e média discriminância têm maiores chances de serem consideradas como preditoras no modelo preditivo que iremos construir. Em contrapartida, as variáveis de baixa discriminância possuem menor propensão de serem utilizadas como preditoras nesse modelo."
-
-
-**Observação** 
-<p>
-O critério utilizado para definir a discriminância não está levando em conta apenas se o valor de Cramer’s V está muito próximo de 0 ou 1, mas também considera o contexto dessa análise. Por exemplo, para a variável idade, temos Cramer’s V = 0.36, que é um valor mais próximo de 0 do que de 1. Se considerássemos apenas essa questão, diríamos que o grau de associação é moderado ou baixo.
-
-No entanto, no contexto desta análise, a variável idade é a que possui o maior Cramer’s V. Portanto, dentro do nosso contexto, estamos considerando que o grau de associação com o evento é forte.
-
-Para fins de esclarecimento, consideramos que:
-
-- Cramer's V > 0.20: Discriminância Alta.
-- 0.20 <= Cramer's V < 0.05: Discriminância Média.
-- Cramer's V <= 0.05: Discriminância Baixa.
-</p>
-
-```{python}
-#| fig-align: center
-numerical_variables = [
-    "products_number",
-    "tenure",
-    "credit_score",
-    "age",
-    "estimated_salary"
-    ]
-
-categorical_variables = [
-    "country", 
-    "gender", 
-    "credit_card",
-    "active_member",
-    "balance",
-    ]
-
-target_variable = 'churn'
-
-df = df_base
-
-# balance
-var_name = 'balance'
-c1 = df[var_name].between(-np.inf,  1884.34, inclusive = "neither")
-df[var_name] = np.where(c1, '< 1884.34', '>= 1884.34')
-
-df_bivariate = bivariate(
-    df,
-    numerical_variables,
-    categorical_variables,
-    target_variable)
-
-df_bivariate.rename(columns = {"Indicador":"Feature"}, inplace = True)
-
-df = (
-  df_bivariate[["Feature", "Cramer's V", "Discriminância"]]
-  .drop_duplicates()
-  .sort_values(by = ["Cramer's V", "Feature"], ascending = False)
-  .reset_index(drop = True)
-  )
-    
-create_table_bivariate_summary(df, cols_float = ["Cramer's V"])
-```
-
-### Age
-
-**Discriminância**: <span style="color: green;"> Alta. </span>
-<ul>
-  <li>Quanto mais velho for o cliente, maior é a propensão de ocorrência do churn.</li>
-</ul>
-
-```{python}
-#| fig-align: center
-var = "age"
-create_table_bivariate_html(df_bivariate, var)
-```
-
-```{python}
-#| fig-align: center
-create_graph_bivariate_html(df_bivariate, var)
-```
-
-<hr>
-
-### Products Number
-
-**Discriminância**: <span style="color: yellow;"> Média. </span>
-<ul>
-  <li>A ocorrência do churn é maior para clientes que contrataram somente 1 produto.</li>
-</ul>
-
-```{python}
-#| fig-align: center
-var = "products_number"
-create_table_bivariate_html(df_bivariate, var)
-```
-
-```{python}
-#| fig-align: center
-create_graph_bivariate_html(df_bivariate, var)
-```
-
-<hr>
-
-### Country
-
-**Discriminância**: <span style="color: yellow;"> Média. </span>
-<ul>
-  <li>A ocorrência do churn é maior para clientes da Alemanha.</li>
-</ul>
-
-```{python}
-#| fig-align: center
-var = "country"
-create_table_bivariate_html(df_bivariate, var)
-```
-
-```{python}
-#| fig-align: center
-create_graph_bivariate_html(df_bivariate, var)
-```
-
-<hr>
-
-### Active Member
-
-**Discriminância**: <span style="color: yellow;"> Média. </span>
-<ul>
-  <li>A ocorrência do churn é maior para clientes que não são ativos.</li>
-</ul>
-
-```{python}
-#| fig-align: center
-var = "active_member"
-create_table_bivariate_html(df_bivariate, var)
-```
-
-```{python}
-#| fig-align: center
-create_graph_bivariate_html(df_bivariate, var)
-```
-
-<hr>
-
-### Balance
-
-**Discriminância**: <span style="color: yellow;"> Média. </span>
-<ul>
-  <li>A ocorrência do churn é maior para clientes com saldo em conta maior ou igual a 1884.34 .</li>
-</ul>
-
-```{python}
-#| fig-align: center
-var = "balance"
-create_table_bivariate_html(df_bivariate, var)
-```
-
-```{python}
-#| fig-align: center
-create_graph_bivariate_html(df_bivariate, var)
-```
-
-<hr>
-
-### Gender
-
-**Discriminância**: <span style="color: yellow;"> Média. </span>
-<ul>
-  <li>A ocorrência do churn é maior para clientes do sexo feminino.</li>
-</ul>
-
-```{python}
-#| fig-align: center
-var = "gender"
-create_table_bivariate_html(df_bivariate, var)
-```
-
-```{python}
-#| fig-align: center
-create_graph_bivariate_html(df_bivariate, var)
-```
-
-<hr>
-
-### Credit Score
-
-**Discriminância**: <span style="color: #800000;"> Baixa. </span>
-<ul>
-  <li>O fato isolado de quão bom ou ruim é o credit_score do cliente, não tem forte relação com o evento de churn.</li>
-</ul>
-
-```{python}
-#| fig-align: center
-var = "credit_score"
-create_table_bivariate_html(df_bivariate, var)
-```
-
-```{python}
-#| fig-align: center
-create_graph_bivariate_html(df_bivariate, var)
-```
-
-<hr>
-
-### Tenure
-
-**Discriminância**: <span style="color: #800000;"> Baixa. </span>
-<ul>
-  <li>O fato isolado da quantidade de anos decorridos desde que o cliente aderiu aos serviços prestados pelo banco, não tem forte relação com o evento de churn.</li>
-</ul>
-
-```{python}
-#| fig-align: center
-var = "tenure"
-create_table_bivariate_html(df_bivariate, var)
-```
-
-```{python}
-#| fig-align: center
-create_graph_bivariate_html(df_bivariate, var)
-```
-
-<hr>
-
-### Estimated Salary
-
-**Discriminância**: <span style="color: #800000;"> Baixa. </span>
-<ul>
-  <li>O fato isolado de quão alto ou baixo é o salário do cliente, não tem forte relação com o evento de churn.</li>
-</ul>
-
-```{python}
-#| fig-align: center
-var = "estimated_salary"
-create_table_bivariate_html(df_bivariate, var)
-```
-
-```{python}
-#| fig-align: center
-create_graph_bivariate_html(df_bivariate, var)
-```
-
-<hr>
-
-### Credit Card
-
-**Discriminância**: <span style="color: #800000;"> Baixa. </span>
-<ul>
-  <li>O fato isolado do cliente ter ou não cartão de cŕedito, não tem forte relação com o evento de churn.</li>
-</ul>
-
-```{python}
-#| fig-align: center
-var = "credit_card"
-create_table_bivariate_html(df_bivariate, var)
-```
-
-```{python}
-#| fig-align: center
-create_graph_bivariate_html(df_bivariate, var)
-```
-
-## O Modelo Preditivo
-**Em desenvolvimento - Não está pronto ainda**
-
-**Técnica Utilizada**
-
-<p>
-Quanto à modelagem, um ponto deve ser enfatizado: o principal objetivo aqui é a construção de um modelo preditivo que possua um grau de interpretabilidade relativamente fácil para a área de negócios. Portanto, nosso foco é obter não apenas um modelo assertivo, mas sim um modelo com bom desempenho e de fácil entendimento. Dito isso, vamos modelar utilizando a técnica de **Regressão Logística**.
-</p>
-
-<p>
-A regressão logística é uma técnica estatística utilizada para modelar a relação entre uma variável dependente binária (que possui apenas dois valores possíveis, geralmente 0 e 1) e uma ou mais variáveis independentes. Ela é amplamente empregada em problemas de classificação, onde o objetivo é prever a probabilidade de uma observação pertencer a uma determinada categoria.
-</p>
-
-<p>
-A principal característica da regressão logística é sua capacidade de lidar com problemas de classificação binária, como por exemplo, prever se um e-mail é spam ou não, se um paciente tem uma determinada condição médica ou não, entre outros cenários onde a resposta desejada é dicotômica.
-</p>
-
-<p>
-A forma básica da regressão logística é expressa pela seguinte equação:
-
-![](./img/regressao_logistica.png){fig-align="center" }
-
-Contextualizando a formula acima para o nosso problema, temos que:
-
-- X1, X2, ... Xn são as nossas features: country, gender, credit_card, active_member, producs_number, tenure, credit_score, age, balance, estimated_salary.
-- A probabilide p do evento Y = 1, é a probabilidade de ocorrência de churn.
-- Os betas B0, B1, ... Bn representam os parâmetros do modelo, que pretendemos obter ao construir o modelo matemático.
-</p>
-
-<hr>
-
-**Avaliação do Modelo**
-
-<p>
-O teste de Kolmogorov-Smirnov (KS) pode ser utilizado como uma métrica para avaliar a qualidade de modelos de classificação, especialmente em problemas de classificação binária. Nesse contexto, o KS é frequentemente empregado para avaliar a capacidade do modelo em distinguir entre as classes positiva e negativa.
-</p>
-
-<p>
-A abordagem mais comum envolve a geração de pontuações (scores) ou probabilidades de predição para as instâncias de ambas as classes pelo modelo. Em seguida, o teste de Kolmogorov-Smirnov é aplicado às distribuições cumulativas dessas pontuações para as duas classes. O objetivo é verificar se há uma diferença significativa entre as distribuições cumulativas das classes positiva e negativa.
-</p>
-
-<p>
-Quanto maior for a diferença entre as distribuições cumulativas, maior será o valor de KS e, consequentemente, mais eficiente será o modelo, ou seja, mais capaz de classificar corretamente o que é churn e o que não é churn.
-</p>
-
-<hr>
-
-**Obtendo o melhor modelo**
-
-<p>
-A partir das 10 variáveis preditoras disponíveis, foram testadas todas as combinações possíveis, selecionando de 5 a 10 variáveis por vez. Dessa forma, examinamos 638 modelos de regressão logística, avaliando o valor de KS para cada modelo nos dados de teste. Optamos pelo modelo que apresentou o maior valor de KS e o menor número de variáveis preditoras que parecem ser mais relevantes para o negócio.
-</p>
-
-<p>
-Portanto, o modelo selecionado foi o que apresentou KS = 0.36 e possui as seguintes variáveis preditoras:
-
-- 'products_number'
-- 'country'
-- 'gender'
-- 'credit_card'
-- 'active_member'
-
-</p>
-
-```{python}
-#| echo: false
-#| output: false
-
-
-# Read files
-file_name   = "Bank Customer Churn Prediction"
-df_original = pd.read_csv(f"./source/{file_name}.csv")
-df          = df_original.copy()
-
-numerical_variables = [
-    "products_number",
-    "tenure",
-    "credit_score",
-    "age",
-    "estimated_salary"
-    ]
-
-categorical_variables = [
-    "country", 
-    "gender", 
-    "credit_card",
-    "active_member",
-    "balance",
-    ]
-
-target_variable = 'churn'
-
-"""
-lst = numerical_variables + categorical_variables 
-
-cols_combine = []
-for i in range(5, len(lst) + 1):
-    cols_combine += list(itertools.combinations(lst, i)) 
-
-# Models
-seed   = 100
-df     = df[numerical_variables + categorical_variables + [target_variable]]
-X_all  = df.drop(target_variable, axis=1).copy()
-y      = df[target_variable].copy()
-j      = 1
-df_res = pd.DataFrame()
-
-for m in cols_combine:
-     
-    print(j)
-    j += 1
-    
-    # Select features
-    X = X_all[list(m)]
-    original_cols = X.columns
-
-    # Split
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.20, random_state=seed)
-    
-    # ----------------------------------- Binnings --------------------------------
-    df_train = pd.merge(X_train,
-                        y_train, 
-                        how         = "left", 
-                        left_index  = True, 
-                        right_index = True,
-                        validate    = "one_to_one")
-    
-    df_test = pd.merge(X_test,
-                       y_test, 
-                       how         = "left", 
-                       left_index  = True, 
-                       right_index = True,
-                       validate    = "one_to_one")
-                
-    
-    df_train = binning_to_model(
-        df_train,
-        list(df_train.columns[df_train.columns.isin(numerical_variables)]),
-        list(df_train.columns[df_train.columns.isin(categorical_variables)]),
-        target_variable).reset_index(drop = True)
-    
-    df_test = binning_to_model(
-        df_test,
-        list(df_test.columns[df_test.columns.isin(numerical_variables)]),
-        list(df_test.columns[df_test.columns.isin(categorical_variables)]),
-        target_variable).reset_index(drop = True)
-    
-    X_train  = df_train.drop(target_variable, axis=1).copy()
-    y_train  = df_train[target_variable].copy()
-    
-    X_test  = df_test.drop(target_variable, axis=1).copy()
-    y_test  = df_test[target_variable].copy()
-     
-    # -----------------------------------------------------------------------------
-    
-    # One-hot Encoding
-    enc = OneHotEncoder(handle_unknown='ignore', drop = 'first')
-    enc.fit(X_train.astype(str))
-    
-    colnames = enc.get_feature_names_out()
-    
-    # train
-    transformed = enc.transform(X_train.astype(str)).toarray()
-    df_cat_vars = pd.DataFrame(columns=colnames, data=transformed)
-    X_train = pd.concat([X_train, df_cat_vars], axis=1)
-    
-    # test
-    transformed = enc.transform(X_test.astype(str)).toarray()
-    df_cat_vars = pd.DataFrame(columns=colnames, data=transformed)
-    X_test = pd.concat([X_test, df_cat_vars], axis=1)
-    
-    # Remocao das variáveis categoricas sem codificação
-    X_train.drop(original_cols, axis=1, inplace = True)
-    X_test.drop(original_cols, axis=1, inplace = True)
-    
-    # Models
-    models = []
-    models.append(("LogisticRegression",LogisticRegression()))
-
-    for name,model in models:
-        result = cross_val_score(model, X_train, y_train,  cv=5)
-        
-        clf = LogisticRegression()
-        clf.fit(X_train, y_train)
-
-        nos_train = create_ks_table_for_logistic_regression(clf, X_train, y_train)
-        nos_test  = create_ks_table_for_logistic_regression(clf, X_test, y_test)
-        
-        
-        df_aux = pd.DataFrame()
-        df_aux["name"] = [name]
-        df_aux["mean accuracy "] = [result.mean()]
-        df_aux["std accuracy"]   = [result.std()]
-        df_aux["predictors"]     = [m]
-        df_aux["KS_train"]       = nos_train["KS"].unique()
-        df_aux["KS_test"]        = nos_test["KS"].unique()
-        
-        df_res = pd.concat([df_res, df_aux])
-    
-df_res.reset_index(drop = True, inplace = True)
-df_res.to_pickle("best_models.pkl")
-"""
-#df_res = pd.read_pickle("best_models.pkl")
-
-```
-
-
-<p>
-Representação gráfica do cálculo do KS nos dados de teste para o modelo selecionado.
+The interquartile range is often used to find outliers in data. Outliers here are defined as observations that fall below Q1 − 1.5 IQR or above Q3 + 1.5 IQR. In a boxplot, the highest and lowest occurring value within this limit are indicated by whiskers of the box (frequently with an additional bar at the end of the whisker) and any outliers as individual points.
 </p>
 
 ```{python}
 #| fig-align: center
 
-seed          = 100
-X             = df[['products_number', 'country', 'gender', 'credit_card', 'active_member']].copy()
-y             = df[target_variable].copy()
-original_cols = X.columns
-
-# Split
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.20, random_state=seed)
-
-# ----------------------------------- Binnings --------------------------------
-df_train = pd.merge(X_train,
-                    y_train, 
-                    how         = "left", 
-                    left_index  = True, 
-                    right_index = True,
-                    validate    = "one_to_one")
-
-df_test = pd.merge(X_test,
-                   y_test, 
-                   how         = "left", 
-                   left_index  = True, 
-                   right_index = True,
-                   validate    = "one_to_one")
-            
-
-df_train = binning_to_model(
-    df_train,
-    list(df_train.columns[df_train.columns.isin(numerical_variables)]),
-    list(df_train.columns[df_train.columns.isin(categorical_variables)]),
-    target_variable).reset_index(drop = True)
-
-df_test = binning_to_model(
-    df_test,
-    list(df_test.columns[df_test.columns.isin(numerical_variables)]),
-    list(df_test.columns[df_test.columns.isin(categorical_variables)]),
-    target_variable).reset_index(drop = True)
-
-X_train  = df_train.drop(target_variable, axis=1).copy()
-y_train  = df_train[target_variable].copy()
-
-X_test  = df_test.drop(target_variable, axis=1).copy()
-y_test  = df_test[target_variable].copy()
- 
-# -----------------------------------------------------------------------------
-
-# One-hot Encoding
-enc = OneHotEncoder(handle_unknown='ignore', drop = 'first')
-enc.fit(X_train.astype(str))
-
-colnames = enc.get_feature_names_out()
-
-# train
-transformed = enc.transform(X_train.astype(str)).toarray()
-df_cat_vars = pd.DataFrame(columns=colnames, data=transformed)
-X_train = pd.concat([X_train, df_cat_vars], axis=1)
-
-# test
-transformed = enc.transform(X_test.astype(str)).toarray()
-df_cat_vars = pd.DataFrame(columns=colnames, data=transformed)
-X_test = pd.concat([X_test, df_cat_vars], axis=1)
-
-# Remocao das variáveis categoricas sem codificação
-X_train.drop(original_cols, axis=1, inplace = True)
-X_test.drop(original_cols, axis=1, inplace = True)
-
-# Treino
-clf = LogisticRegression()
-clf.fit(X_train, y_train)
-
-#nos_train = create_ks_table_for_logistic_regression(clf, X_train, y_train)
-nos_test  = create_ks_table_for_logistic_regression(clf, X_test, y_test)
-
-
-y_pred = np.round(clf.predict_proba(X_test)[:, 1], 2)
-y_pred = np.where(y_pred >= 0.19, 1, 0)
- 
-y_test = np.where(y_test == 1, "Churn", "Não-Churn")
-y_pred = np.where(y_pred == 1, "Churn", "Não-Churn")
+# Outlier removal
+pima = pima[~((pima < (Q1 - 1.5 * IQR)) | (pima > (Q3 + 1.5 * IQR))).any(axis = 1)]
+pima.shape
 ```
-
-
-**Faixas de operação do modelo selecionado**
-
-<p>
-A tabela abaixo apresenta todas as possíveis faixas de operação do modelo selecionado a qual foi aplicada na base de testes. Do ponto de vista técnico, a faixa 8 em destaque é considerada a faixa ótima, pois possui **Sens. + Espec. - 1 = KS = 0**. Isso significa que essa é a faixa com maior capacidade de classificação correta do que é **Churn** e **Não-Churn**.
-</p>
-
-<p>
-Interpretando a tabela para essa faixa, temos que:
-
-**Prob = 19%**: Significa que, se a probabilidade de ocorrência do churn for maior ou igual a 19%, o modelo classificará como churn.
-
-**% Total acumulado = 40%**: Significa que, dos clientes que o algoritmo avaliar, ele classificará 40% como churn.
-
-**Tx. classificados como 1 corretamente = 35%**: Significa que, dos clientes que o algoritmo classificar como churn, 35% realmente realizariam churn, enquanto os outros 65% não realizariam.
-
-**Tx. classificados como 0 corretamente = 89%**: Significa que, dos clientes que o algoritmo classificar como Não-Churn, 89% realmente não realizariam churn, enquanto os outros 11% realizariam.
-
-**Sens. = 68%**: É a sensibilidade. Significa que, de todos os casos de churn, o modelo será capaz de classificar corretamente 68% deles, enquanto os outros 32% serão classificados como Não-Churn.
-
-**Espec. = 67%**: É a especificidade. Significa que, de todos os casos de Não-churn, o modelo será capaz de classificar corretamente 67% deles, enquanto os outros 33% serão classificados como Churn.
-
-**Sens. + Espec. - 1 = 0.36**: Utilizado para calcular o valor aproximado de KS e comparar com o KS obtido no gráfico acima.
-
-**Acurácia**: De todos os clientes avaliados pelo algoritmo, o percentual de acertos, incluindo churn e não churn, é de 67%.
-</p>
 
 ```{python}
 #| fig-align: center
-#| 
-nos_test.drop(["Evento acumulado", "Nao-evento acumulado", "Ganho 1's","Ganho 0's"], axis = 1, inplace = True)
-
-COLOR           = "#001820"
-df              = nos_test
-cols_to_percent = [
-  "Prob",
-  "% Total acumulado",
-  "Tx. classificados como 1 corretamente",
-  "Tx. classificados como 0 corretamente", 
-  "Sens.", 
-  "Espec.",
-  "Acurácia", 
-  ]
-
-cols_to_float = ["Sens. + Espec. - 1"]
-
-df_styled = (
-    df.style
-        # Cor do header e index
-        .set_table_styles([{
-            'selector': 'th:not(.index_name)',
-            'props': f'background-color: {COLOR}; color: white; text-align: center;'
-        }]) 
-        .set_properties(
-          **{'text-align': "center"})
-        .set_properties(
-            subset = ([7],) ,
-            **{'background-color': "#C5D9F1",
-                'color'          : "black",
-                'font-weight'    : "bold",
-                'text-align'     : "center"
-              })
-        .format('{:.0%}', subset= cols_to_percent) 
-        .format('{:.2f}', subset= cols_to_float) 
-        .hide(axis="index")
-    )
-df_styled
+count = pima["Outcome"].value_counts()
+count
 ```
 
-**Conclusões Sobre o Modelo**
+```{python}
+# Data distribution
+fig, ax = plt.subplots(ncols=3, nrows=3, figsize=(15,12))
+index = 0
+ax = ax.flatten()
 
-Mas afinal, esse modelo é bom ou ruim? Para responder a essa pergunta, devemos comparar duas situações: quando o modelo é utilizado e quando não é.
+for col, value in pima.items():
+    col_dist = sns.boxplot(value, ax=ax[index])
+    col_dist.set_xlabel(col,fontsize=10)
+    col_dist.set_ylabel('density',fontsize=10)
+    index += 1
+plt.tight_layout(pad=0.5, w_pad=0.7, h_pad=5.0)
+```
 
-***Sem o modelo:***
+```{python}
+# Histogram to analyze the distribution of data
+fig, ax = plt.subplots(ncols=3, nrows=3, figsize=(15,12))
+index = 0
+ax = ax.flatten()
 
-- Sem o modelo, não temos nenhuma outra forma de identificar quais clientes estariam mais propensos ao churn e tentar alguma abordagem para resgatar a confiança deles, evitando sua fuga.
+for col, value in pima.items():
+    col_dist = sns.histplot(value, ax=ax[index], kde=True, stat="density", linewidth=0)
+    col_dist.set_xlabel(col,fontsize=10)
+    col_dist.set_ylabel('density',fontsize=10)
+    index += 1
+plt.tight_layout(pad=0.8, w_pad=0.5, h_pad=5.0)
+```
 
-- Isso ocorrendo, o banco teria uma redução de cerca de 20% de seus clientes.
+### Logistic Regression ML Model
+```{python}
+#| fig-align: center
 
-***Com o modelo:***
+# Define x and y
+feature_cols =['Pregnancies', 'Glucose', 'BloodPressure', 'SkinThickness', 'Insulin', 'BMI', 'DiabetesPedigreeFunction', 'Age']
+x=pima[feature_cols]
+y=pima.Outcome
+```
 
-- 68% dos casos possíveis de churn seriam identificados previamente, enquanto os demais 32% não seriam identificados.
+```{python}
+#| fig-align: center
+#split x and y into training (70%) and testing (30%) sets
+x_train, x_test, y_train, y_test = train_test_split(x, y, test_size = 0.3, random_state=0)
+```
 
-- Supondo que um plano de ação seja capaz de impedir o churn de todos os possíveis churn identificados (os 68%), o banco teria uma redução em sua carteira de clientes de apenas 6,4% (32% dos churns, os quais não foram identificados pelo modelo).
+<hr>
 
-- Obviamente, os erros do modelo em classificar Não-churn como churn também geram custos para o banco, pois ele gastará dinheiro para resgatar um cliente que, de fato, não corria risco de perda. Isso ocorrerá em 65% dos casos em que o modelo classificar como churn. De fato, 40% de todos os clientes serão classificados como churn pelo modelo, sendo que apenas 35% desse público realizaria o churn. A questão é que o modelo adota uma postura muito conservadora, onde a perda do cliente é considerada algo muito mais severo do que o gasto com programas para evitar o churn. Por isso, se a probabilidade de ocorrência do churn for maior ou superior a 19%, o modelo prefere recomendar uma ação do banco para tentar evitar a fuga desse cliente.
+### Standardize features
+Standardize features by removing the mean and scaling to unit variance.
 
-- Diante do exposto anteriormente, podemos afirmar que o modelo tem uma boa performance. No entanto, a decisão final de utilizá-lo ou não viria após uma análise de ganho financeiro, comparando o seu uso com a não utilização.
+The standard score of a sample x is calculated as: z = (x - u) / s, where u is the mean of the training samples or zero if with_mean=False, and s is the standard deviation of the training samples or one if with_std=False.
+
+```{python}
+#| fig-align: center
+
+scale = StandardScaler()
+x_train = scale.fit_transform(x_train)
+x_test = scale.fit_transform(x_test)
+```
+
+```{python}
+#| fig-align: center
+
+#Logistic regression model fit on the training set
+logreg = LogisticRegression(solver='lbfgs', max_iter=3000)
+logreg.fit(x_train, y_train)
+```
+
+```{python}
+#| fig-align: center
+
+#Using the trained model to predict the outcome for samples in x_test.
+y_pred = logreg.predict(x_test)
+```
+
+```{python}
+#| fig-align: center
+
+#Return the probability estimates.
+y_score = logreg.predict_proba(x_test)[:, 1]
+```
+
+<hr>
+
+### ML Model Assessment
+- Precision: Percentage of correct positive predictions relative to total positive predictions.
+- Recall: Percentage of correct positive predictions relative to total actual positives.
+- F1 Score: A weighted harmonic mean of precision and recall. The closer to 1, the better the model. F1 Score: 2 * (Precision * Recall) / (Precision + Recall)
+
+```{python}
+#| fig-align: center
+#Comparing actual result and predicted result
+print(classification_report(y_test, y_pred))
+```
+
+- Precision: Out of all the patients that the model predicted would get diabetes, 78% actually did.
+- Recall: Out of all the patients that actually did get diabetes, the model predicted this outcome correctly for 48% of those patients.
+- F1 Score: 0.59 - Since this value is close to 1, it tells us that the model does a good job of predicting whether or not patients will get diabetes. 2 * (Precision * Recall) / (Precision + Recall) ***** 2 * (.78 * .48) / (.78 + .48)
+- Support: These values is regarding how many patients belonged to each class in the test dataset. Among the patientis in the test dataset, 127 did not get diabetes and 65 did get diabetes.
+
+```{python}
+#| fig-align: center
+#The lower the RMS value, the better. O means the model is perfect.
+rms = mean_squared_error(y_test, y_pred, squared=False)
+rms
+```
+
+<hr>
+
+### ROC Curve
+The ROC curve shows the trade-off between sensitivity (or True Positve Rate) and specificity (1 – False Positive Rate).
+
+Classifiers that give curves closer to the top-left corner indicate a better performance
+
+ROC/AUC does not require to set a classification threshold and it's still useful when there is high class imbalance
+
+- ROC curve can help you to choose a threshold that balances sensitivity and specificity in a way that makes sense for your particular context
+
+- You can't actually see the thresholds used to generate the curve on the ROC curve itself  
+
+
+```{python}
+#| fig-align: center
+fpr, tpr, thresh = roc_curve(y_test, y_score, pos_label=logreg.classes_[1])
+```
+```{python}
+#| fig-align: center
+#AUC is the percentage of the ROC plot that is underneath the curve:
+# IMPORTANT: first argument is true values, second argument is predicted probabilities
+print(metrics.roc_auc_score(y_test, y_pred))
+```
+
+```{python}
+#| fig-align: center
+plt.figure(figsize=(6,4))
+plt.plot(fpr, tpr, linewidth=1, marker='.', label='Logistic')
+plt.plot([0,1], [0,1], linestyle='--', label='No Skill')
+plt.rcParams['font.size'] = 8
+plt.title('ROC curve')
+plt.xlabel('Specificity (FPR)')
+plt.ylabel('Sensitivity (TPR)')
+plt.legend()
+plt.show()
+```
+### Accuracy
+Percentage of correct predictions
+
+```{python}
+#| fig-align: center
+print('Accuracy of Logistic regression model is {}'.format(accuracy_score(y_test,y_pred)))
+```
+### Null accuracy
+Null accuracy refers to the accuracy that could be achieved by always predicting the most frequent class in the dataset.
+
+In the test set, 66% (127) of patients did not have diabetes, while 34% did. In this case, the null accuracy would be 66%, because if we always predicted "not diabetes," we would be correct 66% of the time.
+
+```{python}
+#| fig-align: center
+y_test.value_counts().head(1) / len(y_test)
+```
+As the null accuracy is less than model accuracy, it indicates a good result.
+
+#### Comparing the true and predicted response values
+
+```{python}
+#| fig-align: center
+#print the 25 first true and predict responses
+print ('True:'), y_test.values[0:25]
+```
+
+```{python}
+print ('Pred:'), y_pred[0:25]
+```
+
+### Confusion Matrix
+Confusion matrix allows to calculate a variety of metrics. It's a useful for multi-class problems (more than two response classes)
+
+- Every observation in the testing set is represented in exactly one box
+- It's 2x2 matrix because there are 2 responses classes
+- The format shown here is not universal
+
+Basic Terminology
+
+- TP: correctly predict that they have diabetes
+- TN: correctly predict that they do not have diabetes
+- FP: incorrectly predict that they do have diabetes
+- FN: incorrectly predict that they do not have diabetes
+
+```{python}
+#IMPORTANT: First argument is true values, second argument is predict values
+metrics.confusion_matrix(y_test, y_pred)
+```
+
+```{python}
+#Graphic visualization
+cm = confusion_matrix(y_test, y_pred, labels=logreg.classes_)
+disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=logreg.classes_)
+disp.plot()
+plt.show()
+```
+
+- TN: 118 patients without diabetes were correctly predicted as no diabetics
+- FP: 9 patients without diabetes were incorrectly predicted as diabetics
+- FN: 34 patients with diabetes were incorrectly predicted as no diabetics
+- TP: 31 patients with diabetes were correctly predicted as diabetics
+
+```{python}
+#save confusion matrix and slice into four pieces
+confusion = metrics.confusion_matrix(y_test, y_pred)
+TN = confusion[0,0]
+FP = confusion[0,1]
+FN = confusion[1,0]
+TP = confusion[1,1]
+confusion
+```
+
+#### Metrics computed from a confusion matrix
+
+```{python}
+#How often the classifier is correct?
+print('Accuracy: {}'.format((TP + TN) / (TP + TN + FP + FN)))
+#print('Accuracy: {}'.format(metrics.accuracy_score(y_test, y_pred_class)))
+```
+
+#### k-Fold Cross-Validation
+The k-fold cross-validation procedure divides a limited dataset into k non-overlapping folds. Each of the k folds is given an opportunity to be used as a held back test set, whilst all other folds collectively are used as a training dataset. A total of k models are fit and evaluated on the k hold-out test sets and the mean performance is reported.
+
+```{python}
+#This will give the overall accuracy of your model .
+kf = KFold(n_splits=10, random_state=1, shuffle=True)
+cv_result = cross_val_score(logreg, x, y, cv=kf, scoring='accuracy', n_jobs=-1)
+print('Accuracy: %.3f (%.3f)' % (mean(cv_result), std(cv_result)))
+```
+
+```{python}
+#How often the classifier is incorrect?
+print('Error: {}'.format((FP + FN)/(TP + TN + FP + FN)))
+#print('Error: {}'.format(1-metrics.accuracy_score(y_test, y_pred_class)))
+```
+
+```{python}
+#When the actual value is positive, how often is the prediction correct?
+print('Sensitivity (TPR): {}'.format(TP / (TP + FN)))
+#metrics.recall_score(y_test, y_pred_class)
+```
+
+```{python}
+#When the actual value is negative, how often is the prediction correct?
+print('Specificity (FPR): {}'.format(TN / (TN + FP))) 
+#recall_score(y_test, y_pred_class, pos_label=0)
+```
+
+```{python}
+#When a positive value is predicted, how often is the prediction correct?
+print('Precision: {}'.format(TP / (TP + FP))) 
+#metrics.precision_score(y_test, y_pred_class)
+```
+
+### Result
+The choice of metrics depends on the business objective.
+
+For this project, sensibility (False Negative) is the metric most important, since predicting diabetics as no diabetics is the worst expected error. This may imply no further investigations and consequently no treatment of the disease.
+
+So the better result is to have a Sensitivity (The correct prediction for positive values) result higher than a Specificity (The correct prediction for negative values) result.
+
+The error in predicting a healthy patient as a diabetic patient is more acceptable than the opposite.
+
+### Adjusting the classification threshold
+
+```{python}
+#print the first 10 predicted responses
+logreg.predict(x_test)[0:10]
+```
+
+```{python}
+#print the first 10 predicted probabilities of class membership
+logreg.predict_proba(x_test)[0:10, :]
+```
+
+```{python}
+#print the first 10 predicted probabilities for class 1
+logreg.predict_proba(x_test)[0:10, 1]
+```
+
+```{python}
+fig = sns.histplot(data=y_score, bins=8)
+plt.xlabel("Predicted probability of diabetes")
+plt.ylabel("Frequency")
+plt.title("Histogram of predicted probabilities") 
+plt.xlim(0,1)
+plt.rcParams['font.size']=10
+plt.show(fig)
+```
+
+#### Finding the best threshold for predicting diabetes and to increase the sensitivity of the classifier
+Threshold of 0.5 is used by default (for binary problems) to convert predicted possibilities into class predictions
+Threshold can be adjusted to increase sensitivity or specificity
+Sensitivity and specificity have an inverse relationship
+
+
+```{python}
+# calculate roc curves
+fpr, tpr, thresholds = roc_curve(y_test, y_score)
+```
+
+```{python}
+# calculate the g-mean for each threshold
+gmeans = sqrt(tpr * (1-fpr))
+# locate the index of the largest g-mean
+ix = argmax(gmeans)
+print('Best Threshold=%f, G-Mean=%.3f' % (thresholds[ix], gmeans[ix]))
+```
+
+```{python}
+# get the best threshold
+J = tpr - fpr
+ix = argmax(J)
+best_thresh = thresholds[ix]
+print('Best Threshold=%f' % (best_thresh))
+```
+
+```{python}
+# define a function that accepts a threshold and prints sensitivity and specificity
+def evaluate_threshold(threshold):
+    print('Sensitivity:', tpr[thresholds > threshold][-1])
+    print('Specificity:', 1 - fpr[thresholds > threshold][-1])
+```
+
+```{python}
+evaluate_threshold(0.5)
+```
+
+```{python}
+evaluate_threshold(0.3)
+```
+
+```{python}
+evaluate_threshold(0.242365)
+```
+
+```{python}
+#predict diabetes if the predicted probabilities is greater than 0.242365
+y_pred_2 = preprocessing.binarize([y_score], threshold=0.242365)[0]
+```
+
+```{python}
+#print the first 10 predicted probabilites
+y_pred[0:10]
+```
+
+```{python}
+#print the first 10 predicted classes with the lower threshold
+y_pred_2[0:10]
+```
+
+```{python}
+#previous confusion matrix (default threshold of 0.5)
+confusion
+```
+
+```{python}
+#now confusion matrix (threshold of 0.3)
+confusion_2 = metrics.confusion_matrix(y_test, y_pred_2)
+TN = confusion_2[0,0]
+FP = confusion_2[0,1]
+FN = confusion_2[1,0]
+TP = confusion_2[1,1]
+```
+
+```{python}
+confusion_2
+```
+
+```{python}
+#sensitivity has increased (used to be 0.7384615384615385)
+print('Sensitivity (TPR): {}'.format(TP / (TP + FN)))
+```
+
+```{python}
+#sensitivity has increased (used to be 0.7795275590551181)
+print('Specificity (FPR): {}'.format(TN / (TN + FP))) 
+```
+
+```{python}
+#AUC is the percentage of the ROC plot that is underneath the curve:
+print(metrics.roc_auc_score(y_test, y_pred_2))
+```
+
+### Conclusion
+With a threshold of 0.242365, the sensitivity has increased from 0.48 to 0.85, and the specificity has decreased from 0.93 to 0.75. Despite the decrease in specificity, for this project, the most important metric is sensitivity, once we want to correctly predict the patients with diabetes, the correct prediction for positive values.
+
+The AUC has also increased after threshold adjustment, from 0.70 to 0.79.

@@ -2,26 +2,32 @@
 title: "Home"
 ---
 
-## Olá, seja bem-vindo ao meu portfólio.
+## My Portfolio
 
-<img align="left" width="250px" style="margin-top: 0px" src="./img/me-removebg.png" >
++5 years of experience in Business Intelligence and Data Science working for international companies like Samsung, InBev, Bayer, and Honda, attending projects from different business areas such as marketing, operation management, and customer experience.
 
-- 👨🏻‍🎓 Bacharelado em Engenharia Química | Universidade Estadual de Maringá - UEM | 2016-2020.
-- 🏅 Especialista em Inteligência Artificial e Computacional | Universidade Federal de Viçosa - UFV | 2023.
-- 🔭 Atualmente, trabalho como Cientista de Dados, focado na construção de modelos preditivos para o agronegócio.
-- 🌱 Busco aprimoramento constante de acordo com as melhores práticas de MLOps.
-- 💬 Podemos discutir sobre todo o ciclo de vida de modelos de Aprendizado de Máquina.
-- 😄 Pronomes: Ele/Dele.
-- ⚡ Curiosidade: Concluí minha graduação em Engenharia Química no final de 2020. Em seguida, iniciei minha jornada na indústria química no setor de P&D. No entanto, minha paixão por tecnologia e análise de dados começou a falar mais alto (uso programação de computadores desde 2016, resolvendo problemas de engenharia). Decidi, então, ingressar no mundo da Ciência de Dados, começando na área de BI/BA e, posteriormente, atuando como Cientista de Dados com foco no desenvolvimento e implementação de modelos de Aprendizado de Máquina.
+Data Scientist with experience working on cross-functional teams to implement effective data solutions, develop data governance policies, and leverage advanced analytics for valuable insights
 
+I am currently studying Behavioral Data Science at the Universitat de Barcelona, where I delve into the intersection of data analysis, psychology, and behavioral economics. This program sharpens my advanced data analysis skills using R and Python, enhancing my expertise in statistical modeling, machine learning, deep learning, and data visualization. The psychological component of the curriculum focuses on psychographics, behavior prediction through psychometrics, and behavioral modeling, empowering me to develop AI solutions tailored to human behavior. This academic journey has reinvigorated my professional enthusiasm and significantly improved my ability to apply data science in more empathetic and effective ways.
 
-## Ferramentas.
-<div style="background-color: #becad4">
+- BS in Electrical Engineering-Telecommunication - PUC Campinas, SP - 2011
+- Specialization in Complex Data Mining - Unicamp, SP - 2018
+- Specialization in Computer Software Engineering - Unicamp, SP - 2013
+- Specialization in Data Science (Big Data Processing and Analytics) - Mackenzie, SP - 2021
+- Master Behavioral Data Science - Barcelona University - 2024
 
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/anaconda/anaconda-original-wordmark.svg" width="60" height="60" vspace="30" hspace="30"/><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original-wordmark.svg" width="60" height="60" vspace="30" hspace="30"/><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original-wordmark.svg" width="60" height="60" vspace="30" hspace="30"/><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jupyter/jupyter-original-wordmark.svg" width="60" height="60" vspace="30" hspace="30"/><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" width="60" height="60" vspace="30" hspace="30"/>
+## Tools
+<div style="background-color: #E5E7E9">
+
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original-wordmark.svg" width="60" height="60" vspace="30" hspace="30"/>
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/numpy/numpy-original-wordmark.svg" width="60" height="60" vspace="30" hspace="30"/>
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original-wordmark.svg" width="60" height="60" vspace="30" hspace="30"/>
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original-wordmark.svg" width="60" height="60" vspace="30" hspace="30"/>
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jupyter/jupyter-original-wordmark.svg" width="60" height="60" vspace="30" hspace="30"/>
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/anaconda/anaconda-original-wordmark.svg" width="60" height="60" vspace="30" hspace="30"/>
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-plain-wordmark.svg" width="60" height="60" vspace="30" hspace="30"/>
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original-wordmark.svg" width="60" height="60" vspace="30" hspace="30"/>
 
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/numpy/numpy-original-wordmark.svg" width="60" height="60" vspace="30" hspace="30"/><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original-wordmark.svg" width="60" height="60" vspace="30" hspace="30"/><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original-wordmark.svg" width="60" height="60" vspace="30" hspace="30"/><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original-wordmark.svg" width="60" height="60" vspace="30" hspace="30"/><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg" width="60" height="60" vspace="30" hspace="30"/><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-plain-wordmark.svg" width="60" height="60" vspace="30" hspace="30"/>
 </p>
 
 </div>
