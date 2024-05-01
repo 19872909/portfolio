@@ -1,20 +1,26 @@
 ---
-title: "Home"
+title: "Welcome to my page"
 ---
+## Summary
+<div align-items: flex-start;">
+<img src="./img/valeska.png" align="left" style="width: 160px; margin-right: 20px;">
 
-## My Portfolio
+<div>
 
-I have over five years of experience in Business Intelligence and Data Science, having collaborated with international corporations such as Samsung, InBev, Bayer, and Honda across various business domains including marketing, operations management, and customer experience.
+<p>With more than five years of experience in Business Intelligence and Data Science, I have collaborated with international companies such as Samsung, InBev, Bayer, and Honda. My professional journey spans a variety of business domains, including marketing, operations management, and customer experience.</p>
+<p>As a Data Scientist, I have integrated cross-functional teams to deliver data-driven solutions, establish data governance frameworks, and apply advanced analytics to extract valuable insights.</p>
+<p>Currently, I am enhancing my skills through a master's degree in Behavioral Data Science at the University of Barcelona. This program is enriching my abilities in data analysis, statistical modeling, machine learning, deep learning, and data visualization using R and Python. It also deepens my understanding of psychology and behavioral economics, focusing on psychographics, predictive behavioral modeling, and psychometrics. This educational experience is empowering me to apply data science in more empathetic and impactful ways.</p>
 
-As a Data Scientist, I have worked within cross-functional teams to deliver data-driven solutions, establish data governance frameworks, and utilize advanced analytics to extract insights.
+<ul>
+<li><a href="https://www.il3.ub.edu/master-behavioral-data-science" target="_blank">Master Behavioral Data Science </a>- Barcelona University, 2024</a></li>
+<li><a href="https://www.mackenzie.br/pos-graduacao/pos-e-mba/alphaville-alameda-tocantins/tecnologia-da-informacao/mba-em-ciencia-de-dados-big-data-processing-and-analytics" target="_blank">MBA Big Data Processing and Analytics </a>- Mackenzie-SP, 2021</li>
+<li><a href="https://ic.unicamp.br/extensao/cursos/engenharia-de-software/" target="_blank">Specialization in Computer Software Engineering </a>- Unicamp-SP, 2013</li>
+<li><a href="https://www.ic.unicamp.br/~mdc/" target="_blank">Specialization in Complex Data Mining </a>- Unicamp, SP - 2018</li>
+<li><a href="https://www.puc-campinas.edu.br/graduacao/engenharia-eletrica/" target="_blank">BS in Electrical Engineering-Telecommunication </a>- PUC Campinas-SP, 2011</li>
+</ul>
 
-I am studying Behavioral Data Science at the Universitat de Barcelona. This program is enhancing my skills in data analysis, statistical modeling, machine learning, deep learning, and data visualization using R and Python. It also gives me an understanding of psychology and behavioral economics, focusing on psychographics, predictive behavioral modeling, and psychometrics. This educational experience is enabling me to apply data science in ways that are more empathetic and impactful.
-
-- BS in Electrical Engineering-Telecommunication - PUC Campinas, SP - 2011
-- Specialization in Complex Data Mining - Unicamp, SP - 2018
-- Specialization in Computer Software Engineering - Unicamp, SP - 2013
-- Specialization in Data Science (Big Data Processing and Analytics) - Mackenzie, SP - 2021
-- Master Behavioral Data Science - Barcelona University - 2024
+</div>
+</div>
 
 ## Tools
 <div style="background-color: #E5E7E9">
@@ -22,13 +28,15 @@ I am studying Behavioral Data Science at the Universitat de Barcelona. This prog
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original-wordmark.svg" width="60" height="60" vspace="30" hspace="30"/>
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/numpy/numpy-original-wordmark.svg" width="60" height="60" vspace="30" hspace="30"/>
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original-wordmark.svg" width="60" height="60" vspace="30" hspace="30"/>
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original-wordmark.svg" width="60" height="60" vspace="30" hspace="30"/>
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jupyter/jupyter-original-wordmark.svg" width="60" height="60" vspace="30" hspace="30"/>
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/anaconda/anaconda-original-wordmark.svg" width="60" height="60" vspace="30" hspace="30"/>
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-plain-wordmark.svg" width="60" height="60" vspace="30" hspace="30"/>
+<img src="./img/rstudio.png" width="60" height="60" vspace="30" hspace="30"/>
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original-wordmark.svg" width="60" height="60" vspace="30" hspace="30"/>
+<img src="./img/vscode.png" width="60" height="60" vspace="30" hspace="30"/>
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original-wordmark.svg" width="60" height="60" vspace="30" hspace="30"/>
+<img src="./img/aws.png" width="60" height="60" vspace="30" hspace="30"/>
+<img src="./img/tableau.png" width="60" height="60" vspace="30" hspace="30"/>
+<img src="./img/powerbi.png" width="60" height="60" vspace="30" hspace="30"/>
+<img src="./img/QuickSight.png" width="60" height="60" vspace="30" hspace="30"/>
 
-</p>
 </div>
-
-![](./cv/cv.jpeg){fig-align="center"}
+</p>

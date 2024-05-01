@@ -47,7 +47,7 @@ from sklearn.model_selection import train_test_split, cross_val_score, KFold
 from sklearn.linear_model import LogisticRegression
 
 #Dataset read
-pima = pd.read_csv('./source/diabetes.csv')
+pima = pd.read_csv('./source/project2/diabetes.csv')
 
 #The dataset has 768 rows and 9 columns
 pima.shape

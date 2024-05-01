@@ -1,0 +1,73 @@
+---
+title: "Professional Experiences"
+---
+ 
+### Honda by FiveActs
+- Data Scientist – January 2024 to April 2024
+
+Led the identification and mapping of statistical analysis techniques, such as factorial analysis, Principal
+Component Analysis (PCA), and dimension reduction processes, along with machine learning algorithms
+like K-Means, using on-premise tools. Developed these analyses in Python with the goals of reducing costs,
+decreasing reliance on external tools, and automating previously manual analyses.
+
+### Bayer by Maxxidata
+- Data Scientist – March 2020 to December 2023
+
+Development of data-driven solutions working since the business assessment, analytics engineering,
+statistical analysis as univariate, bivariate, correlation, hypothesis validation, and development of
+machine learning models as decision tree, regression analysis, and clustering.
+The operation effort has been reduced by around 60% by the development of an algorithm that
+automatically approves tickets reported by the customers, based on their historical data.
+
+Development of BI dashboards by establishing the KPIs with business areas, creation of customized
+datasets, support on data analysis, and generation of data insights to help the business with strategic
+decisions
+
+### Anheuser-Busch InBev by Mazzatech
+- Data Analyst – November 2019 to March 2020
+
+Automated data validation for social media ETL pipelines with Python, supporting MarTech team by
+ensuring BI dashboard data consistency.
+
+### Samsung Institute of Development for Informatics
+- Data Analyst – January 2019 to November 2019
+
+Development of BI dashboards on AWS Quicksight and through Python library Bokeh, working from the
+definition of KPIs with the business to the documentation needed for data engineering to build the
+customized tables and datasets.
+- The customer experience with technical assistance has been improved since the attending time was
+reduced by around 80% after the identification of bottlenecks in the internal process through the data
+collection in near real-time and measurement of the attendance phase.
+
+- Requirement Analyst – March 2018 to January 2019
+
+Research of recent technologies and feasibility analysis for designing new projects, facilitating their
+development by creating requirements through analysis and evaluation of business and user needs.
+Focused on stakeholders’ expectations alignment considering mainly in terms of user experience and
+usability, definition of project scope, documentation of functional and non-functional requirements, and
+creation of a roadmap with project managers.
+
+- Software Test and Quality Engineer - September 2013 to March 2018
+
+Elaboration of test strategy, creation or updates on test cases based on project specifications, technical
+support for the test execution team, interfacing with the development team about test and defects
+concerns, and participation actively in all project phases, providing support aiming at quick issues
+resolution.
+Dissemination and promotion on the usage of the software development process, also providing
+proposals for improvements to increase the team's productivity and help new team members
+understand and follow Samsung Global process.
+
+### AOC 
+- Software Test Engineer - September 2012 to August 2013
+
+### Motorola Mobility 
+- Software Test Engineer - August 2011 to August 2012
+
+### AT&T 
+- Network Analyst - January 2011 to August 2011
+
+### British Telecom 
+- Network Analyst – March 2009 to January 2011
+
+### Motorola Mobility 
+- Trainee in Software Quality Assurance and Software Feature Test – July 2003 to December 2008

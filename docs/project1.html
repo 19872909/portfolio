@@ -64,10 +64,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "language": {
     "search-no-results-text": "No results",
@@ -165,7 +165,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./project2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">2. PIMA Indians Diabetes</span></a>
+ <span class="menu-text">2. Prediction of Diabetes</span></a>
   </div>
 </li>
     </ul>
@@ -212,7 +212,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="introduction" class="level2">
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
 <p>This report presents a classification of students based on the dimensions of self-compassion, burnout, and perceived social support.</p>
-<div id="072f1fd6" class="cell" data-execution_count="1">
+<div id="e2f39732" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> openpyxl</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
@@ -223,12 +223,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> statsmodels.graphics.mosaicplot <span class="im">import</span> mosaic</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="aee069b5" class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_excel(<span class="st">'./source/DATA_Coaches.xlsx'</span>,engine<span class="op">=</span><span class="st">'openpyxl'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="80abb93c" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_excel(<span class="st">'./source/project1/DATA_Coaches.xlsx'</span>,engine<span class="op">=</span><span class="st">'openpyxl'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="a0573bc2" class="cell" data-execution_count="3">
+<div id="8b39e60d" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>df.describe()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="67">
+<div class="cell-output cell-output-display" data-execution_count="3">
 <div>
 <div>
 
@@ -465,7 +465,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="preparación-de-datos" class="level2">
 <h2 class="anchored" data-anchor-id="preparación-de-datos">Preparación de datos:</h2>
 <p>Aplicación de un filtro de exclusión para descartar registros que tengan valores fuera del rango de 1 a 5</p>
-<div id="7ae6b482" class="cell" data-execution_count="4">
+<div id="ee3973e8" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Definir rango válido de 1 a 5</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>valid_range <span class="op">=</span> <span class="bu">set</span>(<span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">6</span>))</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Función para filtrar filas según el rango válido</span></span>
@@ -474,7 +474,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Aplicar la función de filtro a cada fila.</span></span>
 <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>df_cleaned <span class="op">=</span> df[df.<span class="bu">apply</span>(is_valid, axis<span class="op">=</span><span class="dv">1</span>)]</span>
 <span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>df_cleaned.describe()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="68">
+<div class="cell-output cell-output-display" data-execution_count="4">
 <div>
 <div>
 
@@ -711,14 +711,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="función-para-invertir-la-puntuación" class="level2">
 <h2 class="anchored" data-anchor-id="función-para-invertir-la-puntuación">Función para invertir la puntuación</h2>
 <p>Función para invertir la puntuación de los ítems de las escalas incorporadas en la base de datos “DATA_coaches”. A pesar que en esta base de datos todas las escalas tienen el mismo rango en la escala ordinal (de 1 a 5 puntos) haced que la función permita trabajar con cualquier escala ordinal a la que se le quiera invertir la puntuación.</p>
-<div id="b3b10067" class="cell" data-execution_count="5">
+<div id="a8e1ec59" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> invert_values(df, value_max, value_min, columns_to_invert):</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    df_inverted <span class="op">=</span> df.copy()</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    df_inverted[columns_to_invert] <span class="op">=</span> value_max <span class="op">+</span> value_min <span class="op">-</span> df[columns_to_invert]</span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> df_inverted</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Utilizad la función anterior para invertir los ítems descritos en la Tabla 1 cuya codificación reza como inversa. Hecho esto, guardad estas nuevas variables sobre las originales.</p>
-<div id="116c8fa7" class="cell" data-execution_count="6">
+<div id="349a76a6" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>value_max <span class="op">=</span> df_cleaned.<span class="bu">max</span>().<span class="bu">max</span>()</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>value_min <span class="op">=</span> df_cleaned.<span class="bu">min</span>().<span class="bu">min</span>()</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -735,7 +735,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>df_inverted <span class="op">=</span> invert_values(df_cleaned, value_max, value_min, columns_to_invert)</span>
 <span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>df_inverted.describe()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="70">
+<div class="cell-output cell-output-display" data-execution_count="6">
 <div>
 <div>
 
@@ -969,9 +969,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Los valores máximo y mínimo se mantuvieron iguales y se cambió la media. Prueba para comparar las escalas en la primera línea del df</p>
-<div id="783859b0" class="cell" data-execution_count="7">
+<div id="e7f984bb" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>df_cleaned.loc[:<span class="dv">0</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="71">
+<div class="cell-output cell-output-display" data-execution_count="7">
 <div>
 <div>
 
@@ -1036,9 +1036,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<div id="00a5e12a" class="cell" data-execution_count="8">
+<div id="4897f3fd" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>df_inverted.loc[:<span class="dv">0</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="72">
+<div class="cell-output cell-output-display" data-execution_count="8">
 <div>
 <div>
 
@@ -1105,11 +1105,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>Se observa que para las variables seleccionadas, los valores se invirtieron: - Valor 1 cambió al valor 5 - Valor 2 cambió al valor 4 - Valor 3 sigue siendo el mismo - Valor 4 cambió al valor 2 - Valor 5 cambió al valor 1</p>
 <p>Reemplezando los valores en el df orginal</p>
-<div id="0f7a78a6" class="cell" data-execution_count="9">
+<div id="7e653377" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df_inverted</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Calculad las puntuaciones totales de las escalas (autocompasión, burnout y apoyo social percibido). Guardad estas nuevas variables en la base de datos.</p>
-<div id="08df9097" class="cell" data-execution_count="10">
+<div id="48668eed" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>autocompasion1 <span class="op">=</span> df.<span class="bu">filter</span>(regex<span class="op">=</span><span class="st">'^t1scs'</span>)</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>autocompasion2 <span class="op">=</span> df.<span class="bu">filter</span>(regex<span class="op">=</span><span class="st">'^t2scs'</span>)</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>autocompasion3 <span class="op">=</span> df.<span class="bu">filter</span>(regex<span class="op">=</span><span class="st">'^t3scs'</span>)</span>
@@ -1120,7 +1120,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>apoyo_social2 <span class="op">=</span> df.<span class="bu">filter</span>(regex<span class="op">=</span><span class="st">'^t2ssq'</span>)</span>
 <span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>apoyo_social3 <span class="op">=</span> df.<span class="bu">filter</span>(regex<span class="op">=</span><span class="st">'^t3ssq'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="cc7ebdb1" class="cell" data-execution_count="11">
+<div id="55f46b01" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'autocompasion1'</span>] <span class="op">=</span> autocompasion1.<span class="bu">sum</span>(axis<span class="op">=</span><span class="dv">1</span>)</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'autocompasion2'</span>] <span class="op">=</span> autocompasion2.<span class="bu">sum</span>(axis<span class="op">=</span><span class="dv">1</span>)</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'autocompasion3'</span>] <span class="op">=</span> autocompasion3.<span class="bu">sum</span>(axis<span class="op">=</span><span class="dv">1</span>)</span>
@@ -1131,7 +1131,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'apoyo_social2'</span>] <span class="op">=</span> apoyo_social2.<span class="bu">sum</span>(axis<span class="op">=</span><span class="dv">1</span>)</span>
 <span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'apoyo_social3'</span>] <span class="op">=</span> apoyo_social3.<span class="bu">sum</span>(axis<span class="op">=</span><span class="dv">1</span>)</span>
 <span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="75">
+<div class="cell-output cell-output-display" data-execution_count="11">
 <div>
 <div>
 
@@ -1293,15 +1293,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Con las nuevas variables calculadas en el apartado anterior, haced una descripción estadística de las mismas en los tres momentos de estudio. Una posibilidad de tabla resumen sería la plantilla mostrada en la Tabla 2.</p>
-<div id="9a3a23a5" class="cell" data-execution_count="12">
+<div id="3326b5a1" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>df_new <span class="op">=</span> df[[<span class="st">'autocompasion1'</span>, <span class="st">'burnout1'</span>, <span class="st">'apoyo_social1'</span>,</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>             <span class="st">'autocompasion2'</span>, <span class="st">'burnout2'</span>, <span class="st">'apoyo_social2'</span>,</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>             <span class="st">'autocompasion3'</span>, <span class="st">'burnout3'</span>, <span class="st">'apoyo_social3'</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="f02577bb" class="cell" data-execution_count="13">
+<div id="7c8c30a3" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>stat <span class="op">=</span> df_new.describe()</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>stat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="77">
+<div class="cell-output cell-output-display" data-execution_count="13">
 <div>
 <div>
 
@@ -1429,7 +1429,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="evolución-a-lo-largo-del-tiempo" class="level2">
 <h2 class="anchored" data-anchor-id="evolución-a-lo-largo-del-tiempo">Evolución a lo largo del tiempo</h2>
 <p>Complementad el análisis anterior con gráficos adecuados que permitan evaluar la evolución de las 3 dimensiones a lo largo del tiempo.</p>
-<div id="a92b2441" class="cell" data-execution_count="14">
+<div id="92e74252" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>mean_values_autocomp1 <span class="op">=</span> stat.loc[<span class="st">'mean'</span>, <span class="st">'autocompasion1'</span>]</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>mean_values_burnout1 <span class="op">=</span> stat.loc[<span class="st">'mean'</span>, <span class="st">'burnout1'</span>]</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>mean_values_apoyo1 <span class="op">=</span> stat.loc[<span class="st">'mean'</span>, <span class="st">'apoyo_social1'</span>]</span>
@@ -1440,7 +1440,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>mean_values_burnout3 <span class="op">=</span> stat.loc[<span class="st">'mean'</span>, <span class="st">'burnout3'</span>]</span>
 <span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>mean_values_apoyo3 <span class="op">=</span> stat.loc[<span class="st">'mean'</span>, <span class="st">'apoyo_social3'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="43bdfd6e" class="cell" data-execution_count="15">
+<div id="fb699097" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a new DataFrame with the mean values</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>mean_df <span class="op">=</span> pd.DataFrame({</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">'autocompasion'</span>: [mean_values_autocomp1, mean_values_autocomp2, mean_values_autocomp3],</span>
@@ -1448,7 +1448,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">'apoyo_social'</span>: [mean_values_apoyo1, mean_values_apoyo2, mean_values_apoyo3]</span>
 <span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>}, index<span class="op">=</span>[<span class="st">'Línea Base'</span>, <span class="st">'3 Meses'</span>, <span class="st">'6 Meses'</span>])</span>
 <span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>mean_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="79">
+<div class="cell-output cell-output-display" data-execution_count="15">
 <div>
 <div>
 
@@ -1488,7 +1488,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<div id="1cc47f5c" class="cell" data-execution_count="16">
+<div id="56d0b715" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plotting with seaborn</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>))</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> column <span class="kw">in</span> mean_df.columns:</span>
@@ -1515,7 +1515,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="boxplots-for-each-dimension-over-time" class="level2">
 <h2 class="anchored" data-anchor-id="boxplots-for-each-dimension-over-time">Boxplots for Each Dimension Over Time</h2>
-<div id="5c823731" class="cell" data-execution_count="17">
+<div id="8203e4a4" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create separate boxplots for each dimension</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(ncols<span class="op">=</span><span class="dv">3</span>, figsize<span class="op">=</span>(<span class="dv">18</span>, <span class="dv">6</span>))</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1567,10 +1567,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="correlation-matrix" class="level2">
 <h2 class="anchored" data-anchor-id="correlation-matrix">Correlation Matrix</h2>
 <p>Estudiad todas las posibles correlaciones entre las dimensiones obtenidas en los apartados anteriores con indicadores adecuados y de forma separada para cada momento. Complementad estos análisis sobre correlaciones con gráficos adecuados.</p>
-<div id="216db5c9" class="cell" data-execution_count="18">
+<div id="aa17bfde" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>correlation_matrix <span class="op">=</span> df_new.corr()</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>correlation_matrix</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="82">
+<div class="cell-output cell-output-display" data-execution_count="18">
 <div>
 <div>
 
@@ -1706,7 +1706,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<div id="e1b1fc90" class="cell" data-execution_count="19">
+<div id="5b3fef65" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot a heatmap for better visualization of correlations</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>))</span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>sns.heatmap(correlation_matrix, annot<span class="op">=</span><span class="va">True</span>, cmap<span class="op">=</span><span class="st">"coolwarm"</span>, fmt<span class="op">=</span><span class="st">".2f"</span>, linewidths<span class="op">=</span><span class="fl">.5</span>)</span>
@@ -1724,7 +1724,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>La correlación positiva más significativa (0,80) se encontró entre “apoyo_social1” y “apoyo_social3”. La segunda correlación positiva más alta (0,78) se observa entre “burnout2” y “burnout3”, y la tercera correlación positiva más alta (0,77) es entre “apoyo_social1” y “apoyo_social2”.</p>
 <p>En cuanto a las tendencias, cuando disminuye la percepción de apoyo social, hay una tendencia asociada a que el nivel de burnout disminuya, tanto en el mismo momento como en los tres meses siguientes. Por el contrario, cuando aumenta el apoyo social percibido, a esta tendencia le sigue un aumento continuo en los meses siguientes. De manera similar, un aumento en el nivel de burnout tiende a ir seguido de un aumento durante los próximos tres meses.</p>
 <p>Estos patrones sugieren una fuerte asociación entre la percepción de apoyo social y el nivel de agotamiento. Cuando no hay signos de agotamiento, la necesidad de apoyo social puede no ser tan apremiante. Sin embargo, el aumento en la percepción de apoyo social puede indicar un posible aumento simultáneo en el nivel de burnout.</p>
-<div id="0da3c49a" class="cell" data-execution_count="20">
+<div id="3d9881dc" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot all three heatmaps in a single row</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">3</span>, figsize<span class="op">=</span>(<span class="dv">18</span>, <span class="dv">6</span>))</span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1754,7 +1754,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Apoyo Social: - Tiene una correlación negativa con la automapasión. Cuando el apoyo social disminuye, la autocompasión también tiende a disminuir - Tiene una correlación negativa con el apoyo social. Cuando el apoyo social disminuye, el agotamiento tiende a disminuir</p>
 <p>Cread una función que clasifique cada individuo de la muestra de acuerdo al siguiente criterio:</p>
 <p>Si t3=t1:estable Si t3&lt;t1:inestable positivo (SCS y CBQ) o negativo (BPSSQ) Si t3&gt;t1:inestable negativo (SCS y CBQ) o positivo (BPSSQ) Utilizad la nueva función para clasificar a los participantes en el estudio por separado por cada dimensión de interés (autocompasión, burnout y apoyo social percibido). Guardad estas clasificaciones como nuevas variables de la base de datos.</p>
-<div id="7afcec2a" class="cell" data-execution_count="21">
+<div id="61f5308a" class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Función para clasificar a cada individuo</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> clasificar_compasion(row):</span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> row[<span class="st">'autocompasion3'</span>] <span class="op">==</span> row[<span class="st">'autocompasion1'</span>]:</span>
@@ -1767,7 +1767,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Aplicar la función a la dimensión de autocompasión y crear nueva variable</span></span>
 <span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>df_new[<span class="st">'clasificacion_autocompasion'</span>] <span class="op">=</span> df_new.<span class="bu">apply</span>(clasificar_compasion, axis<span class="op">=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>/var/folders/dq/jx6zt2hd4lx90cd8_tbzmqs00000gn/T/ipykernel_65177/3400645821.py:11: SettingWithCopyWarning:
+<pre><code>/var/folders/dq/jx6zt2hd4lx90cd8_tbzmqs00000gn/T/ipykernel_12564/3400645821.py:11: SettingWithCopyWarning:
 
 
 A value is trying to be set on a copy of a slice from a DataFrame.
@@ -1777,7 +1777,7 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
 </code></pre>
 </div>
 </div>
-<div id="d6551c39" class="cell" data-execution_count="22">
+<div id="799908c1" class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Repetir el proceso para las otras dimensiones (burnout y apoyo social)</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Función para clasificar burnout</span></span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> clasificar_burnout(row):</span>
@@ -1791,7 +1791,7 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
 <span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Aplicar la función a la dimensión de burnout y crear nueva variable</span></span>
 <span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>df_new[<span class="st">'clasificacion_burnout'</span>] <span class="op">=</span> df_new.<span class="bu">apply</span>(clasificar_burnout, axis<span class="op">=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>/var/folders/dq/jx6zt2hd4lx90cd8_tbzmqs00000gn/T/ipykernel_65177/2911693610.py:12: SettingWithCopyWarning:
+<pre><code>/var/folders/dq/jx6zt2hd4lx90cd8_tbzmqs00000gn/T/ipykernel_12564/2911693610.py:12: SettingWithCopyWarning:
 
 
 A value is trying to be set on a copy of a slice from a DataFrame.
@@ -1801,7 +1801,7 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
 </code></pre>
 </div>
 </div>
-<div id="485c2091" class="cell" data-execution_count="23">
+<div id="a9d25763" class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Función para clasificar apoyo social</span></span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> clasificar_apoyo_social(row):</span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> row[<span class="st">'apoyo_social3'</span>] <span class="op">==</span> row[<span class="st">'apoyo_social1'</span>]:</span>
@@ -1815,7 +1815,7 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
 <span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>df_new[<span class="st">'clasificacion_apoyo_social'</span>] <span class="op">=</span> df_new.<span class="bu">apply</span>(clasificar_apoyo_social, axis<span class="op">=</span><span class="dv">1</span>)</span>
 <span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>df_new.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>/var/folders/dq/jx6zt2hd4lx90cd8_tbzmqs00000gn/T/ipykernel_65177/844085262.py:11: SettingWithCopyWarning:
+<pre><code>/var/folders/dq/jx6zt2hd4lx90cd8_tbzmqs00000gn/T/ipykernel_12564/844085262.py:11: SettingWithCopyWarning:
 
 
 A value is trying to be set on a copy of a slice from a DataFrame.
@@ -1824,7 +1824,7 @@ Try using .loc[row_indexer,col_indexer] = value instead
 See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
 </code></pre>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="87">
+<div class="cell-output cell-output-display" data-execution_count="23">
 <div>
 <div>
 
@@ -1931,16 +1931,16 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
 </div>
 </div>
 <p>¿Existe relación entre las variables categóricas creadas en el apartado anterior? Realizad todos los análisis bivariantes posibles (escogiendo 2 variables cada vez)</p>
-<div id="8552cb95" class="cell" data-execution_count="24">
+<div id="629fabaf" class="cell" data-execution_count="24">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>df_cat <span class="op">=</span> df_new[[<span class="st">'clasificacion_autocompasion'</span>, <span class="st">'clasificacion_burnout'</span>, <span class="st">'clasificacion_apoyo_social'</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="a768abd4" class="cell" data-execution_count="25">
+<div id="0411fe1a" class="cell" data-execution_count="25">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># tabla de contingencia</span></span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>cont_tbl_auto_burn <span class="op">=</span> pd.crosstab(df_cat[<span class="st">'clasificacion_autocompasion'</span>], df_cat[<span class="st">'clasificacion_burnout'</span>])</span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>cont_tbl_auto_apoy <span class="op">=</span> pd.crosstab(df_cat[<span class="st">'clasificacion_autocompasion'</span>], df_cat[<span class="st">'clasificacion_apoyo_social'</span>])</span>
 <span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>cont_tbl_burn_apoy <span class="op">=</span> pd.crosstab(df_cat[<span class="st">'clasificacion_burnout'</span>], df_cat[<span class="st">'clasificacion_apoyo_social'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="70e2dc05" class="cell" data-execution_count="26">
+<div id="48c11a00" class="cell" data-execution_count="26">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># chi-square y p-value</span></span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>chi2, p, _, _ <span class="op">=</span> chi2_contingency(cont_tbl_auto_burn)</span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="co"># cramer's v</span></span>
@@ -1976,7 +1976,7 @@ Cramer's V = 0.10
 Las variables son independientes. No hay evidencia suficiente para rechazar la independencia entre las variables.</code></pre>
 </div>
 </div>
-<div id="96f5cf3a" class="cell" data-execution_count="27">
+<div id="5ebe5c25" class="cell" data-execution_count="27">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># chi-square y p-value</span></span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>chi2, p, _, _ <span class="op">=</span> chi2_contingency(cont_tbl_auto_apoy)</span>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="co"># cramer's v</span></span>
@@ -2013,7 +2013,7 @@ Cramer's V = 0.06
 Las variables son independientes. No hay evidencia suficiente para rechazar la independencia entre las variables.</code></pre>
 </div>
 </div>
-<div id="932512b4" class="cell" data-execution_count="28">
+<div id="5b07776f" class="cell" data-execution_count="28">
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># chi-square y p-value</span></span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>chi2, p, _, _ <span class="op">=</span> chi2_contingency(cont_tbl_burn_apoy)</span>
 <span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="co"># cramer's v</span></span>
@@ -2052,19 +2052,19 @@ Las variables son independientes. No hay evidencia suficiente para rechazar la i
 </div>
 <p>Como todos os P-values são &gt; 0.05, indica que as variáveis são independentes.</p>
 <p>Complementad los análisis bivariantes anteriores con gráficos adecuados para favorecer la inspección visual de las distribuciones conjuntas.</p>
-<div id="51bfc9bd" class="cell" data-execution_count="29">
+<div id="2624a606" class="cell" data-execution_count="29">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Melt the DataFrame to have a single column for variable names and values</span></span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>df_melted <span class="op">=</span> pd.melt(df_cat[[<span class="st">'clasificacion_autocompasion'</span>, <span class="st">'clasificacion_burnout'</span>, <span class="st">'clasificacion_apoyo_social'</span>]], var_name<span class="op">=</span><span class="st">'Variable'</span>, value_name<span class="op">=</span><span class="st">'Category'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="ece0b2e6" class="cell" data-execution_count="30">
+<div id="e6359307" class="cell" data-execution_count="30">
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get unique combinations of Variable and Category</span></span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>combinations <span class="op">=</span> df_melted.groupby([<span class="st">'Variable'</span>, <span class="st">'Category'</span>]).size().reset_index(name<span class="op">=</span><span class="st">'Count'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="ac372fbc" class="cell" data-execution_count="31">
+<div id="65d9406f" class="cell" data-execution_count="31">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a mosaic chart</span></span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>mosaic_data <span class="op">=</span> pd.crosstab(df_melted[<span class="st">'Variable'</span>], df_melted[<span class="st">'Category'</span>])</span>
 <span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>mosaic_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="95">
+<div class="cell-output cell-output-display" data-execution_count="31">
 <div>
 <div>
 
@@ -2110,7 +2110,7 @@ Las variables son independientes. No hay evidencia suficiente para rechazar la i
 </div>
 </div>
 </div>
-<div id="e7d064ef" class="cell" data-execution_count="32">
+<div id="aee927b2" class="cell" data-execution_count="32">
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>palette_dimensions <span class="op">=</span> <span class="st">'Set2'</span></span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>palette_status <span class="op">=</span> <span class="st">'Set3'</span></span>
 <span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a></span>

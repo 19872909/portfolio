@@ -8,8 +8,8 @@ website:
 
   # Header
   navbar:
-    background: "#1B1F23"
-    foreground: "#E8E8E8"
+    background: "#000000"  # Navy Blue "#1B1F23"
+    foreground: "#E8E8E8"  # Light grey for text "#E8E8E8"
     pinned: true
     right: 
       - icon: github
@@ -21,11 +21,13 @@ website:
         file: index.qmd
       - text: "Projects"
         file: projects.qmd
+      - text: "Experiences"
+        file: experiences.qmd
 
   # Foot
   page-footer:
-    background: "#1B1F23"
-    foreground: "#E8E8E8"
+    background: "#000000"  # Navy Blue "#1B1F23"
+    foreground: "#E8E8E8"  # Light grey for text "#E8E8E8"
     center: "Copyright 2024" 
     border: true
 
@@ -34,14 +36,24 @@ website:
   - title: "Projects"
     style: "docked"
     border: true
-    background: "#1B1F23"
-    foreground: "#E8E8E8"
+    background: "#000000"  # Navy Blue "#1B1F23"
+    foreground: "#E8E8E8"  # Light grey for text "#E8E8E8"
     contents:
       - projects.qmd
       - project1.qmd
       - project2.qmd
 
+  - title: "Experiences"
+    style: "docked"
+    border: true
+    background: "#000000"  # Navy Blue "#1B1F23"
+    foreground: "#E8E8E8"  # Light grey for text "#E8E8E8"
+    contents:
+      - experiences.qmd
+
   - title: "Reference teste"
+    background: "#000000"  # Light Gray for distinct section
+    foreground: "#1F4E79"  # Navy Blue for text
     contents:
       - referece.qmd
 

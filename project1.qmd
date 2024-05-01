@@ -21,7 +21,7 @@ from statsmodels.graphics.mosaicplot import mosaic
 ```
 
 ```{python}
-df = pd.read_excel('./source/DATA_Coaches.xlsx',engine='openpyxl')
+df = pd.read_excel('./source/project1/DATA_Coaches.xlsx',engine='openpyxl')
 ```
 
 ```{python}
